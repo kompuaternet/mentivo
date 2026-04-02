@@ -91,7 +91,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
           setSession(data)
           setLocale(data.locale ?? 'ru')
         } else {
-          router.push('/')
+          router.push('/career')
         }
       } finally {
         setLoading(false)
@@ -157,12 +157,12 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
       {/* ── Nav ── */}
       <div className="sticky top-0 z-20 bg-[#0a0812]/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
-          <button onClick={() => router.push('/')} className="flex items-center gap-1.5 text-white/40 hover:text-white/70 transition-colors text-sm">
+          <button onClick={() => router.push('/career')} className="flex items-center gap-1.5 text-white/40 hover:text-white/70 transition-colors text-sm">
             <ArrowLeft className="w-4 h-4" />
             CareerPath
           </button>
           <div className="flex items-center gap-2">
-            <button onClick={() => router.push('/test')} className="flex items-center gap-1.5 text-white/40 hover:text-white/60 transition-colors text-xs px-3 py-1.5 glass rounded-lg">
+            <button onClick={() => router.push('/career/test')} className="flex items-center gap-1.5 text-white/40 hover:text-white/60 transition-colors text-xs px-3 py-1.5 glass rounded-lg">
               <RotateCcw className="w-3 h-3" />
               {t('results_retake', locale)}
             </button>
@@ -551,7 +551,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                 {t('results_share', locale)}
               </button>
               <button
-                onClick={() => router.push('/test')}
+                onClick={() => router.push('/career/test')}
                 className="flex-1 glass glass-hover rounded-xl py-3 flex items-center justify-center gap-2 text-sm text-white/60 font-medium"
               >
                 <RotateCcw className="w-4 h-4" />

@@ -70,21 +70,21 @@ export default function TestPage() {
         // Also save locally as fallback
         localStorage.setItem('career_session', JSON.stringify(session))
 
-        router.push(`/results/${sessionId}`)
+        router.push(`/career/results/${sessionId}`)
       } catch (err) {
         // Fallback: save locally and redirect
         const profile = calculateProfile(newAnswers)
         const sessionId = uuidv4()
         const session = { id: sessionId, locale, answers: newAnswers, profile, isPaid: false, createdAt: new Date().toISOString() }
         localStorage.setItem('career_session', JSON.stringify(session))
-        router.push(`/results/${sessionId}`)
+        router.push(`/career/results/${sessionId}`)
       }
     }
   }, [answers, current, locale, question.id, router])
 
   const handleBack = () => {
     if (current === 0) {
-      router.push('/')
+      router.push('/career')
       return
     }
     setDirection('back')
