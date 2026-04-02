@@ -33,11 +33,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'invalid json' }, { status: 400 })
   }
 
-  const eventName = payload.meta?.['event_name'] as string
+  const meta = payload.meta as Record<string, unknown> | undefined
+  const eventName = meta?.['event_name'] as string | undefined
 
   // We only care about successful orders
   if (eventName === 'order_created') {
-    const customData = payload.meta?.['custom_data'] as Record<string, string> | undefined
+    const customData = meta?.['custom_data'] as Record<string, string> | undefined
     const sessionId = customData?.['session_id']
 
     if (sessionId) {
