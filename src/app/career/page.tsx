@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Brain, Zap, Star, Users, Globe, ChevronDown } from 'lucide-react'
 import { LOCALES, detectLocale, t } from '@/lib/i18n'
 import type { Locale } from '@/types'
+import Link from 'next/link'
 
 export default function LandingPage() {
   const router = useRouter()
@@ -47,7 +48,7 @@ export default function LandingPage() {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center">
             <Brain className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold text-white text-lg">CareerPath</span>
+          <span className="font-bold text-white text-lg">Mentivo</span>
         </motion.div>
 
         {/* Language picker */}
@@ -101,7 +102,7 @@ export default function LandingPage() {
           className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 text-sm font-medium text-purple-300 mb-8 border border-purple-500/20"
         >
           <Star className="w-3.5 h-3.5 fill-current" />
-          <span>Научный подход · Основан на модели Holland RIASEC</span>
+          <span>{t('career_badge', locale)}</span>
         </motion.div>
 
         {/* Headline */}
@@ -198,7 +199,7 @@ export default function LandingPage() {
             >
               <div className="absolute -top-4 -right-4 text-6xl opacity-10">{step.icon}</div>
               <div className="text-4xl mb-4">{step.icon}</div>
-              <div className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-2">Шаг {i + 1}</div>
+              <div className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-2">{t('career_step', locale)} {i + 1}</div>
               <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
               <p className="text-sm text-white/55 leading-relaxed">{step.desc}</p>
             </motion.div>
@@ -216,19 +217,19 @@ export default function LandingPage() {
         >
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500" />
 
-          <h2 className="text-3xl font-black text-white mb-3">Что ты получишь?</h2>
-          <p className="text-white/50 mb-8">После прохождения теста ты получишь детальный профиль</p>
+          <h2 className="text-3xl font-black text-white mb-3">{t('career_what_title', locale)}</h2>
+          <p className="text-white/50 mb-8">{t('career_what_sub', locale)}</p>
 
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { emoji: '🏆', title: 'Топ-7 профессий', desc: 'С процентом совпадения для каждой', locked: false },
-              { emoji: '🧠', title: 'Склад мышления', desc: 'Аналитик, Творец, Стратег или Эмпат', locked: false },
-              { emoji: '🎭', title: 'Склад характера', desc: 'Интроверт, Экстраверт или Амбиверт', locked: false },
-              { emoji: '👑', title: 'Уровень лидерства', desc: 'От Исполнителя до Визионера', locked: false },
-              { emoji: '⚡', title: 'Карьерный архетип', desc: 'Исследователь, Строитель, Создатель...', locked: false },
-              { emoji: '💪', title: 'Сильные стороны', desc: 'И зоны роста которые стоит развить', locked: false },
-              { emoji: '🎓', title: 'Куда идти учиться', desc: 'Направления, специальности, платформы', locked: false },
-              { emoji: '🗺️', title: 'Первый шаг', desc: 'Конкретное действие прямо сейчас', locked: false },
+              { emoji: '🏆', titleKey: 'career_f1_title' as const, descKey: 'career_f1_desc' as const },
+              { emoji: '🧠', titleKey: 'career_f2_title' as const, descKey: 'career_f2_desc' as const },
+              { emoji: '🎭', titleKey: 'career_f3_title' as const, descKey: 'career_f3_desc' as const },
+              { emoji: '👑', titleKey: 'career_f4_title' as const, descKey: 'career_f4_desc' as const },
+              { emoji: '⚡', titleKey: 'career_f5_title' as const, descKey: 'career_f5_desc' as const },
+              { emoji: '💪', titleKey: 'career_f6_title' as const, descKey: 'career_f6_desc' as const },
+              { emoji: '🎓', titleKey: 'career_f7_title' as const, descKey: 'career_f7_desc' as const },
+              { emoji: '🗺️', titleKey: 'career_f8_title' as const, descKey: 'career_f8_desc' as const },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -240,8 +241,8 @@ export default function LandingPage() {
               >
                 <span className="text-2xl flex-shrink-0">{item.emoji}</span>
                 <div>
-                  <div className="font-semibold text-white text-sm">{item.title}</div>
-                  <div className="text-white/45 text-xs mt-0.5">{item.desc}</div>
+                  <div className="font-semibold text-white text-sm">{t(item.titleKey, locale)}</div>
+                  <div className="text-white/45 text-xs mt-0.5">{t(item.descKey, locale)}</div>
                 </div>
               </motion.div>
             ))}
@@ -249,11 +250,11 @@ export default function LandingPage() {
 
           <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-white/50 text-sm">
-              ✅ Бесплатно: профессия #4 из топа<br />
-              🔓 Полный доступ: все 8 разделов
+              {t('career_free_note', locale)}<br />
+              {t('career_paid_note', locale)}
             </div>
             <button onClick={handleStart} className="btn-primary flex items-center gap-2">
-              Начать тест
+              {t('career_start_now', locale)}
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -264,10 +265,10 @@ export default function LandingPage() {
       <section className="py-16 px-6 max-w-5xl mx-auto w-full">
         <div className="grid md:grid-cols-3 gap-4">
           {[
-            { text: 'Всегда думал что пойду в юристы как родители. Тест показал Data Scientist 94% — теперь учусь на Computer Science и обожаю это!', name: 'Миша, 19 лет', emoji: '🧑‍💻' },
-            { text: 'Я не знала куда поступать. После теста поняла что мой архетип — Создатель. Поступила на UX-дизайн и нашла себя.', name: 'Саша, 18 лет', emoji: '👩‍🎨' },
-            { text: 'Тест точнее чем 3 визита к профориентологу. Особенно понравился раздел про склад лидерства.', name: 'Дима, 22 года', emoji: '👨‍🎓' },
-          ].map((t, i) => (
+            { textKey: 'testimonial_1_text' as const, nameKey: 'testimonial_1_name' as const, emoji: '🧑‍💻' },
+            { textKey: 'testimonial_2_text' as const, nameKey: 'testimonial_2_name' as const, emoji: '👩‍🎨' },
+            { textKey: 'testimonial_3_text' as const, nameKey: 'testimonial_3_name' as const, emoji: '👨‍🎓' },
+          ].map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -281,12 +282,12 @@ export default function LandingPage() {
                   <Star key={j} className="w-3.5 h-3.5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-white/70 text-sm leading-relaxed mb-4">"{t.text}"</p>
+              <p className="text-white/70 text-sm leading-relaxed mb-4">"{t(item.textKey, locale)}"</p>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-sm">
-                  {t.emoji}
+                  {item.emoji}
                 </div>
-                <span className="text-white/50 text-xs">{t.name}</span>
+                <span className="text-white/50 text-xs">{t(item.nameKey, locale)}</span>
               </div>
             </motion.div>
           ))}
@@ -301,12 +302,11 @@ export default function LandingPage() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
-            Готов узнать кем{' '}
-            <span className="gradient-text">ты должен стать?</span>
+            {t('career_cta_title', locale)}
           </h2>
-          <p className="text-white/50 mb-8">8–10 минут. Результат на всю жизнь.</p>
+          <p className="text-white/50 mb-8">{t('career_cta_sub', locale)}</p>
           <button onClick={handleStart} className="btn-primary text-lg px-10 py-4 flex items-center gap-3 mx-auto">
-            Начать прямо сейчас
+            {t('career_start_now', locale)}
             <ArrowRight className="w-5 h-5" />
           </button>
         </motion.div>
@@ -318,9 +318,15 @@ export default function LandingPage() {
           <div className="w-5 h-5 rounded bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center">
             <Brain className="w-3 h-3 text-white" />
           </div>
-          <span className="font-semibold text-white/50">CareerPath</span>
+          <span className="font-semibold text-white/50">Mentivo</span>
         </div>
-        <p>{t('footer_tagline', locale)}</p>
+        <p className="mb-3">{t('footer_tagline', locale)}</p>
+        <div className="flex items-center justify-center gap-4 flex-wrap text-xs">
+          <Link href="/pricing" className="hover:text-white/50 transition-colors">Pricing</Link>
+          <Link href="/terms" className="hover:text-white/50 transition-colors">Terms</Link>
+          <Link href="/privacy" className="hover:text-white/50 transition-colors">Privacy</Link>
+          <Link href="/refund" className="hover:text-white/50 transition-colors">Refund Policy</Link>
+        </div>
       </footer>
 
     </main>
