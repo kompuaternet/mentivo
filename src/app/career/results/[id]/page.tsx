@@ -4,6 +4,7 @@ import { useEffect, useState, use } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Lock, Unlock, ArrowLeft, Share2, RotateCcw, CheckCircle, ExternalLink } from 'lucide-react'
+import { initializePaddle, type Paddle } from '@paddle/paddle-js'
 import { t } from '@/lib/i18n'
 import type { TestSession, Locale, UserProfile } from '@/types'
 
@@ -66,6 +67,17 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
   const [paying, setPaying] = useState(false)
   const [barsVisible, setBarsVisible] = useState(false)
   const [paySuccess, setPaySuccess] = useState(false)
+  const [paddle, setPaddle] = useState<Paddle | undefined>()
+
+  useEffect(() => {
+    const token = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
+    if (token) {
+      initializePaddle({
+        environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
+        token,
+      }).then(setPaddle)
+    }
+  }, [])
 
   useEffect(() => {
     // Check URL param for payment success
@@ -102,24 +114,17 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
     loadSession()
   }, [id, router])
 
-  const handleUnlock = async () => {
-    if (!session) return
+  const handleUnlock = () => {
+    if (!session || !paddle) return
     setPaying(true)
-    try {
-      const res = await fetch('/api/payment/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId: session.id, locale }),
-      })
-      const data = await res.json()
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl
-      }
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setPaying(false)
-    }
+    paddle.Checkout.open({
+      items: [{ priceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID!, quantity: 1 }],
+      customData: { session_id: session.id },
+      settings: {
+        successUrl: `${window.location.origin}/career/results/${session.id}?paid=1`,
+      },
+    })
+    setPaying(false)
   }
 
   const handleShare = async () => {
@@ -324,7 +329,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
 
               <div className="mt-3 text-xs text-white/30 flex items-center justify-center gap-1.5">
                 <span>🔒</span>
-                <span>Безопасная оплата через LemonSqueezy</span>
+                <span>Безопасная оплата через Paddle</span>
                 <span>·</span>
                 <span>Мгновенный доступ</span>
               </div>
