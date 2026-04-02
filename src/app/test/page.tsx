@@ -30,7 +30,7 @@ export default function TestPage() {
   const blockCurrent = blockProgress.findIndex(q => q.id === question.id) + 1
 
   // Count unique blocks for nav
-  const totalBlocks = [...new Set(QUESTIONS.map(q => q.block))].length
+  const totalBlocks = Array.from(new Set(QUESTIONS.map(q => q.block))).length
 
   const handleSelect = useCallback(async (optionId: string) => {
     setSelected(optionId)
