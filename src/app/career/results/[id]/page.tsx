@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useState, use } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Lock, Unlock, ArrowLeft, Share2, RotateCcw, CheckCircle, ExternalLink } from 'lucide-react'
-import { initializePaddle, type Paddle } from '@paddle/paddle-js'
-import { t } from '@/lib/i18n'
+import { t, getLT } from '@/lib/i18n'
 import type { TestSession, Locale, UserProfile } from '@/types'
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
@@ -58,8 +57,8 @@ function LeadershipBar({ level }: { level: number }) {
 
 // ─── main ─────────────────────────────────────────────────────────────────────
 
-export default function ResultsPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
+export default function ResultsPage({ params }: { params: { id: string } }) {
+  const { id } = params
   const router = useRouter()
   const [session, setSession] = useState<TestSession | null>(null)
   const [locale, setLocale] = useState<Locale>('ru')
@@ -67,16 +66,19 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
   const [paying, setPaying] = useState(false)
   const [barsVisible, setBarsVisible] = useState(false)
   const [paySuccess, setPaySuccess] = useState(false)
-  const [paddle, setPaddle] = useState<Paddle | undefined>()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [paddle, setPaddle] = useState<any>(undefined)
 
   useEffect(() => {
     const token = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
-    if (token) {
+    if (!token) return
+    import('@paddle/paddle-js').then(({ initializePaddle }) => {
       initializePaddle({
         environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
         token,
-      }).then(setPaddle)
-    }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      }).then((instance: any) => setPaddle(instance))
+    })
   }, [])
 
   useEffect(() => {
@@ -131,7 +133,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
     if (navigator.share) {
       await navigator.share({
         title: 'CareerPath — Мои результаты',
-        text: `Прошёл(а) тест на профессию. Моя профессия #1: ${session?.profile?.topProfessions[0]?.profession.name[locale]}. Попробуй!`,
+        text: `Прошёл(а) тест на профессию. Моя профессия #1: ${session?.profile?.topProfessions[0]?.profession.name ? getLT(session.profile.topProfessions[0].profession.name, locale) : ''}. Попробуй!`,
         url: window.location.href,
       })
     } else {
@@ -227,7 +229,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                   <span className="text-3xl">{previewProfession.profession.emoji}</span>
                   <div>
                     <div className="text-xs text-white/40 mb-0.5">{t('results_profession_no', locale)}4</div>
-                    <h3 className="text-xl font-bold text-white">{previewProfession.profession.name[locale]}</h3>
+                    <h3 className="text-xl font-bold text-white">{getLT(previewProfession.profession.name, locale)}</h3>
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0">
@@ -241,7 +243,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
               </div>
 
               <p className="text-sm text-white/60 leading-relaxed">
-                {previewProfession.profession.description[locale]}
+                {getLT(previewProfession.profession.description, locale)}
               </p>
             </div>
           </motion.div>
@@ -356,8 +358,8 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
               <div className="flex items-start gap-4">
                 <div className="text-5xl">{profile.archetype.emoji}</div>
                 <div>
-                  <h3 className="text-2xl font-black text-white mb-1">{profile.archetype.name[locale]}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{profile.archetype.description[locale]}</p>
+                  <h3 className="text-2xl font-black text-white mb-1">{getLT(profile.archetype.name, locale)}</h3>
+                  <p className="text-white/55 text-sm leading-relaxed">{getLT(profile.archetype.description, locale)}</p>
                 </div>
               </div>
             </motion.div>
@@ -369,23 +371,23 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                 <ProfileCard
                   emoji={profile.thinkingStyle.emoji}
                   label={t('results_thinking', locale)}
-                  value={profile.thinkingStyle.name[locale]}
-                  description={profile.thinkingStyle.description[locale]}
+                  value={getLT(profile.thinkingStyle.name, locale)}
+                  description={getLT(profile.thinkingStyle.description, locale)}
                 />
                 <ProfileCard
                   emoji={profile.characterType.emoji}
                   label={t('results_character', locale)}
-                  value={profile.characterType.name[locale]}
-                  description={profile.characterType.description[locale]}
+                  value={getLT(profile.characterType.name, locale)}
+                  description={getLT(profile.characterType.description, locale)}
                 />
                 <div className="glass rounded-2xl p-5">
                   <div className="text-xs text-white/40 uppercase tracking-widest mb-2">{t('results_leadership', locale)}</div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xl">{profile.leadershipLevel.emoji}</span>
-                    <span className="font-bold text-white">{profile.leadershipLevel.name[locale]}</span>
+                    <span className="font-bold text-white">{getLT(profile.leadershipLevel.name, locale)}</span>
                   </div>
                   <LeadershipBar level={profile.leadershipLevel.level} />
-                  <p className="text-xs text-white/50 mt-2 leading-relaxed">{profile.leadershipLevel.description[locale]}</p>
+                  <p className="text-xs text-white/50 mt-2 leading-relaxed">{getLT(profile.leadershipLevel.description, locale)}</p>
                 </div>
                 <div className="glass rounded-2xl p-5">
                   <div className="text-xs text-white/40 uppercase tracking-widest mb-2">{t('results_workstyle', locale)}</div>
@@ -415,7 +417,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                       className="flex items-center gap-2 text-sm text-white/70"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0" />
-                      {s[locale]}
+                      {getLT(s, locale)}
                     </motion.div>
                   ))}
                 </div>
@@ -432,7 +434,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                       className="flex items-center gap-2 text-sm text-white/70"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
-                      {g[locale]}
+                      {getLT(g, locale)}
                     </motion.div>
                   )) : (
                     <div className="text-sm text-white/40">Всё сбалансировано 🎉</div>
@@ -468,7 +470,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                           {i >= 2 && <span className="text-xs text-white/30 font-semibold">#{i + 1}</span>}
                         </div>
                         <div className={`font-bold ${i === 0 ? 'text-white' : 'text-white/80'}`}>
-                          {pm.profession.name[locale]}
+                          {getLT(pm.profession.name, locale)}
                         </div>
                       </div>
                       <div className={`text-xl font-black flex-shrink-0 ${i === 0 ? 'text-purple-400' : 'text-white/60'}`}>
@@ -482,7 +484,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
 
                     {i === 0 && (
                       <p className="text-xs text-white/50 leading-relaxed mt-2">
-                        {pm.profession.description[locale]}
+                        {getLT(pm.profession.description, locale)}
                       </p>
                     )}
                   </motion.div>
@@ -502,17 +504,17 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
               <div className="space-y-4">
                 <div>
                   <div className="text-xs text-white/40 mb-1">{t('results_direction', locale)}</div>
-                  <div className="font-bold text-white text-lg">{profile.education.directionName[locale]}</div>
+                  <div className="font-bold text-white text-lg">{getLT(profile.education.directionName, locale)}</div>
                 </div>
 
                 <div>
                   <div className="text-xs text-white/40 mb-1.5">{t('results_specialties', locale)}</div>
-                  <div className="text-sm text-purple-300 leading-relaxed">{profile.education.specialties[locale]}</div>
+                  <div className="text-sm text-purple-300 leading-relaxed">{getLT(profile.education.specialties, locale)}</div>
                 </div>
 
                 <div>
                   <div className="text-xs text-white/40 mb-1">{t('results_format', locale)}</div>
-                  <div className="text-sm text-white/70">{profile.education.format[locale]}</div>
+                  <div className="text-sm text-white/70">{getLT(profile.education.format, locale)}</div>
                 </div>
 
                 {profile.education.platforms.length > 0 && (
@@ -538,7 +540,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
               className="glass rounded-2xl p-6 bg-gradient-to-br from-purple-600/10 to-pink-600/5 border border-purple-500/20"
             >
               <div className="text-sm font-bold text-white mb-2">{t('results_first_step', locale)}</div>
-              <p className="text-white/70 text-sm leading-relaxed">{profile.education.firstStep[locale]}</p>
+              <p className="text-white/70 text-sm leading-relaxed">{getLT(profile.education.firstStep, locale)}</p>
             </motion.div>
 
             {/* ── Share / Retake ── */}

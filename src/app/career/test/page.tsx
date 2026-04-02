@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Brain } from 'lucide-react'
 import { QUESTIONS, TOTAL_QUESTIONS } from '@/data/questions'
 import { calculateProfile } from '@/lib/scoring'
-import { t, detectLocale } from '@/lib/i18n'
+import { t, detectLocale, getLT } from '@/lib/i18n'
 import type { Locale } from '@/types'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -113,8 +113,8 @@ export default function TestPage() {
           className="text-center"
         >
           <div className="text-6xl mb-4 animate-float">🧠</div>
-          <div className="text-xl font-semibold text-white mb-2">Анализируем твои ответы...</div>
-          <div className="text-white/40">Строим твой профиль</div>
+          <div className="text-xl font-semibold text-white mb-2">{t('test_analyzing', locale)}</div>
+          <div className="text-white/40">{t('test_analyzing_sub', locale)}</div>
           <div className="mt-6 flex justify-center gap-1.5">
             {[0, 1, 2].map(i => (
               <motion.div
@@ -170,7 +170,7 @@ export default function TestPage() {
 
           {/* Block name & percent */}
           <div className="flex items-center justify-between mt-2">
-            <span className="text-xs text-white/40">{question.blockName[locale]}</span>
+            <span className="text-xs text-white/40">{getLT(question.blockName, locale)}</span>
             <span className="text-xs font-bold text-purple-400">{progress}% {t('test_complete', locale)}</span>
           </div>
         </div>
@@ -197,13 +197,13 @@ export default function TestPage() {
               >
                 <span className="text-2xl">{question.blockEmoji}</span>
                 <span className="text-xs font-semibold text-white/40 uppercase tracking-widest">
-                  {question.blockName[locale]}
+                  {getLT(question.blockName, locale)}
                 </span>
               </motion.div>
 
               {/* Question text */}
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 leading-snug">
-                {question.text[locale]}
+                {getLT(question.text, locale)}
               </h2>
 
               {/* Options */}
@@ -231,7 +231,7 @@ export default function TestPage() {
                       <span className={`text-sm md:text-base leading-relaxed pt-1 transition-colors ${
                         selected === opt.id ? 'text-white' : 'text-white/75'
                       }`}>
-                        {opt.text[locale]}
+                        {getLT(opt.text, locale)}
                       </span>
                     </div>
 

@@ -1,7 +1,7 @@
 // ─── Localization ────────────────────────────────────────────────────────────
 
-export type Locale = 'ru' | 'en' | 'uk' | 'de' | 'es' | 'tr'
-export type LocaleText = Record<Locale, string>
+export type Locale = 'ru' | 'en' | 'uk' | 'de' | 'es' | 'tr' | 'fr'
+export type LocaleText = Partial<Record<Locale, string>>
 
 // ─── Score Dimensions ────────────────────────────────────────────────────────
 
