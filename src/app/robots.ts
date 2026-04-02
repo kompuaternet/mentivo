@@ -10,6 +10,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://www.mentivo.net/sitemap.xml',
-    host: 'https://www.mentivo.net',
   }
 }
