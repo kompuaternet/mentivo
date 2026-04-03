@@ -5,11 +5,10 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft, Share2, RotateCcw, CheckCircle,
-  Trophy, Brain, Users, Crown, Zap, Shield, GraduationCap, Map,
-  Clock
+  Brain, X, Check,
 } from 'lucide-react'
 import { t, getLT } from '@/lib/i18n'
-import type { TestSession, Locale, UserProfile } from '@/types'
+import type { TestSession, Locale } from '@/types'
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
@@ -20,21 +19,6 @@ function MatchBar({ percent, animate }: { percent: number; animate: boolean }) {
         className="match-fill"
         initial={{ width: 0 }}
         animate={{ width: animate ? `${percent}%` : 0 }}
-        transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      />
-    </div>
-  )
-}
-
-// Faded preview bar — fixed ~80% width with transparent right edge
-function PreviewMatchBar({ animate }: { animate: boolean }) {
-  return (
-    <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden flex-1">
-      <motion.div
-        className="absolute inset-y-0 left-0 rounded-full"
-        style={{ background: 'linear-gradient(to right, #6366f1 0%, #8b5cf6 60%, rgba(139,92,246,0) 100%)' }}
-        initial={{ width: 0 }}
-        animate={{ width: animate ? '83%' : 0 }}
         transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
       />
     </div>
@@ -74,35 +58,149 @@ function LeadershipBar({ level }: { level: number }) {
   )
 }
 
-function useCountdown(startSeconds: number, sessionId: string) {
-  const key = `timer_${sessionId}`
-  const [remaining, setRemaining] = useState(() => {
-    if (typeof window === 'undefined') return startSeconds
-    const saved = sessionStorage.getItem(key)
-    if (saved) {
-      const { end } = JSON.parse(saved)
-      const left = Math.floor((end - Date.now()) / 1000)
-      return left > 0 ? left : 0
-    }
-    const end = Date.now() + startSeconds * 1000
-    sessionStorage.setItem(key, JSON.stringify({ end }))
-    return startSeconds
-  })
+// ─── Payment Modal ────────────────────────────────────────────────────────────
 
+function PaymentModal({
+  isOpen, onClose, onChoose, locale, paying,
+}: {
+  isOpen: boolean
+  onClose: () => void
+  onChoose: (plan: 'single' | 'full') => void
+  locale: Locale
+  paying: boolean
+}) {
   useEffect(() => {
-    if (remaining <= 0) return
-    const interval = setInterval(() => {
-      setRemaining(r => {
-        if (r <= 1) { clearInterval(interval); return 0 }
-        return r - 1
-      })
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [])
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    if (isOpen) document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [isOpen, onClose])
 
-  const mm = String(Math.floor(remaining / 60)).padStart(2, '0')
-  const ss = String(remaining % 60).padStart(2, '0')
-  return { display: `${mm}:${ss}`, expired: remaining === 0 }
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            key="overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/50 z-50"
+          />
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="fixed inset-x-4 bottom-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[480px] bg-white rounded-t-3xl md:rounded-3xl p-6 z-[51] max-h-[92vh] overflow-y-auto"
+          >
+            {/* Close */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Header */}
+            <div className="mb-6 pr-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-1">
+                {t('modal_want_to_know', locale)}
+              </h3>
+              <p className="text-sm text-gray-500">
+                {t('modal_result_ready', locale)}
+              </p>
+            </div>
+
+            {/* Options */}
+            <div className="space-y-3 mb-5">
+
+              {/* Option 1 — Single */}
+              <div
+                className="p-4 rounded-2xl border-2 border-gray-100 hover:border-gray-200 transition-colors cursor-pointer"
+                onClick={() => onChoose('single')}
+              >
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <div className="font-semibold text-gray-900 mb-2">{t('plan_single_title', locale)}</div>
+                    <div className="space-y-1">
+                      {[t('plan_single_d1', locale), t('plan_single_d2', locale)].map((d, i) => (
+                        <div key={i} className="flex items-center gap-1.5 text-sm text-gray-500">
+                          <Check className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
+                          {d}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="text-xl font-black text-gray-900 flex-shrink-0">$0.50</div>
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  onClick={(e) => { e.stopPropagation(); onChoose('single') }}
+                  disabled={paying}
+                  className="w-full py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                >
+                  {t('plan_single_cta', locale)}
+                </motion.button>
+              </div>
+
+              {/* Option 2 — Full (highlighted) */}
+              <div className="relative">
+                <div className="absolute -top-3 left-4 z-10">
+                  <span className="text-xs bg-indigo-600 text-white px-2.5 py-1 rounded-full font-semibold">
+                    {t('plan_full_badge', locale)}
+                  </span>
+                </div>
+                <div
+                  className="pt-5 p-4 rounded-2xl border-2 border-indigo-500 bg-indigo-50/50 hover:bg-indigo-50 transition-colors cursor-pointer"
+                  onClick={() => onChoose('full')}
+                >
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div>
+                      <div className="font-semibold text-gray-900 mb-2">{t('plan_full_title', locale)}</div>
+                      <div className="space-y-1">
+                        {[t('plan_full_d1', locale), t('plan_full_d2', locale), t('plan_full_d3', locale)].map((d, i) => (
+                          <div key={i} className="flex items-center gap-1.5 text-sm text-gray-600">
+                            <Check className="w-3.5 h-3.5 text-indigo-500 flex-shrink-0" />
+                            {d}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="text-xl font-black text-indigo-600 flex-shrink-0">$1.99</div>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    onClick={(e) => { e.stopPropagation(); onChoose('full') }}
+                    disabled={paying}
+                    className="w-full py-3 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors"
+                  >
+                    {paying ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin inline-block" />
+                        {t('payment_processing', locale)}
+                      </span>
+                    ) : t('plan_full_cta', locale)}
+                  </motion.button>
+                </div>
+              </div>
+            </div>
+
+            {/* Trust */}
+            <p className="text-center text-xs text-gray-400 mb-2">{t('results_majority_choose', locale)}</p>
+            <div className="flex items-center justify-center gap-3 text-xs text-gray-400">
+              <span>{t('results_instant_access', locale)}</span>
+              <span>·</span>
+              <span>{t('results_lifetime_access', locale)}</span>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  )
 }
 
 // ─── main ─────────────────────────────────────────────────────────────────────
@@ -116,11 +214,9 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
   const [paying, setPaying] = useState(false)
   const [barsVisible, setBarsVisible] = useState(false)
   const [paySuccess, setPaySuccess] = useState(false)
-  const [hoveredRank, setHoveredRank] = useState<number | null>(null)
+  const [showModal, setShowModal] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [paddle, setPaddle] = useState<any>(undefined)
-
-  const timer = useCountdown(24 * 60, id)
 
   useEffect(() => {
     const token = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
@@ -161,11 +257,14 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
     loadSession()
   }, [id, router])
 
-  const handleUnlock = () => {
+  const handleUnlock = (plan: 'single' | 'full') => {
     if (!session || !paddle) return
     setPaying(true)
+    const priceId = plan === 'single'
+      ? (process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_SINGLE ?? process.env.NEXT_PUBLIC_PADDLE_PRICE_ID!)
+      : process.env.NEXT_PUBLIC_PADDLE_PRICE_ID!
     paddle.Checkout.open({
-      items: [{ priceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID!, quantity: 1 }],
+      items: [{ priceId, quantity: 1 }],
       customData: { session_id: session.id },
       settings: {
         successUrl: `${window.location.origin}/career/results/${session.id}?paid=1`,
@@ -203,10 +302,24 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
 
   const { profile } = session
   const isPaid = session.isPaid || paySuccess
-  const previewProfession = profile.topProfessions[3]
+
+  const PROFILE_FEATURES = [
+    t('results_feat_1', locale), t('results_feat_2', locale),
+    t('results_feat_3', locale), t('results_feat_4', locale),
+    t('results_feat_5', locale), t('results_feat_6', locale),
+    t('results_feat_7', locale), t('results_feat_8', locale),
+  ]
 
   return (
     <div className="min-h-screen pb-20 bg-[#F4F6FF]">
+
+      <PaymentModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onChoose={(plan) => { setShowModal(false); handleUnlock(plan) }}
+        locale={locale}
+        paying={paying}
+      />
 
       {/* ── Nav ── */}
       <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-100">
@@ -245,234 +358,122 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
           )}
         </AnimatePresence>
 
-        {/* ── PAYWALL ── */}
+        {/* ════════════════════════════════════════════════════════
+            PAYWALL — unpaid view
+            ════════════════════════════════════════════════════════ */}
         {!isPaid ? (
           <>
-            {/* ── Rare profile anchor ── */}
-            <div className="rounded-xl px-4 py-3 bg-indigo-50 border border-indigo-100 text-center mt-8 mb-2">
-              <p className="font-semibold text-gray-900 text-sm md:text-base leading-snug">
-                {t('results_rare_profile_title', locale)}
-              </p>
-              <p className="text-gray-600 text-xs md:text-sm mt-1 leading-snug">
-                {t('results_rare_profile_sub', locale)}
-              </p>
-            </div>
-
-            {/* ── 1. Rankings list ── */}
+            {/* 1. Header */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 }}
+              className="text-center pt-2"
             >
-              <div className="text-xs text-gray-400 uppercase tracking-widest mb-4 font-semibold">
-                {t('results_rankings_title', locale)}
-              </div>
-              <div className="space-y-1.5">
-                {profile.topProfessions.map((pm, i) => {
-                  const isOpen = i === 3
-                  const isHovered = hoveredRank === i
-                  // all locked uniform: text blur(6px), emoji blur(4px), reduce 25% on hover
-                  const blurName  = isHovered ? 'blur(4.5px)' : 'blur(6px)'
-                  const blurEmoji = isHovered ? 'blur(3px)'   : 'blur(4px)'
-                  const blurPct   = isHovered ? 'blur(3px)'   : 'blur(4px)'
-                  return (
-                    <div
-                      key={pm.profession.id}
-                      className={`relative bg-white rounded-xl px-4 py-3 border flex items-center justify-between gap-3 transition-all duration-200 select-none ${
-                        isOpen
-                          ? 'border-indigo-200 shadow-md'
-                          : 'border-gray-100 cursor-pointer'
-                      }`}
-                      style={!isOpen ? { opacity: isHovered ? 0.6 : 0.45 } : undefined}
-                      onMouseEnter={() => !isOpen && setHoveredRank(i)}
-                      onMouseLeave={() => setHoveredRank(null)}
-                    >
-                      {isOpen && (
-                        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-t-xl" />
-                      )}
-                      {!isOpen && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/40 rounded-xl pointer-events-none" />
-                      )}
-                      <div className="flex items-center gap-3 flex-1 min-w-0">
-                        <span
-                          className="text-xl flex-shrink-0 transition-all duration-200"
-                          style={!isOpen ? { filter: blurEmoji } : undefined}
-                        >
-                          {pm.profession.emoji}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <div className={`text-xs mb-0.5 font-semibold ${isOpen ? 'text-indigo-500' : 'text-gray-400'}`}>
-                            #{i + 1}
-                          </div>
-                          <div
-                            className={`font-bold truncate transition-all duration-200 ${isOpen ? 'text-gray-900' : 'text-gray-700'}`}
-                            style={!isOpen ? { filter: blurName } : undefined}
-                          >
-                            {getLT(pm.profession.name, locale)}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0">
-                        {isOpen ? (
-                          <span className="text-xs bg-indigo-100 text-indigo-600 px-2.5 py-1 rounded-full font-semibold">
-                            {t('results_profession_open_label', locale)}
-                          </span>
-                        ) : (
-                          <span
-                            className="text-lg font-black text-gray-400 tabular-nums transition-all duration-200"
-                            style={{ filter: blurPct }}
-                          >
-                            {pm.matchPercent}%
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2 leading-snug">
+                {t('results_found_title', locale)}
+              </h1>
+              <p className="text-sm text-gray-500">
+                {t('results_found_sub', locale)}
+              </p>
             </motion.div>
 
-            {/* ── Trigger line ── */}
+            {/* 2. Seven profession cards */}
+            <div className="space-y-3">
+              {profile.topProfessions.map((pm, i) => (
+                <motion.div
+                  key={pm.profession.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08 + i * 0.06 }}
+                  onClick={() => setShowModal(true)}
+                  className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm cursor-pointer hover:border-indigo-200 hover:shadow-md transition-all duration-200"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-semibold text-gray-900 text-sm">
+                      {t('results_profession_label', locale)} #{i + 1}
+                    </span>
+                    <span className="text-sm text-gray-500">{pm.matchPercent}%</span>
+                  </div>
+                  {/* Bar capped at 90% of percent — never reaches full width */}
+                  <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-3">
+                    <motion.div
+                      className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                      initial={{ width: 0 }}
+                      animate={{ width: barsVisible ? `${pm.matchPercent * 0.9}%` : 0 }}
+                      transition={{ duration: 0.9, delay: 0.3 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    />
+                  </div>
+                  <button
+                    className="text-sm text-indigo-600 font-medium hover:underline text-left"
+                    onClick={(e) => { e.stopPropagation(); setShowModal(true) }}
+                  >
+                    {t('results_reveal_link', locale)}
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* 3. Info text */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.15 }}
-              className="text-center text-sm font-bold leading-relaxed -mt-2"
-              style={{ color: '#111111' }}
+              transition={{ delay: 0.5 }}
+              className="text-center text-xs text-gray-500 px-4"
             >
-              {t('results_free_subtitle', locale)}
+              {t('results_ranking_note', locale)}
             </motion.p>
 
-            {/* ── 2. Open profession card (#4) ── */}
-            {previewProfession && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.18 }}
-              >
-                <div className="bg-white rounded-2xl p-5 border border-indigo-100 shadow-sm relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500" />
-                  <div className="flex items-start justify-between gap-3 mb-1">
-                    <div className="flex items-start gap-3">
-                      <span className="text-3xl">{previewProfession.profession.emoji}</span>
-                      <div>
-                        <div className="text-xs text-gray-400 mb-0.5">{t('results_profession_no', locale)}4</div>
-                        <h3 className="text-xl font-bold text-gray-900">{getLT(previewProfession.profession.name, locale)}</h3>
-                      </div>
-                    </div>
-                    <div className="flex-shrink-0 mt-1">
-                      <span className="text-xs bg-green-50 text-green-700 border border-green-100 px-3 py-1.5 rounded-full font-semibold whitespace-nowrap">
-                        {t('results_strong_match', locale)}
-                      </span>
-                    </div>
-                  </div>
-                  {/* Micro-trigger under title */}
-                  <p className="text-xs text-gray-400 mb-3 ml-12">
-                    {t('results_almost_best', locale)}
-                  </p>
-                  {/* Faded preview bar */}
-                  <div className="mb-4">
-                    <PreviewMatchBar animate={barsVisible} />
-                  </div>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-3">
-                    {getLT(previewProfession.profession.description, locale)}
-                  </p>
-                  {/* Intrigue line — stronger color + hover underline */}
-                  <p className="text-xs text-indigo-600 font-semibold hover:underline cursor-default">
-                    {t('results_better_matches', locale)}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-
-            {/* ── 3. Main paywall card ── */}
+            {/* 4. Profile preview block */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
+              transition={{ delay: 0.55 }}
+              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm"
             >
-              <div className="bg-white rounded-3xl p-6 border border-indigo-200 shadow-lg relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500" />
-
-                {/* Title — no icon, just text */}
-                <div className="text-center mb-6 pt-2">
-                  <h3 className="text-xl font-black text-gray-900 mb-2">
-                    {t('results_full_ready_title', locale)}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed max-w-xs mx-auto">
-                    {t('results_full_ready_sub', locale)}
-                  </p>
-                </div>
-
-                {/* What opens — 2 columns */}
-                <div className="grid grid-cols-2 gap-2.5 mb-6 text-left">
-                  {[
-                    { icon: Trophy,        titleKey: 'career_f1_title' as const, descKey: 'career_f1_desc' as const },
-                    { icon: Brain,         titleKey: 'career_f2_title' as const, descKey: 'career_f2_desc' as const },
-                    { icon: Users,         titleKey: 'career_f3_title' as const, descKey: 'career_f3_desc' as const },
-                    { icon: Crown,         titleKey: 'career_f4_title' as const, descKey: 'career_f4_desc' as const },
-                    { icon: Zap,           titleKey: 'career_f5_title' as const, descKey: 'career_f5_desc' as const },
-                    { icon: Shield,        titleKey: 'career_f6_title' as const, descKey: 'career_f6_desc' as const },
-                    { icon: GraduationCap, titleKey: 'career_f7_title' as const, descKey: 'career_f7_desc' as const },
-                    { icon: Map,           titleKey: 'career_f8_title' as const, descKey: 'career_f8_desc' as const },
-                  ].map(({ icon: Icon, titleKey, descKey }, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3 bg-gray-50 rounded-xl">
-                      <div className="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Icon className="w-3.5 h-3.5 text-indigo-600" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-gray-800 leading-tight">{t(titleKey, locale)}</div>
-                        <div className="text-[11px] text-gray-400 mt-0.5 leading-tight">{t(descKey, locale)}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Timer — fear of loss */}
-                <div className="flex items-center justify-center gap-1.5 mb-5 text-sm text-gray-500">
-                  <span className="font-medium">{t('results_saved_24h', locale)}</span>
-                  <span className="font-black text-gray-800 tabular-nums">{timer.display}</span>
-                </div>
-
-                {/* CTA Button — motion for hover scale */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleUnlock}
-                  disabled={paying}
-                  className="btn-primary w-full text-base py-4 rounded-xl mb-3 shadow-lg"
-                >
-                  {paying ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin inline-block" />
-                      {t('payment_processing', locale)}
-                    </span>
-                  ) : (
-                    t('results_unlock_cta', locale)
-                  )}
-                </motion.button>
-
-                {/* Micro-text — single clean line */}
-                <p className="text-center text-xs text-gray-400 mb-5">
-                  {t('results_instant_access', locale)}
-                </p>
-
-                {/* Trigger */}
-                <div className="bg-indigo-50 rounded-xl px-4 py-3 text-center text-sm text-indigo-700 font-medium mb-4">
-                  {t('results_already_tested', locale)}
-                </div>
-
-                {/* Social trust */}
-                <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
-                  <div className="flex -space-x-1.5">
-                    {['AM', 'JK', 'EV', 'SR'].map(initials => (
-                      <div key={initials} className="w-6 h-6 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-[9px] font-bold text-indigo-600">
-                        {initials}
-                      </div>
-                    ))}
+              <h3 className="text-base font-bold text-gray-900 mb-1">
+                {t('results_profile_ready_title', locale)}
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                {t('results_profile_ready_sub', locale)}
+              </p>
+              <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+                {PROFILE_FEATURES.map((feat, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
+                    <Check className="w-3.5 h-3.5 text-indigo-500 flex-shrink-0" />
+                    {feat}
                   </div>
-                  <span>{t('results_helped_thousands', locale)}</span>
-                </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* 5. Main CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setShowModal(true)}
+                className="btn-primary w-full text-base py-4 rounded-xl shadow-lg"
+              >
+                {t('results_unlock_all_btn', locale)}
+              </motion.button>
+            </motion.div>
+
+            {/* 6. Micro trust */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.65 }}
+              className="text-center space-y-1.5 pb-4"
+            >
+              <p className="text-xs text-gray-500">{t('results_majority_choose', locale)}</p>
+              <div className="flex items-center justify-center gap-3 text-xs text-gray-400">
+                <span>{t('results_instant_access', locale)}</span>
+                <span>·</span>
+                <span>{t('results_lifetime_access', locale)}</span>
               </div>
             </motion.div>
           </>
@@ -595,10 +596,7 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
                     className={`bg-white rounded-2xl p-4 border shadow-sm ${i === 0 ? 'border-indigo-200 bg-indigo-50/30' : 'border-gray-100'}`}
                   >
                     <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-lg ${
-                        i === 0 ? 'bg-indigo-100'
-                        : 'bg-gray-100'
-                      }`}>
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-lg ${i === 0 ? 'bg-indigo-100' : 'bg-gray-100'}`}>
                         {pm.profession.emoji}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -615,11 +613,9 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
                         {pm.matchPercent}%
                       </div>
                     </div>
-
                     <div className="flex items-center gap-3 mb-2">
                       <MatchBar percent={pm.matchPercent} animate={barsVisible} />
                     </div>
-
                     {i === 0 && (
                       <p className="text-xs text-gray-500 leading-relaxed mt-2">
                         {getLT(pm.profession.description, locale)}
@@ -638,23 +634,19 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
               className="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm"
             >
               <div className="text-xs text-gray-400 uppercase tracking-widest mb-4 font-semibold">{t('results_education', locale)}</div>
-
               <div className="space-y-4">
                 <div>
                   <div className="text-xs text-gray-400 mb-1">{t('results_direction', locale)}</div>
                   <div className="font-bold text-gray-900 text-lg">{getLT(profile.education.directionName, locale)}</div>
                 </div>
-
                 <div>
                   <div className="text-xs text-gray-400 mb-1.5">{t('results_specialties', locale)}</div>
                   <div className="text-sm text-indigo-600 leading-relaxed font-medium">{getLT(profile.education.specialties, locale)}</div>
                 </div>
-
                 <div>
                   <div className="text-xs text-gray-400 mb-1">{t('results_format', locale)}</div>
                   <div className="text-sm text-gray-600">{getLT(profile.education.format, locale)}</div>
                 </div>
-
                 {profile.education.platforms.length > 0 && (
                   <div>
                     <div className="text-xs text-gray-400 mb-2">{t('results_platforms', locale)}</div>

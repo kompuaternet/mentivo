@@ -151,6 +151,21 @@ type UIKey =
   | 'test_micro_hint'
   | 'test_analysis_forming'
   | 'test_mins_left'
+  | 'results_found_title'
+  | 'results_found_sub'
+  | 'results_profession_label'
+  | 'results_reveal_link'
+  | 'results_ranking_note'
+  | 'results_profile_ready_title'
+  | 'results_profile_ready_sub'
+  | 'results_unlock_all_btn'
+  | 'results_majority_choose'
+  | 'results_feat_1' | 'results_feat_2' | 'results_feat_3' | 'results_feat_4'
+  | 'results_feat_5' | 'results_feat_6' | 'results_feat_7' | 'results_feat_8'
+  | 'modal_want_to_know'
+  | 'modal_result_ready'
+  | 'plan_single_title' | 'plan_single_d1' | 'plan_single_d2' | 'plan_single_cta'
+  | 'plan_full_title' | 'plan_full_d1' | 'plan_full_d2' | 'plan_full_d3' | 'plan_full_cta' | 'plan_full_badge'
 
 type Translations = Record<UIKey, Partial<Record<Locale, string>>>
 
@@ -1415,6 +1430,123 @@ export const UI: Translations = {
     tr: 'Fikirleri gerçek sonuçlara dönüştürüyorsun.\nMükemmel koşullara ihtiyacın yok — elindekileri kullanıyorsun.',
     fr: 'Tu transformes les idées en résultats concrets.\nTu n\'as pas besoin de conditions parfaites — tu travailles avec ce qui est disponible.',
   },
+  results_found_title: {
+    ru: 'Мы нашли 7 профессий, которые тебе подходят',
+    en: 'We found 7 careers that match you',
+    uk: 'Ми знайшли 7 професій, які тобі підходять',
+    de: 'Wir haben 7 Berufe gefunden, die zu dir passen',
+    es: 'Encontramos 7 carreras que te corresponden',
+    tr: 'Sana uygun 7 kariyer bulduk',
+    fr: 'Nous avons trouvé 7 métiers qui te correspondent',
+  },
+  results_found_sub: {
+    ru: 'Они отсортированы по уровню совпадения',
+    en: 'Sorted by match level',
+    uk: 'Вони відсортовані за рівнем збігу',
+    de: 'Nach Übereinstimmungsgrad sortiert',
+    es: 'Ordenadas por nivel de coincidencia',
+    tr: 'Eşleşme düzeyine göre sıralandı',
+    fr: 'Triés par niveau de correspondance',
+  },
+  results_profession_label: {
+    ru: 'Профессия',
+    en: 'Career',
+    uk: 'Професія',
+    de: 'Beruf',
+    es: 'Carrera',
+    tr: 'Kariyer',
+    fr: 'Métier',
+  },
+  results_reveal_link: {
+    ru: '→ Узнать какая это профессия',
+    en: '→ Find out which career this is',
+    uk: '→ Дізнатися яка це професія',
+    de: '→ Herausfinden, welcher Beruf das ist',
+    es: '→ Descubrir qué carrera es esta',
+    tr: '→ Bunun hangi kariyer olduğunu öğren',
+    fr: '→ Découvrir quel métier c\'est',
+  },
+  results_ranking_note: {
+    ru: 'Разница между первыми позициями может сильно влиять на выбор пути',
+    en: 'The gap between top positions can significantly impact your path choice',
+    uk: 'Різниця між першими позиціями може сильно впливати на вибір шляху',
+    de: 'Der Unterschied zwischen den ersten Positionen kann die Berufswahl stark beeinflussen',
+    es: 'La diferencia entre las primeras posiciones puede influir mucho en la elección del camino',
+    tr: 'İlk sıralar arasındaki fark yol seçiminizi önemli ölçüde etkileyebilir',
+    fr: 'L\'écart entre les premières positions peut fortement influencer le choix de ta voie',
+  },
+  results_profile_ready_title: {
+    ru: 'Твой полный профиль уже готов',
+    en: 'Your full profile is ready',
+    uk: 'Твій повний профіль вже готовий',
+    de: 'Dein vollständiges Profil ist bereit',
+    es: 'Tu perfil completo está listo',
+    tr: 'Tam profilin hazır',
+    fr: 'Ton profil complet est prêt',
+  },
+  results_profile_ready_sub: {
+    ru: 'Открой доступ и получи полный разбор',
+    en: 'Unlock access and get a full breakdown',
+    uk: 'Відкрий доступ і отримай повний розбір',
+    de: 'Öffne den Zugang und erhalte eine vollständige Analyse',
+    es: 'Desbloquea el acceso y obtén un análisis completo',
+    tr: 'Erişimi aç ve tam analiz al',
+    fr: 'Débloque l\'accès et obtiens une analyse complète',
+  },
+  results_unlock_all_btn: {
+    ru: 'Узнать все профессии',
+    en: 'Reveal all careers',
+    uk: 'Дізнатися всі професії',
+    de: 'Alle Berufe enthüllen',
+    es: 'Revelar todas las carreras',
+    tr: 'Tüm kariyerleri göster',
+    fr: 'Révéler tous les métiers',
+  },
+  results_majority_choose: {
+    ru: 'Большинство пользователей выбирают полный доступ',
+    en: 'Most users choose full access',
+    uk: 'Більшість користувачів обирають повний доступ',
+    de: 'Die meisten Nutzer wählen den vollen Zugang',
+    es: 'La mayoría de usuarios eligen el acceso completo',
+    tr: 'Kullanıcıların çoğu tam erişimi tercih ediyor',
+    fr: 'La plupart des utilisateurs choisissent l\'accès complet',
+  },
+  results_feat_1: { ru: 'Топ-7 профессий', en: 'Top 7 careers', uk: 'Топ-7 професій', de: 'Top 7 Berufe', es: 'Top 7 carreras', tr: 'Top 7 kariyer', fr: 'Top 7 métiers' },
+  results_feat_2: { ru: 'Склад мышления', en: 'Thinking style', uk: 'Склад мислення', de: 'Denkweise', es: 'Estilo de pensamiento', tr: 'Düşünme tarzı', fr: 'Style de pensée' },
+  results_feat_3: { ru: 'Склад характера', en: 'Character type', uk: 'Склад характеру', de: 'Charaktertyp', es: 'Tipo de carácter', tr: 'Karakter tipi', fr: 'Type de caractère' },
+  results_feat_4: { ru: 'Уровень лидерства', en: 'Leadership level', uk: 'Рівень лідерства', de: 'Führungsniveau', es: 'Nivel de liderazgo', tr: 'Liderlik seviyesi', fr: 'Niveau de leadership' },
+  results_feat_5: { ru: 'Карьерный архетип', en: 'Career archetype', uk: 'Кар\'єрний архетип', de: 'Karriere-Archetyp', es: 'Arquetipo profesional', tr: 'Kariyer arketipi', fr: 'Archétype de carrière' },
+  results_feat_6: { ru: 'Сильные стороны', en: 'Key strengths', uk: 'Сильні сторони', de: 'Stärken', es: 'Fortalezas clave', tr: 'Güçlü yönler', fr: 'Points forts' },
+  results_feat_7: { ru: 'Куда идти учиться', en: 'Where to study', uk: 'Куди йти вчитися', de: 'Wo studieren', es: 'Dónde estudiar', tr: 'Nerede çalışılır', fr: 'Où étudier' },
+  results_feat_8: { ru: 'Первый шаг', en: 'First step', uk: 'Перший крок', de: 'Erster Schritt', es: 'Primer paso', tr: 'İlk adım', fr: 'Premier pas' },
+  modal_want_to_know: {
+    ru: 'Хочешь узнать, какая это профессия?',
+    en: 'Want to know which career this is?',
+    uk: 'Хочеш дізнатися, яка це професія?',
+    de: 'Willst du wissen, welcher Beruf das ist?',
+    es: '¿Quieres saber qué carrera es esta?',
+    tr: 'Bunun hangi kariyer olduğunu öğrenmek ister misin?',
+    fr: 'Tu veux savoir quel métier c\'est ?',
+  },
+  modal_result_ready: {
+    ru: 'Твой результат уже готов — открой доступ',
+    en: 'Your result is ready — unlock access',
+    uk: 'Твій результат вже готовий — відкрий доступ',
+    de: 'Dein Ergebnis ist bereit — öffne den Zugang',
+    es: 'Tu resultado está listo — desbloquea el acceso',
+    tr: 'Sonucun hazır — erişimi aç',
+    fr: 'Ton résultat est prêt — débloque l\'accès',
+  },
+  plan_single_title: { ru: 'Открыть 1 профессию', en: 'Open 1 career', uk: 'Відкрити 1 професію', de: '1 Beruf öffnen', es: 'Abrir 1 carrera', tr: '1 kariyer aç', fr: 'Ouvrir 1 métier' },
+  plan_single_d1: { ru: 'Узнать только ТОП-1', en: 'See only the #1 match', uk: 'Дізнатися лише ТОП-1', de: 'Nur den #1 sehen', es: 'Ver solo el #1', tr: 'Yalnızca #1\'i gör', fr: 'Voir uniquement le #1' },
+  plan_single_d2: { ru: 'Краткое описание', en: 'Brief description', uk: 'Короткий опис', de: 'Kurze Beschreibung', es: 'Descripción breve', tr: 'Kısa açıklama', fr: 'Brève description' },
+  plan_single_cta: { ru: 'Открыть профессию', en: 'Open career', uk: 'Відкрити професію', de: 'Beruf öffnen', es: 'Abrir carrera', tr: 'Kariyer aç', fr: 'Ouvrir le métier' },
+  plan_full_title: { ru: 'Полный доступ', en: 'Full access', uk: 'Повний доступ', de: 'Vollzugang', es: 'Acceso completo', tr: 'Tam erişim', fr: 'Accès complet' },
+  plan_full_d1: { ru: 'Все 7 профессий', en: 'All 7 careers', uk: 'Всі 7 професій', de: 'Alle 7 Berufe', es: 'Las 7 carreras', tr: 'Tüm 7 kariyer', fr: 'Les 7 métiers' },
+  plan_full_d2: { ru: 'Полный профиль', en: 'Full profile', uk: 'Повний профіль', de: 'Vollständiges Profil', es: 'Perfil completo', tr: 'Tam profil', fr: 'Profil complet' },
+  plan_full_d3: { ru: 'Рекомендации', en: 'Recommendations', uk: 'Рекомендації', de: 'Empfehlungen', es: 'Recomendaciones', tr: 'Öneriler', fr: 'Recommandations' },
+  plan_full_cta: { ru: 'Получить полный разбор', en: 'Get full breakdown', uk: 'Отримати повний розбір', de: 'Vollständige Analyse erhalten', es: 'Obtener análisis completo', tr: 'Tam analiz al', fr: 'Obtenir l\'analyse complète' },
+  plan_full_badge: { ru: 'Лучший выбор', en: 'Best value', uk: 'Найкращий вибір', de: 'Bestes Angebot', es: 'Mejor opción', tr: 'En iyi seçim', fr: 'Meilleur choix' },
 }
 
 export function t(key: UIKey, locale: Locale): string {
