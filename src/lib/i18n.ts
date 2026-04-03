@@ -60,6 +60,7 @@ type UIKey =
   | 'hero_stats_tests'
   | 'hero_stats_professions'
   | 'hero_stats_min'
+  | 'hero_stats_satisfaction'
   | 'how_title'
   | 'how_1_title' | 'how_1_desc'
   | 'how_2_title' | 'how_2_desc'
@@ -148,6 +149,15 @@ export const UI: Translations = {
     es: 'profesiones en la base de datos',
     tr: 'veritabanında meslek',
     fr: 'professions dans la base',
+  },
+  hero_stats_satisfaction: {
+    ru: 'удовлетворённость',
+    en: 'satisfaction rate',
+    uk: 'задоволеність',
+    de: 'Zufriedenheitsrate',
+    es: 'tasa de satisfacción',
+    tr: 'memnuniyet oranı',
+    fr: 'taux de satisfaction',
   },
   hero_stats_min: {
     ru: 'минут на тест',

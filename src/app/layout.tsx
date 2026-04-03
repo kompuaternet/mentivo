@@ -71,10 +71,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body>
-        {/* Ambient background orbs */}
-        <div className="orb w-[600px] h-[600px] bg-purple-700/20 -top-40 -left-40" />
-        <div className="orb w-[500px] h-[500px] bg-pink-700/15 top-1/2 -right-32" />
-        <div className="orb w-[400px] h-[400px] bg-blue-700/10 bottom-0 left-1/3" />
+        {/* Ambient background orbs — subtle light */}
+        <div className="orb w-[800px] h-[800px] bg-indigo-100/60 -top-80 -left-80" />
+        <div className="orb w-[600px] h-[600px] bg-purple-100/40 top-1/2 -right-60" />
 
         <div className="relative z-10">
           {children}
