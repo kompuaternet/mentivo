@@ -36,8 +36,8 @@ export default function LandingPage() {
     <main className="min-h-screen flex flex-col bg-[#F4F6FF]">
 
       {/* ── Trust banner — static ── */}
-      <div className="bg-indigo-600 text-white text-center h-10 px-4 text-sm font-medium flex items-center justify-center overflow-hidden">
-        <span className="opacity-90 tracking-wide">{t('career_trust_bar', locale)}</span>
+      <div className="bg-indigo-600 text-white text-center h-10 px-4 text-sm font-normal flex items-center justify-center overflow-hidden">
+        <span className="opacity-80 tracking-wide">{t('career_trust_bar', locale)}</span>
       </div>
 
       {/* ── Nav ── */}
@@ -102,18 +102,21 @@ export default function LandingPage() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="flex flex-col items-center px-6 pt-24 pb-20 text-center max-w-3xl mx-auto w-full">
+      <section className="flex flex-col items-center px-6 pt-28 sm:pt-32 pb-20 text-center max-w-3xl mx-auto w-full">
 
-        {/* Headline */}
+        {/* Headline — two-tier hierarchy */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-[2.1rem] sm:text-5xl md:text-[3.25rem] font-extrabold text-[#111827] leading-[1.13] mb-5 max-w-[640px]"
+          className="mb-6 max-w-[640px]"
         >
-          {t('hero_title', locale)}
-          <br />
-          <span className="gradient-text">{t('hero_title2', locale)}</span>
+          <span className="block text-[2.1rem] sm:text-[2.8rem] md:text-[3.25rem] font-bold text-[#111827] leading-[1.13]">
+            {t('hero_title', locale)}
+          </span>
+          <span className="block text-[1.5rem] sm:text-[2rem] md:text-[2.3rem] font-semibold gradient-text leading-[1.2] mt-1">
+            {t('hero_title2', locale)}
+          </span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -121,9 +124,9 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.18 }}
-          className="text-lg text-gray-500 font-normal max-w-[580px] leading-relaxed mb-9"
+          className="text-[1.05rem] text-[#6b7280] font-normal max-w-[520px] leading-[1.6] mb-10"
         >
-          {t('hero_subtitle', locale).split('\n').join(' ')}
+          {t('hero_subtitle', locale)}
         </motion.p>
 
         {/* CTA */}
@@ -135,29 +138,13 @@ export default function LandingPage() {
         >
           <button
             onClick={handleStart}
-            className="btn-primary w-full sm:w-auto text-lg px-10 py-4 rounded-xl"
+            className="btn-primary w-full sm:w-auto text-lg px-10 py-[15px] rounded-2xl hover:scale-[1.02] transition-transform duration-150"
           >
             {t('hero_cta', locale)}
           </button>
-          <p className="mt-4 text-sm text-gray-400">{t('hero_timer_line', locale)}</p>
-          <p className="mt-2 text-xs text-gray-300">{t('hero_micro', locale)}</p>
+          <p className="mt-4 text-sm text-[#9ca3af]">{t('hero_timer_line', locale)}</p>
+          <p className="mt-1.5 text-xs text-[#9ca3af]">{t('hero_no_signup', locale)}</p>
         </motion.div>
-      </section>
-
-      {/* ── University trust logos ── */}
-      <section className="py-8 px-6 bg-white border-y border-gray-100">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
-            Based on research from leading universities
-          </p>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            {UNIVERSITIES.map(uni => (
-              <div key={uni} className="uni-logo">
-                {uni}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── How it works ── */}

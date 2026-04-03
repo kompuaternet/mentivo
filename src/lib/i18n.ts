@@ -60,6 +60,7 @@ type UIKey =
   | 'hero_cta'
   | 'hero_timer_line'
   | 'hero_micro'
+  | 'hero_no_signup'
   | 'hero_useful_title'
   | 'hero_useful_1' | 'hero_useful_2' | 'hero_useful_3'
   | 'hero_stats_tests'
@@ -138,13 +139,13 @@ export const UI: Translations = {
     fr: 'et ne perds pas des années à te tromper',
   },
   hero_subtitle: {
-    ru: '30 вопросов на основе модели Holland (RIASEC),\nиспользуемой в профориентации по всему миру',
-    en: '30 questions based on the Holland (RIASEC) model,\nused in career guidance worldwide',
-    uk: '30 запитань на основі моделі Holland (RIASEC),\nяка використовується у профорієнтації по всьому світу',
-    de: '30 Fragen basierend auf dem Holland (RIASEC)-Modell,\ndas weltweit in der Berufsberatung eingesetzt wird',
-    es: '30 preguntas basadas en el modelo Holland (RIASEC),\nutilizado en orientación vocacional en todo el mundo',
-    tr: 'Holland (RIASEC) modeline dayalı 30 soru,\ndünya genelinde kariyer rehberliğinde kullanılıyor',
-    fr: '30 questions basées sur le modèle Holland (RIASEC),\nutilisé dans l\'orientation professionnelle partout dans le monde',
+    ru: '30 вопросов на основе модели Holland (RIASEC), используемой по всему миру',
+    en: '30 questions based on the Holland (RIASEC) model, used in career guidance worldwide',
+    uk: '30 запитань на основі моделі Holland (RIASEC), яка використовується по всьому світу',
+    de: '30 Fragen basierend auf dem Holland (RIASEC)-Modell, das weltweit eingesetzt wird',
+    es: '30 preguntas basadas en el modelo Holland (RIASEC), utilizado en todo el mundo',
+    tr: 'Holland (RIASEC) modeline dayalı 30 soru, dünya genelinde kullanılıyor',
+    fr: '30 questions basées sur le modèle Holland (RIASEC), utilisé partout dans le monde',
   },
   hero_timer_line: {
     ru: '⏱ 10 минут → выбор, который определит годы',
@@ -165,13 +166,22 @@ export const UI: Translations = {
     fr: 'Basé sur le modèle Holland (RIASEC)',
   },
   hero_cta: {
-    ru: 'Определить свою профессию',
-    en: 'Discover my career',
-    uk: 'Визначити свою професію',
-    de: 'Meinen Beruf finden',
+    ru: 'Узнать свою профессию',
+    en: 'Find your career',
+    uk: 'Дізнатися свою професію',
+    de: 'Meinen Beruf entdecken',
     es: 'Descubrir mi carrera',
-    tr: 'Kariyerimi keşfet',
-    fr: 'Découvrir ma carrière',
+    tr: 'Kariyerimi bul',
+    fr: 'Trouver ma carrière',
+  },
+  hero_no_signup: {
+    ru: 'Без регистрации',
+    en: 'No sign-up required',
+    uk: 'Без реєстрації',
+    de: 'Ohne Registrierung',
+    es: 'Sin registro',
+    tr: 'Kayıt olmadan',
+    fr: 'Sans inscription',
   },
   hero_useful_title: {
     ru: 'Этот тест особенно полезен, если ты:',
