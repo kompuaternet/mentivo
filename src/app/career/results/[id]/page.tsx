@@ -248,6 +248,16 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
         {/* ── PAYWALL ── */}
         {!isPaid ? (
           <>
+            {/* ── Rare profile anchor ── */}
+            <div className="rounded-xl px-4 py-3 bg-indigo-50 border border-indigo-100 text-center mt-8 mb-2">
+              <p className="font-semibold text-gray-900 text-sm md:text-base leading-snug">
+                {t('results_rare_profile_title', locale)}
+              </p>
+              <p className="text-gray-600 text-xs md:text-sm mt-1 leading-snug">
+                {t('results_rare_profile_sub', locale)}
+              </p>
+            </div>
+
             {/* ── 1. Rankings list ── */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}

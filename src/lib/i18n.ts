@@ -101,6 +101,8 @@ type UIKey =
   | 'results_already_tested'
   | 'results_helped_thousands'
   | 'results_profession_open_label'
+  | 'results_rare_profile_title'
+  | 'results_rare_profile_sub'
   | 'results_match'
   | 'results_profession_no'
   | 'results_your_profile'
@@ -611,6 +613,24 @@ export const UI: Translations = {
     es: 'Abierto',
     tr: 'Açık',
     fr: 'Ouvert',
+  },
+  results_rare_profile_title: {
+    ru: 'У тебя редкий профиль с точными совпадениями',
+    en: 'You have a rare profile with precise matches',
+    uk: 'У тебе рідкісний профіль з точними збігами',
+    de: 'Du hast ein seltenes Profil mit präzisen Übereinstimmungen',
+    es: 'Tienes un perfil raro con coincidencias precisas',
+    tr: 'Hassas eşleşmelerle nadir bir profiliniz var',
+    fr: 'Tu as un profil rare avec des correspondances précises',
+  },
+  results_rare_profile_sub: {
+    ru: 'Такие результаты встречаются редко',
+    en: 'Results like these are uncommon',
+    uk: 'Такі результати трапляються рідко',
+    de: 'Solche Ergebnisse sind selten',
+    es: 'Resultados como estos son poco comunes',
+    tr: 'Bu tür sonuçlar nadirdir',
+    fr: 'De tels résultats sont rares',
   },
   results_unlock_price: {
     ru: 'Всего',
