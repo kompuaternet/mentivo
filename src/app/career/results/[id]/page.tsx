@@ -260,36 +260,28 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
               <div className="space-y-1.5">
                 {profile.topProfessions.map((pm, i) => {
                   const isOpen = i === 3
-                  const isNear = i < 3
                   const isHovered = hoveredRank === i
-                  // blur reduces ~25% on hover
-                  const blurName = isNear
-                    ? (isHovered ? 'blur(1.8px)' : 'blur(2.5px)')
-                    : (isHovered ? 'blur(3.5px)' : 'blur(5px)')
-                  const blurPct = isNear
-                    ? (isHovered ? 'blur(1.5px)' : 'blur(2px)')
-                    : (isHovered ? 'blur(3px)' : 'blur(4px)')
-                  const blurEmoji = isNear
-                    ? (isHovered ? 'blur(2px)' : 'blur(3px)')
-                    : (isHovered ? 'blur(4px)' : 'blur(6px)')
+                  // all locked uniform: text blur(6px), emoji blur(4px), reduce 25% on hover
+                  const blurName  = isHovered ? 'blur(4.5px)' : 'blur(6px)'
+                  const blurEmoji = isHovered ? 'blur(3px)'   : 'blur(4px)'
+                  const blurPct   = isHovered ? 'blur(3px)'   : 'blur(4px)'
                   return (
                     <div
                       key={pm.profession.id}
-                      className={`relative bg-white rounded-xl px-4 py-3 border flex items-center justify-between gap-3 transition-all duration-200 ${
+                      className={`relative bg-white rounded-xl px-4 py-3 border flex items-center justify-between gap-3 transition-all duration-200 select-none ${
                         isOpen
                           ? 'border-indigo-200 shadow-md'
                           : 'border-gray-100 cursor-pointer'
                       }`}
-                      style={!isOpen ? { opacity: isNear ? 0.6 : 0.45 } : undefined}
+                      style={!isOpen ? { opacity: isHovered ? 0.6 : 0.45 } : undefined}
                       onMouseEnter={() => !isOpen && setHoveredRank(i)}
                       onMouseLeave={() => setHoveredRank(null)}
                     >
                       {isOpen && (
                         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-t-xl" />
                       )}
-                      {/* Right gradient overlay for locked items */}
                       {!isOpen && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/30 rounded-xl pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/40 rounded-xl pointer-events-none" />
                       )}
                       <div className="flex items-center gap-3 flex-1 min-w-0">
                         <span
@@ -335,7 +327,8 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15 }}
-              className="text-center text-sm font-semibold text-gray-500 -mt-2"
+              className="text-center text-sm font-bold leading-relaxed -mt-2"
+              style={{ color: '#111111' }}
             >
               {t('results_free_subtitle', locale)}
             </motion.p>
@@ -349,7 +342,7 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
               >
                 <div className="bg-white rounded-2xl p-5 border border-indigo-100 shadow-sm relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500" />
-                  <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-start justify-between gap-3 mb-1">
                     <div className="flex items-start gap-3">
                       <span className="text-3xl">{previewProfession.profession.emoji}</span>
                       <div>
@@ -357,13 +350,16 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
                         <h3 className="text-xl font-bold text-gray-900">{getLT(previewProfession.profession.name, locale)}</h3>
                       </div>
                     </div>
-                    {/* Badge instead of exact % */}
                     <div className="flex-shrink-0 mt-1">
                       <span className="text-xs bg-green-50 text-green-700 border border-green-100 px-3 py-1.5 rounded-full font-semibold whitespace-nowrap">
                         {t('results_strong_match', locale)}
                       </span>
                     </div>
                   </div>
+                  {/* Micro-trigger under title */}
+                  <p className="text-xs text-gray-400 mb-3 ml-12">
+                    {t('results_almost_best', locale)}
+                  </p>
                   {/* Faded preview bar */}
                   <div className="mb-4">
                     <PreviewMatchBar animate={barsVisible} />
@@ -371,8 +367,8 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
                   <p className="text-sm text-gray-500 leading-relaxed mb-3">
                     {getLT(previewProfession.profession.description, locale)}
                   </p>
-                  {/* Intrigue line */}
-                  <p className="text-xs text-indigo-500 font-medium">
+                  {/* Intrigue line — stronger color + hover underline */}
+                  <p className="text-xs text-indigo-600 font-semibold hover:underline cursor-default">
                     {t('results_better_matches', locale)}
                   </p>
                 </div>
@@ -422,17 +418,16 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
                   ))}
                 </div>
 
-                {/* Neutral timer */}
-                <div className="flex items-center justify-center gap-2 bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 mb-5 text-sm">
-                  <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                  <span className="text-gray-500 font-medium">{t('results_saved_24h', locale)}</span>
-                  <span className="font-black text-gray-700 tabular-nums">{timer.display}</span>
+                {/* Timer — fear of loss */}
+                <div className="flex items-center justify-center gap-1.5 mb-5 text-sm text-gray-500">
+                  <span className="font-medium">{t('results_saved_24h', locale)}</span>
+                  <span className="font-black text-gray-800 tabular-nums">{timer.display}</span>
                 </div>
 
                 {/* CTA Button — motion for hover scale */}
                 <motion.button
                   whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.99 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={handleUnlock}
                   disabled={paying}
                   className="btn-primary w-full text-base py-4 rounded-xl mb-3 shadow-lg"
@@ -447,14 +442,10 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
                   )}
                 </motion.button>
 
-                {/* Micro-text */}
-                <div className="flex items-center justify-center gap-2 text-xs text-gray-400 mb-5 flex-wrap">
-                  <span>{t('results_no_signup', locale)}</span>
-                  <span>·</span>
-                  <span>{t('results_instant_access', locale)}</span>
-                  <span>·</span>
-                  <span>{t('results_lifetime_access', locale)}</span>
-                </div>
+                {/* Micro-text — single clean line */}
+                <p className="text-center text-xs text-gray-400 mb-5">
+                  {t('results_instant_access', locale)}
+                </p>
 
                 {/* Trigger */}
                 <div className="bg-indigo-50 rounded-xl px-4 py-3 text-center text-sm text-indigo-700 font-medium mb-4">
