@@ -150,47 +150,13 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* ── Research Foundation ── */}
-      <section className="py-12 px-6 bg-white border-y border-gray-100">
-        <div className="max-w-4xl mx-auto">
-
-          {/* Label */}
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <GraduationCap className="w-4 h-4 text-indigo-400" />
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-[0.15em]">
-              {t('research_label', locale)}
-            </span>
-          </div>
-
-          {/* Researcher credit */}
-          <p className="text-center text-sm text-gray-500 leading-relaxed max-w-2xl mx-auto mb-8">
+      {/* ── Methodology strip ── */}
+      <section className="py-8 px-6 bg-white border-y border-gray-100">
+        <div className="max-w-2xl mx-auto flex items-center justify-center gap-3">
+          <GraduationCap className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+          <p className="text-sm text-gray-500 leading-relaxed text-center">
             {t('research_credit', locale)}
           </p>
-
-          {/* University badges */}
-          <div className="flex items-center justify-center gap-2.5 flex-wrap mb-8">
-            {UNIVERSITIES.map(uni => (
-              <div key={uni} className="uni-logo">{uni}</div>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-gray-100 mb-8" />
-
-          {/* Research stats */}
-          <div className="flex items-center justify-center gap-12 flex-wrap">
-            {[
-              { value: '500+', label: t('research_stat_papers', locale) },
-              { value: '60+',  label: t('research_stat_years', locale) },
-              { value: '70+',  label: t('research_stat_countries', locale) },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl font-black text-gray-900">{s.value}</div>
-                <div className="text-xs text-gray-400 mt-0.5">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
         </div>
       </section>
 
