@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight, Brain, Star, ChevronDown,
   Trophy, Users, Crown, Zap, Shield, GraduationCap, Map,
-  BarChart3, Clock, CheckCircle, Lock
+  BarChart3, CheckCircle, Lock
 } from 'lucide-react'
 import { LOCALES, detectLocale, t } from '@/lib/i18n'
 import type { Locale } from '@/types'
@@ -102,104 +102,45 @@ export default function LandingPage() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="flex flex-col items-center justify-center px-6 pt-16 pb-12 text-center max-w-4xl mx-auto w-full">
-
-        {/* Science badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-full px-5 py-2 text-sm font-semibold text-indigo-700 mb-6"
-        >
-          <Star className="w-3.5 h-3.5 fill-current" />
-          {t('career_badge', locale)}
-        </motion.div>
+      <section className="flex flex-col items-center px-6 pt-24 pb-20 text-center max-w-3xl mx-auto w-full">
 
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-          className="text-3xl md:text-5xl font-black text-gray-900 leading-[1.12] mb-2"
+          transition={{ delay: 0.1 }}
+          className="text-[2.1rem] sm:text-5xl md:text-[3.25rem] font-extrabold text-[#111827] leading-[1.13] mb-5 max-w-[640px]"
         >
           {t('hero_title', locale)}
+          <br />
+          <span className="gradient-text">{t('hero_title2', locale)}</span>
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.18 }}
-          className="text-2xl md:text-3xl font-bold gradient-text mb-7"
+          className="text-lg text-gray-500 font-normal max-w-[580px] leading-relaxed mb-9"
         >
-          {t('hero_title2', locale)}
+          {t('hero_subtitle', locale).split('\n').join(' ')}
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed mb-8 space-y-0.5"
-        >
-          {t('hero_subtitle', locale).split('\n').map((line, i) => (
-            <p key={i} className={i === 1 ? 'text-indigo-600 font-medium' : ''}>{line}</p>
-          ))}
-        </motion.div>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25 }}
-          className="flex flex-col sm:flex-row items-center gap-4 mb-10"
+          transition={{ delay: 0.26 }}
+          className="flex flex-col items-center w-full"
         >
           <button
             onClick={handleStart}
-            className="btn-primary animate-pulse-glow flex items-center gap-3 text-lg px-8 py-4 rounded-xl"
+            className="btn-primary w-full sm:w-auto text-lg px-10 py-4 rounded-xl"
           >
             {t('hero_cta', locale)}
-            <ArrowRight className="w-5 h-5" />
           </button>
-          <div className="flex items-center gap-2 text-gray-400 text-sm">
-            <Clock className="w-4 h-4" />
-            <span>8–10 min · Free</span>
-          </div>
-        </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="flex items-center justify-center gap-10 flex-wrap mb-8"
-        >
-          {[
-            { value: '30', label: t('hero_stats_tests', locale) },
-            { value: '25+', label: t('hero_stats_professions', locale) },
-            { value: '98%', label: t('hero_stats_satisfaction', locale) },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl font-black text-gray-900">{stat.value}</div>
-              <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Useful if */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.38 }}
-          className="bg-white border border-indigo-100 rounded-2xl px-6 py-5 max-w-sm w-full text-left shadow-sm"
-        >
-          <p className="text-sm font-semibold text-gray-700 mb-3">{t('hero_useful_title', locale)}</p>
-          <ul className="space-y-2">
-            {(['hero_useful_1', 'hero_useful_2', 'hero_useful_3'] as const).map(k => (
-              <li key={k} className="flex items-start gap-2.5 text-sm text-gray-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0 mt-1.5" />
-                {t(k, locale)}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-4 text-sm text-gray-400">{t('hero_timer_line', locale)}</p>
+          <p className="mt-2 text-xs text-gray-300">{t('hero_micro', locale)}</p>
         </motion.div>
       </section>
 

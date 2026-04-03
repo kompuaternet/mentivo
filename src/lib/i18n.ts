@@ -58,6 +58,8 @@ type UIKey =
   | 'hero_title2'
   | 'hero_subtitle'
   | 'hero_cta'
+  | 'hero_timer_line'
+  | 'hero_micro'
   | 'hero_useful_title'
   | 'hero_useful_1' | 'hero_useful_2' | 'hero_useful_3'
   | 'hero_stats_tests'
@@ -118,13 +120,13 @@ type Translations = Record<UIKey, Partial<Record<Locale, string>>>
 
 export const UI: Translations = {
   hero_title: {
-    ru: 'Найди профессию, которая тебе действительно подходит',
-    en: 'Find the career that truly fits you',
-    uk: 'Знайди професію, яка тобі дійсно підходить',
-    de: 'Finde den Beruf, der wirklich zu dir passt',
-    es: 'Encuentra la carrera que realmente te corresponde',
-    tr: 'Sana gerçekten uyan kariyer yolunu bul',
-    fr: 'Trouve la carrière qui te correspond vraiment',
+    ru: 'Найди профессию, которая тебе подходит',
+    en: 'Find the career that fits you',
+    uk: 'Знайди професію, яка тобі підходить',
+    de: 'Finde den Beruf, der zu dir passt',
+    es: 'Encuentra la carrera que te corresponde',
+    tr: 'Sana uyan kariyer yolunu bul',
+    fr: 'Trouve la carrière qui te correspond',
   },
   hero_title2: {
     ru: 'и не трать годы на ошибку',
@@ -136,13 +138,31 @@ export const UI: Translations = {
     fr: 'et ne perds pas des années à te tromper',
   },
   hero_subtitle: {
-    ru: '30 вопросов на основе модели Holland (RIASEC)\n→ получишь персональный профиль и 7 профессий, которые тебе действительно подходят.',
-    en: '30 questions based on the Holland (RIASEC) model\n→ get your personal profile and 7 careers that truly match you.',
-    uk: '30 запитань на основі моделі Holland (RIASEC)\n→ отримаєш персональний профіль та 7 професій, які тобі дійсно підходять.',
-    de: '30 Fragen basierend auf dem Holland (RIASEC)-Modell\n→ erhalte dein persönliches Profil und 7 Berufe, die wirklich zu dir passen.',
-    es: '30 preguntas basadas en el modelo Holland (RIASEC)\n→ obtén tu perfil personal y 7 carreras que realmente se adaptan a ti.',
-    tr: 'Holland (RIASEC) modeline dayalı 30 soru\n→ kişisel profilini ve sana gerçekten uyan 7 kariyer yolunu al.',
-    fr: '30 questions basées sur le modèle Holland (RIASEC)\n→ reçois ton profil personnel et 7 carrières qui te correspondent vraiment.',
+    ru: '30 вопросов на основе модели Holland (RIASEC),\nиспользуемой в профориентации по всему миру',
+    en: '30 questions based on the Holland (RIASEC) model,\nused in career guidance worldwide',
+    uk: '30 запитань на основі моделі Holland (RIASEC),\nяка використовується у профорієнтації по всьому світу',
+    de: '30 Fragen basierend auf dem Holland (RIASEC)-Modell,\ndas weltweit in der Berufsberatung eingesetzt wird',
+    es: '30 preguntas basadas en el modelo Holland (RIASEC),\nutilizado en orientación vocacional en todo el mundo',
+    tr: 'Holland (RIASEC) modeline dayalı 30 soru,\ndünya genelinde kariyer rehberliğinde kullanılıyor',
+    fr: '30 questions basées sur le modèle Holland (RIASEC),\nutilisé dans l\'orientation professionnelle partout dans le monde',
+  },
+  hero_timer_line: {
+    ru: '⏱ 10 минут → выбор, который определит годы',
+    en: '⏱ 10 minutes → a choice that will define years',
+    uk: '⏱ 10 хвилин → вибір, який визначить роки',
+    de: '⏱ 10 Minuten → eine Wahl, die Jahre bestimmt',
+    es: '⏱ 10 minutos → una elección que definirá años',
+    tr: '⏱ 10 dakika → yılları belirleyecek bir seçim',
+    fr: '⏱ 10 minutes → un choix qui définira des années',
+  },
+  hero_micro: {
+    ru: 'Основано на модели Holland (RIASEC)',
+    en: 'Based on the Holland (RIASEC) model',
+    uk: 'Засновано на моделі Holland (RIASEC)',
+    de: 'Basiert auf dem Holland (RIASEC)-Modell',
+    es: 'Basado en el modelo Holland (RIASEC)',
+    tr: 'Holland (RIASEC) modeline dayalı',
+    fr: 'Basé sur le modèle Holland (RIASEC)',
   },
   hero_cta: {
     ru: 'Определить свою профессию',
