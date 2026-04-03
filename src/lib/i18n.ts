@@ -113,6 +113,9 @@ type UIKey =
   | 'pace_fast' | 'pace_steady' | 'pace_deep'
   | 'footer_tagline'
   | 'career_trust_bar'
+  | 'riasec_caption'
+  | 'preview_title'
+  | 'preview_sub'
   | 'insight_btn'
   | 'insight_subheading'
   | 'insight_analyzing'
@@ -1029,6 +1032,34 @@ export const UI: Translations = {
     es: 'Basado en el modelo Holland (RIASEC) • Usado en 70+ países • Aplicado en orientación vocacional y RRHH',
     tr: 'Holland (RIASEC) modeline dayalı • 70\'ten fazla ülkede kullanılıyor • Kariyer rehberliği ve İK\'da uygulanıyor',
     fr: 'Basé sur le modèle Holland (RIASEC) • Utilisé dans 70+ pays • Appliqué en orientation professionnelle et RH',
+  },
+
+  riasec_caption: {
+    ru: 'Модель RIASEC: 6 типов профессиональных интересов',
+    en: 'RIASEC model: 6 types of professional interests',
+    uk: 'Модель RIASEC: 6 типів професійних інтересів',
+    de: 'RIASEC-Modell: 6 Arten beruflicher Interessen',
+    es: 'Modelo RIASEC: 6 tipos de intereses profesionales',
+    tr: 'RIASEC modeli: 6 tür mesleki ilgi',
+    fr: 'Modèle RIASEC : 6 types d\'intérêts professionnels',
+  },
+  preview_title: {
+    ru: 'Как будет выглядеть твой результат',
+    en: 'What your result will look like',
+    uk: 'Як виглядатиме твій результат',
+    de: 'Wie dein Ergebnis aussehen wird',
+    es: 'Cómo se verá tu resultado',
+    tr: 'Sonucun nasıl görünecek',
+    fr: 'À quoi ressemblera ton résultat',
+  },
+  preview_sub: {
+    ru: 'Персональный профиль с разбором сильных сторон',
+    en: 'Personal profile with strengths breakdown',
+    uk: 'Персональний профіль з розбором сильних сторін',
+    de: 'Persönliches Profil mit Analyse der Stärken',
+    es: 'Perfil personal con análisis de fortalezas',
+    tr: 'Güçlü yönlerin analiziyle kişisel profil',
+    fr: 'Profil personnel avec analyse des points forts',
   },
 
   // ── Insight screens (shown every 7 questions) ─────────────────────────────

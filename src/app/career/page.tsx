@@ -18,6 +18,183 @@ const UNIVERSITIES = [
 ]
 const MEDIA = ['Forbes', 'Psychology Today', 'The Guardian', 'BBC', 'Reuters']
 
+// ── RIASEC Hexagon ────────────────────────────────────────────────────────────
+
+const RIASEC_SEGMENTS = [
+  { id: 'R', fill: 'rgba(99,102,241,0.82)' },
+  { id: 'I', fill: 'rgba(79,70,229,0.88)' },
+  { id: 'A', fill: 'rgba(139,92,246,0.82)' },
+  { id: 'S', fill: 'rgba(167,139,250,0.78)' },
+  { id: 'E', fill: 'rgba(109,40,217,0.80)' },
+  { id: 'C', fill: 'rgba(96,165,250,0.78)' },
+]
+
+function RiasecHexagon() {
+  const cx = 130, cy = 130, r = 108, gap = 3
+  const pts = Array.from({ length: 6 }, (_, i) => {
+    const a = (i * 60 - 90) * Math.PI / 180
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }
+  })
+  // Shrink each triangle slightly inward for a gap between segments
+  const segPath = (i: number) => {
+    const a = pts[i], b = pts[(i + 1) % 6]
+    const shrink = (p: { x: number; y: number }) => ({
+      x: cx + (p.x - cx) * (1 - gap / r),
+      y: cy + (p.y - cy) * (1 - gap / r),
+    })
+    const sa = shrink(a), sb = shrink(b)
+    const ic = { x: cx + (sa.x - cx) * 0.12, y: cy + (sa.y - cy) * 0.12 }
+    return `M ${ic.x} ${ic.y} L ${sa.x} ${sa.y} L ${sb.x} ${sb.y} Z`
+  }
+
+  return (
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 200, repeat: Infinity, ease: 'linear' }}
+      className="w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] drop-shadow-sm"
+    >
+      <svg viewBox="0 0 260 260" width="100%" height="100%">
+        {/* Outer hex ring */}
+        <polygon
+          points={pts.map(p => `${p.x * 260/260},${p.y * 260/260}`).join(' ')}
+          fill="none"
+          stroke="rgba(99,102,241,0.18)"
+          strokeWidth="1"
+        />
+        {/* Mid ring */}
+        <polygon
+          points={pts.map(p => {
+            const sc = 0.6
+            return `${cx + (p.x - cx) * sc},${cy + (p.y - cy) * sc}`
+          }).join(' ')}
+          fill="none"
+          stroke="rgba(99,102,241,0.12)"
+          strokeWidth="1"
+        />
+        {/* Inner ring */}
+        <polygon
+          points={pts.map(p => {
+            const sc = 0.3
+            return `${cx + (p.x - cx) * sc},${cy + (p.y - cy) * sc}`
+          }).join(' ')}
+          fill="none"
+          stroke="rgba(99,102,241,0.1)"
+          strokeWidth="1"
+        />
+        {/* Spokes */}
+        {pts.map((p, i) => (
+          <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y}
+            stroke="rgba(99,102,241,0.08)" strokeWidth="1" />
+        ))}
+        {/* Colored segments */}
+        {RIASEC_SEGMENTS.map((seg, i) => (
+          <path key={seg.id} d={segPath(i)} fill={seg.fill} />
+        ))}
+        {/* Center circle */}
+        <circle cx={cx} cy={cy} r={14} fill="white"
+          style={{ filter: 'drop-shadow(0 1px 3px rgba(99,102,241,0.2))' }} />
+        {/* Vertex dots */}
+        {pts.map((p, i) => (
+          <circle key={i} cx={p.x} cy={p.y} r={4} fill="white"
+            stroke={RIASEC_SEGMENTS[i].fill} strokeWidth="2" />
+        ))}
+        {/* Letter labels just inside each vertex */}
+        {pts.map((p, i) => {
+          const sc = 0.78
+          const lx = cx + (p.x - cx) * sc
+          const ly = cy + (p.y - cy) * sc
+          return (
+            <text key={i} x={lx} y={ly}
+              textAnchor="middle" dominantBaseline="middle"
+              fontSize="10" fontWeight="700" fill="white" opacity="0.9"
+              letterSpacing="0.5">
+              {RIASEC_SEGMENTS[i].id}
+            </text>
+          )
+        })}
+      </svg>
+    </motion.div>
+  )
+}
+
+// ── Profile Preview Card ───────────────────────────────────────────────────────
+
+const PREVIEW_BARS = [
+  { key: 'Analytical',  pct: 85, color: '#6366F1' },
+  { key: 'Strategic',   pct: 72, color: '#7C3AED' },
+  { key: 'Creative',    pct: 60, color: '#8B5CF6' },
+  { key: 'Social',      pct: 45, color: '#A78BFA' },
+  { key: 'Practical',   pct: 38, color: '#818CF8' },
+]
+
+function ProfilePreview() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden max-w-lg mx-auto w-full"
+    >
+      {/* Card header */}
+      <div className="px-5 py-4 border-b border-gray-50 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center flex-shrink-0">
+          <Brain className="w-4 h-4 text-white" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-sm font-bold text-gray-900 truncate">Professional Profile</div>
+          <div className="text-xs text-gray-400">Type: Analytical Researcher</div>
+        </div>
+        <div className="flex-shrink-0 text-xs bg-green-50 text-green-600 font-semibold px-2.5 py-1 rounded-full border border-green-100">
+          ✓ Ready
+        </div>
+      </div>
+
+      {/* Bar chart */}
+      <div className="px-5 py-5 space-y-3">
+        {PREVIEW_BARS.map((bar, i) => (
+          <div key={bar.key}>
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs font-medium text-gray-600">{bar.key}</span>
+              <span className="text-xs font-bold text-gray-500">{bar.pct}%</span>
+            </div>
+            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: `${bar.pct}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.08, ease: 'easeOut' }}
+                className="h-full rounded-full"
+                style={{ background: bar.color }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Locked hint */}
+      <div className="px-5 py-3.5 bg-gray-50 border-t border-gray-100 relative overflow-hidden">
+        <div className="blur-[3px] select-none pointer-events-none">
+          <div className="text-xs text-gray-500 font-medium mb-2">Top career matches</div>
+          <div className="flex gap-2 flex-wrap">
+            {['Data Analyst', 'Research Scientist', 'Strategist'].map(p => (
+              <span key={p} className="text-xs bg-white border border-gray-200 px-2.5 py-1 rounded-full text-gray-600">
+                {p}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex items-center gap-1.5 text-xs text-gray-400 font-medium bg-white/90 px-3 py-1.5 rounded-full border border-gray-100 shadow-sm">
+            <Lock className="w-3 h-3" />
+            Unlock full results
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function LandingPage() {
   const router = useRouter()
   const [locale, setLocale] = useState<Locale>('en')
@@ -105,49 +282,59 @@ export default function LandingPage() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="flex flex-col items-center px-6 pt-28 sm:pt-32 pb-20 text-center max-w-3xl mx-auto w-full">
+      <section className="px-6 pt-16 sm:pt-20 pb-16 max-w-6xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-        {/* Headline — two-tier hierarchy */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="mb-6 max-w-[640px]"
-        >
-          <span className="block text-[2.1rem] sm:text-[2.8rem] md:text-[3.25rem] font-bold text-[#111827] leading-[1.13]">
-            {t('hero_title', locale)}
-          </span>
-          <span className="block text-[1.5rem] sm:text-[2rem] md:text-[2.3rem] font-semibold gradient-text leading-[1.2] mt-1">
-            {t('hero_title2', locale)}
-          </span>
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.18 }}
-          className="text-[1.05rem] text-[#6b7280] font-normal max-w-[520px] leading-[1.6] mb-10"
-        >
-          {t('hero_subtitle', locale)}
-        </motion.p>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.26 }}
-          className="flex flex-col items-center w-full"
-        >
-          <button
-            onClick={handleStart}
-            className="btn-primary w-full sm:w-auto text-lg px-10 py-[15px] rounded-2xl hover:scale-[1.02] transition-transform duration-150"
+          {/* Left: Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center lg:items-start text-center lg:text-left order-1"
           >
-            {t('hero_cta', locale)}
-          </button>
-          <p className="mt-4 text-sm text-[#9ca3af]">{t('hero_timer_line', locale)}</p>
-          <p className="mt-1.5 text-xs text-[#9ca3af]">{t('hero_no_signup', locale)}</p>
-        </motion.div>
+            <h1 className="mb-5">
+              <span className="block text-[2.1rem] sm:text-[2.8rem] md:text-[3rem] font-bold text-[#111827] leading-[1.13]">
+                {t('hero_title', locale)}
+              </span>
+              <span className="block text-[1.45rem] sm:text-[1.9rem] md:text-[2.1rem] font-semibold gradient-text leading-[1.2] mt-1">
+                {t('hero_title2', locale)}
+              </span>
+            </h1>
+
+            <p className="text-[1.05rem] text-[#6b7280] font-normal max-w-[480px] leading-[1.6] mb-9">
+              {t('hero_subtitle', locale)}
+            </p>
+
+            <div className="flex flex-col items-center lg:items-start w-full">
+              <button
+                onClick={handleStart}
+                className="btn-primary w-full sm:w-auto text-lg px-10 py-[15px] rounded-2xl hover:scale-[1.02] transition-transform duration-150"
+              >
+                {t('hero_cta', locale)}
+              </button>
+              <p className="mt-4 text-sm text-[#9ca3af]">{t('hero_timer_line', locale)}</p>
+              <p className="mt-1.5 text-xs text-[#9ca3af]">{t('hero_no_signup', locale)}</p>
+            </div>
+          </motion.div>
+
+          {/* Right: RIASEC Hexagon */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="flex flex-col items-center order-2"
+          >
+            <div className="relative">
+              {/* Glow behind hexagon */}
+              <div className="absolute inset-0 rounded-full bg-indigo-100/60 blur-3xl scale-75 -z-10" />
+              <RiasecHexagon />
+            </div>
+            <p className="mt-4 text-xs text-gray-400 text-center max-w-[220px]">
+              {t('riasec_caption', locale)}
+            </p>
+          </motion.div>
+
+        </div>
       </section>
 
       {/* ── Methodology strip ── */}
@@ -158,6 +345,22 @@ export default function LandingPage() {
             {t('research_credit', locale)}
           </p>
         </div>
+      </section>
+
+      {/* ── Result Preview ── */}
+      <section className="py-14 px-6 max-w-5xl mx-auto w-full">
+        <div className="text-center mb-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-black text-gray-900 mb-2"
+          >
+            {t('preview_title', locale)}
+          </motion.h2>
+          <p className="text-sm text-gray-400">{t('preview_sub', locale)}</p>
+        </div>
+        <ProfilePreview />
       </section>
 
       {/* ── How it works ── */}
