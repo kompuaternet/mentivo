@@ -61,6 +61,11 @@ type UIKey =
   | 'hero_timer_line'
   | 'hero_micro'
   | 'hero_no_signup'
+  | 'research_label'
+  | 'research_credit'
+  | 'research_stat_papers'
+  | 'research_stat_years'
+  | 'research_stat_countries'
   | 'hero_useful_title'
   | 'hero_useful_1' | 'hero_useful_2' | 'hero_useful_3'
   | 'hero_stats_tests'
@@ -182,6 +187,51 @@ export const UI: Translations = {
     es: 'Sin registro',
     tr: 'Kayıt olmadan',
     fr: 'Sans inscription',
+  },
+  research_label: {
+    ru: 'Научная основа',
+    en: 'Scientific Foundation',
+    uk: 'Наукова основа',
+    de: 'Wissenschaftliche Grundlage',
+    es: 'Base científica',
+    tr: 'Bilimsel temel',
+    fr: 'Fondement scientifique',
+  },
+  research_credit: {
+    ru: 'Тест основан на модели Holland (RIASEC), разработанной профессором Джоном Холландом в Университете Джонса Хопкинса (1959). Проверена в тысячах исследований и применяется в ведущих университетах более 60 лет.',
+    en: 'Based on the Holland (RIASEC) model, developed by Prof. John Holland at Johns Hopkins University (1959). Validated in thousands of studies and used at leading universities for over 60 years.',
+    uk: 'Тест заснований на моделі Holland (RIASEC), розробленій професором Джоном Холландом в Університеті Джонса Хопкінса (1959). Перевірена в тисячах досліджень і застосовується у провідних університетах понад 60 років.',
+    de: 'Basierend auf dem Holland (RIASEC)-Modell, entwickelt von Prof. John Holland an der Johns Hopkins University (1959). In Tausenden von Studien validiert und seit über 60 Jahren an führenden Universitäten eingesetzt.',
+    es: 'Basado en el modelo Holland (RIASEC), desarrollado por el Prof. John Holland en la Universidad Johns Hopkins (1959). Validado en miles de estudios y utilizado en universidades líderes durante más de 60 años.',
+    tr: 'Johns Hopkins Üniversitesi\'nde Prof. John Holland tarafından geliştirilen Holland (RIASEC) modeline dayalıdır (1959). Binlerce araştırmada doğrulanmış ve 60 yılı aşkın süredir önde gelen üniversitelerde kullanılmaktadır.',
+    fr: 'Basé sur le modèle Holland (RIASEC), développé par le Prof. John Holland à l\'Université Johns Hopkins (1959). Validé dans des milliers d\'études et utilisé dans les meilleures universités depuis plus de 60 ans.',
+  },
+  research_stat_papers: {
+    ru: 'научных публикаций',
+    en: 'research papers',
+    uk: 'наукових публікацій',
+    de: 'Forschungspublikationen',
+    es: 'publicaciones científicas',
+    tr: 'araştırma makalesi',
+    fr: 'publications scientifiques',
+  },
+  research_stat_years: {
+    ru: 'лет в науке',
+    en: 'years validated',
+    uk: 'років у науці',
+    de: 'Jahre validiert',
+    es: 'años de validación',
+    tr: 'yıl doğrulandı',
+    fr: 'ans de validation',
+  },
+  research_stat_countries: {
+    ru: 'стран применения',
+    en: 'countries worldwide',
+    uk: 'країн застосування',
+    de: 'Länder weltweit',
+    es: 'países de aplicación',
+    tr: 'ülkede kullanılıyor',
+    fr: 'pays d\'utilisation',
   },
   hero_useful_title: {
     ru: 'Этот тест особенно полезен, если ты:',

@@ -12,7 +12,10 @@ import { LOCALES, detectLocale, t } from '@/lib/i18n'
 import type { Locale } from '@/types'
 import Link from 'next/link'
 
-const UNIVERSITIES = ['Harvard', 'Stanford', 'Cambridge', 'Yale', 'Berkeley', 'Oxford']
+const UNIVERSITIES = [
+  'Harvard', 'Stanford', 'MIT', 'Cambridge', 'Oxford',
+  'Yale', 'Princeton', 'Johns Hopkins', 'Berkeley',
+]
 const MEDIA = ['Forbes', 'Psychology Today', 'The Guardian', 'BBC', 'Reuters']
 
 export default function LandingPage() {
@@ -145,6 +148,50 @@ export default function LandingPage() {
           <p className="mt-4 text-sm text-[#9ca3af]">{t('hero_timer_line', locale)}</p>
           <p className="mt-1.5 text-xs text-[#9ca3af]">{t('hero_no_signup', locale)}</p>
         </motion.div>
+      </section>
+
+      {/* ── Research Foundation ── */}
+      <section className="py-12 px-6 bg-white border-y border-gray-100">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Label */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <GraduationCap className="w-4 h-4 text-indigo-400" />
+            <span className="text-xs font-bold text-gray-400 uppercase tracking-[0.15em]">
+              {t('research_label', locale)}
+            </span>
+          </div>
+
+          {/* Researcher credit */}
+          <p className="text-center text-sm text-gray-500 leading-relaxed max-w-2xl mx-auto mb-8">
+            {t('research_credit', locale)}
+          </p>
+
+          {/* University badges */}
+          <div className="flex items-center justify-center gap-2.5 flex-wrap mb-8">
+            {UNIVERSITIES.map(uni => (
+              <div key={uni} className="uni-logo">{uni}</div>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-gray-100 mb-8" />
+
+          {/* Research stats */}
+          <div className="flex items-center justify-center gap-12 flex-wrap">
+            {[
+              { value: '500+', label: t('research_stat_papers', locale) },
+              { value: '60+',  label: t('research_stat_years', locale) },
+              { value: '70+',  label: t('research_stat_countries', locale) },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl font-black text-gray-900">{s.value}</div>
+                <div className="text-xs text-gray-400 mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+        </div>
       </section>
 
       {/* ── How it works ── */}
