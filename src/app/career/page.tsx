@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight, Brain, Star, ChevronDown,
-  Trophy, Lightbulb, Users, Crown, Zap, Shield, GraduationCap, Map,
+  Trophy, Users, Crown, Zap, Shield, GraduationCap, Map,
   BarChart3, Clock, CheckCircle, Lock
 } from 'lucide-react'
 import { LOCALES, detectLocale, t } from '@/lib/i18n'
@@ -15,48 +15,14 @@ import Link from 'next/link'
 const UNIVERSITIES = ['Harvard', 'Stanford', 'Cambridge', 'Yale', 'Berkeley', 'Oxford']
 const MEDIA = ['Forbes', 'Psychology Today', 'The Guardian', 'BBC', 'Reuters']
 
-const PROOF_NAMES = [
-  { name: 'Sofia M.', country: '🇩🇪', time: '2 min ago' },
-  { name: 'James K.', country: '🇺🇸', time: '3 min ago' },
-  { name: 'Elena V.', country: '🇷🇺', time: '1 min ago' },
-  { name: 'Ahmed R.', country: '🇦🇪', time: '4 min ago' },
-  { name: 'Maria L.', country: '🇧🇷', time: '2 min ago' },
-  { name: 'Yuki T.', country: '🇯🇵', time: '5 min ago' },
-]
-
-const FEATURE_ICONS = [Trophy, Brain, Users, Crown, Zap, Shield, GraduationCap, Map]
-
 export default function LandingPage() {
   const router = useRouter()
   const [locale, setLocale] = useState<Locale>('en')
   const [langOpen, setLangOpen] = useState(false)
-  const [proofIndex, setProofIndex] = useState(0)
-  const [proofVisible, setProofVisible] = useState(true)
-  const [count, setCount] = useState(24817)
 
   useEffect(() => {
     const saved = localStorage.getItem('career_locale') as Locale | null
     setLocale(saved ?? detectLocale())
-  }, [])
-
-  useEffect(() => {
-    // Rotate social proof notifications
-    const interval = setInterval(() => {
-      setProofVisible(false)
-      setTimeout(() => {
-        setProofIndex(i => (i + 1) % PROOF_NAMES.length)
-        setProofVisible(true)
-      }, 400)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
-  // Slowly increment count
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount(c => c + Math.floor(Math.random() * 3))
-    }, 8000)
-    return () => clearInterval(interval)
   }, [])
 
   const selectedLang = LOCALES.find(l => l.code === locale) ?? LOCALES[1]
@@ -66,28 +32,12 @@ export default function LandingPage() {
     router.push('/career/test')
   }
 
-  const proof = PROOF_NAMES[proofIndex]
-
   return (
     <main className="min-h-screen flex flex-col bg-[#F4F6FF]">
 
-      {/* ── Social proof top banner — fixed height to prevent layout jump ── */}
+      {/* ── Trust banner — static ── */}
       <div className="bg-indigo-600 text-white text-center h-10 px-4 text-sm font-medium flex items-center justify-center overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={proofIndex}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center justify-center gap-2 whitespace-nowrap"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block flex-shrink-0" />
-            <span>{proof.country} <strong>{proof.name}</strong> just got their career profile · {proof.time}</span>
-            <span className="opacity-40 mx-1">·</span>
-            <span className="opacity-80">{count.toLocaleString()} profiles created</span>
-          </motion.div>
-        </AnimatePresence>
+        <span className="opacity-90 tracking-wide">{t('career_trust_bar', locale)}</span>
       </div>
 
       {/* ── Nav ── */}

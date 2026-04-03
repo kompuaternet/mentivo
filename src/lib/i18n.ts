@@ -101,6 +101,7 @@ type UIKey =
   | 'workstyle_solo' | 'workstyle_team' | 'workstyle_mixed'
   | 'pace_fast' | 'pace_steady' | 'pace_deep'
   | 'footer_tagline'
+  | 'career_trust_bar'
   | 'insight_btn'
   | 'insight_subheading'
   | 'insight_t_analytical_title' | 'insight_t_analytical_desc'
@@ -883,6 +884,16 @@ export const UI: Translations = {
     fr: 'Plus précis que 3 visites chez un conseiller d\'orientation. J\'ai particulièrement aimé la section sur le niveau de leadership.',
   },
   testimonial_3_name: { ru: 'Дима, 22 года', en: 'Dima, 22', uk: 'Діма, 22 роки', de: 'Dima, 22', es: 'Dima, 22', tr: 'Dima, 22', fr: 'Dima, 22 ans' },
+
+  career_trust_bar: {
+    ru: 'Основано на модели Holland (RIASEC) • Используется в 70+ странах • Применяется в профориентации и HR',
+    en: 'Based on the Holland (RIASEC) model • Used in 70+ countries • Applied in career guidance and HR',
+    uk: 'Засновано на моделі Holland (RIASEC) • Використовується у 70+ країнах • Застосовується в профорієнтації та HR',
+    de: 'Basiert auf dem Holland (RIASEC)-Modell • In 70+ Ländern eingesetzt • In Berufsberatung und HR angewendet',
+    es: 'Basado en el modelo Holland (RIASEC) • Usado en 70+ países • Aplicado en orientación vocacional y RRHH',
+    tr: 'Holland (RIASEC) modeline dayalı • 70\'ten fazla ülkede kullanılıyor • Kariyer rehberliği ve İK\'da uygulanıyor',
+    fr: 'Basé sur le modèle Holland (RIASEC) • Utilisé dans 70+ pays • Appliqué en orientation professionnelle et RH',
+  },
 
   // ── Insight screens (shown every 7 questions) ─────────────────────────────
   insight_btn: {
