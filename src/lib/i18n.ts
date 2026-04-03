@@ -55,8 +55,11 @@ type UIKey =
   | 'test_analyzing'
   | 'test_analyzing_sub'
   | 'hero_title'
+  | 'hero_title2'
   | 'hero_subtitle'
   | 'hero_cta'
+  | 'hero_useful_title'
+  | 'hero_useful_1' | 'hero_useful_2' | 'hero_useful_3'
   | 'hero_stats_tests'
   | 'hero_stats_professions'
   | 'hero_stats_min'
@@ -115,31 +118,76 @@ type Translations = Record<UIKey, Partial<Record<Locale, string>>>
 
 export const UI: Translations = {
   hero_title: {
-    ru: 'Узнай, какая профессия создана для тебя',
-    en: 'Discover the career made for you',
-    uk: 'Дізнайся, яка професія створена для тебе',
-    de: 'Entdecke den Beruf, der für dich gemacht ist',
-    es: 'Descubre la carrera hecha para ti',
-    tr: 'Senin için yaratılan kariyer yolunu keşfet',
-    fr: 'Découvre la carrière faite pour toi',
+    ru: 'Найди профессию, которая тебе действительно подходит',
+    en: 'Find the career that truly fits you',
+    uk: 'Знайди професію, яка тобі дійсно підходить',
+    de: 'Finde den Beruf, der wirklich zu dir passt',
+    es: 'Encuentra la carrera que realmente te corresponde',
+    tr: 'Sana gerçekten uyan kariyer yolunu bul',
+    fr: 'Trouve la carrière qui te correspond vraiment',
+  },
+  hero_title2: {
+    ru: 'и не трать годы на ошибку',
+    en: 'and stop wasting years on the wrong path',
+    uk: 'і не витрачай роки на помилку',
+    de: 'und verschwende keine Jahre mit Fehlern',
+    es: 'y no pierdas años en el error',
+    tr: 've yıllarca yanlış yolda zaman kaybetme',
+    fr: 'et ne perds pas des années à te tromper',
   },
   hero_subtitle: {
-    ru: '30 вопросов. Глубокий анализ. Твой персональный профиль и топ-7 профессий где ты будешь счастлив.',
-    en: '30 questions. Deep analysis. Your personal profile and top-7 careers where you will thrive.',
-    uk: '30 запитань. Глибокий аналіз. Твій персональний профіль і топ-7 професій де ти будеш щасливий.',
-    de: '30 Fragen. Tiefenanalyse. Dein persönliches Profil und top-7 Berufe, in denen du aufblühen wirst.',
-    es: '30 preguntas. Análisis profundo. Tu perfil personal y las 7 carreras donde prosperarás.',
-    tr: '30 soru. Derin analiz. Kişisel profilin ve başarılı olacağın en iyi 7 kariyer.',
-    fr: '30 questions. Analyse approfondie. Ton profil personnel et le top-7 des carrières où tu t\'épanouiras.',
+    ru: '30 вопросов на основе модели Holland (RIASEC)\n→ получишь персональный профиль и 7 профессий, которые тебе действительно подходят.',
+    en: '30 questions based on the Holland (RIASEC) model\n→ get your personal profile and 7 careers that truly match you.',
+    uk: '30 запитань на основі моделі Holland (RIASEC)\n→ отримаєш персональний профіль та 7 професій, які тобі дійсно підходять.',
+    de: '30 Fragen basierend auf dem Holland (RIASEC)-Modell\n→ erhalte dein persönliches Profil und 7 Berufe, die wirklich zu dir passen.',
+    es: '30 preguntas basadas en el modelo Holland (RIASEC)\n→ obtén tu perfil personal y 7 carreras que realmente se adaptan a ti.',
+    tr: 'Holland (RIASEC) modeline dayalı 30 soru\n→ kişisel profilini ve sana gerçekten uyan 7 kariyer yolunu al.',
+    fr: '30 questions basées sur le modèle Holland (RIASEC)\n→ reçois ton profil personnel et 7 carrières qui te correspondent vraiment.',
   },
   hero_cta: {
-    ru: 'Начать тест — бесплатно',
-    en: 'Start the test — free',
-    uk: 'Розпочати тест — безкоштовно',
-    de: 'Test starten — kostenlos',
-    es: 'Iniciar el test — gratis',
-    tr: 'Testi başlat — ücretsiz',
-    fr: 'Commencer le test — gratuit',
+    ru: 'Определить свою профессию',
+    en: 'Discover my career',
+    uk: 'Визначити свою професію',
+    de: 'Meinen Beruf finden',
+    es: 'Descubrir mi carrera',
+    tr: 'Kariyerimi keşfet',
+    fr: 'Découvrir ma carrière',
+  },
+  hero_useful_title: {
+    ru: 'Этот тест особенно полезен, если ты:',
+    en: 'This test is especially useful if you:',
+    uk: 'Цей тест особливо корисний, якщо ти:',
+    de: 'Dieser Test ist besonders nützlich, wenn du:',
+    es: 'Este test es especialmente útil si:',
+    tr: 'Bu test özellikle şu durumlarda faydalıdır:',
+    fr: 'Ce test est particulièrement utile si tu :',
+  },
+  hero_useful_1: {
+    ru: 'не знаешь куда поступать',
+    en: "don't know what to study",
+    uk: 'не знаєш куди вступати',
+    de: 'nicht weißt, was du studieren sollst',
+    es: 'no sabes qué estudiar',
+    tr: 'ne okuyacağını bilmiyorsun',
+    fr: 'ne sais pas quoi étudier',
+  },
+  hero_useful_2: {
+    ru: 'сомневаешься в выборе',
+    en: 'are unsure about your choice',
+    uk: 'сумніваєшся у виборі',
+    de: 'unsicher in deiner Wahl bist',
+    es: 'dudas sobre tu elección',
+    tr: 'seçiminden emin değilsin',
+    fr: 'doutes de ton choix',
+  },
+  hero_useful_3: {
+    ru: 'хочешь сменить профессию',
+    en: 'want to change careers',
+    uk: 'хочеш змінити професію',
+    de: 'den Beruf wechseln möchtest',
+    es: 'quieres cambiar de carrera',
+    tr: 'kariyer değiştirmek istiyorsun',
+    fr: 'veux changer de métier',
   },
   hero_stats_tests: {
     ru: 'тестов пройдено',

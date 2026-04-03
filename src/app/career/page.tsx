@@ -120,20 +120,30 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.08] mb-5"
+          className="text-3xl md:text-5xl font-black text-gray-900 leading-[1.12] mb-2"
         >
-          {t('hero_title', locale).split(' ').slice(0, 2).join(' ')}{' '}
-          <span className="gradient-text">{t('hero_title', locale).split(' ').slice(2).join(' ')}</span>
+          {t('hero_title', locale)}
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-lg md:text-xl text-gray-500 max-w-2xl leading-relaxed mb-8"
+          transition={{ delay: 0.18 }}
+          className="text-2xl md:text-3xl font-bold gradient-text mb-7"
         >
-          {t('hero_subtitle', locale)}
+          {t('hero_title2', locale)}
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed mb-8 space-y-0.5"
+        >
+          {t('hero_subtitle', locale).split('\n').map((line, i) => (
+            <p key={i} className={i === 1 ? 'text-indigo-600 font-medium' : ''}>{line}</p>
+          ))}
+        </motion.div>
 
         {/* CTA */}
         <motion.div
@@ -160,7 +170,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="flex items-center justify-center gap-8 flex-wrap"
+          className="flex items-center justify-center gap-10 flex-wrap mb-8"
         >
           {[
             { value: '30', label: t('hero_stats_tests', locale) },
@@ -172,6 +182,24 @@ export default function LandingPage() {
               <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
             </div>
           ))}
+        </motion.div>
+
+        {/* Useful if */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.38 }}
+          className="bg-white border border-indigo-100 rounded-2xl px-6 py-5 max-w-sm w-full text-left shadow-sm"
+        >
+          <p className="text-sm font-semibold text-gray-700 mb-3">{t('hero_useful_title', locale)}</p>
+          <ul className="space-y-2">
+            {(['hero_useful_1', 'hero_useful_2', 'hero_useful_3'] as const).map(k => (
+              <li key={k} className="flex items-start gap-2.5 text-sm text-gray-500">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0 mt-1.5" />
+                {t(k, locale)}
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </section>
 
