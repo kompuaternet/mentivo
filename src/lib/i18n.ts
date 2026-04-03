@@ -101,6 +101,14 @@ type UIKey =
   | 'workstyle_solo' | 'workstyle_team' | 'workstyle_mixed'
   | 'pace_fast' | 'pace_steady' | 'pace_deep'
   | 'footer_tagline'
+  | 'insight_btn'
+  | 'insight_subheading'
+  | 'insight_t_analytical_title' | 'insight_t_analytical_desc'
+  | 'insight_t_creative_title' | 'insight_t_creative_desc'
+  | 'insight_t_social_title' | 'insight_t_social_desc'
+  | 'insight_t_strategic_title' | 'insight_t_strategic_desc'
+  | 'insight_t_practical_title' | 'insight_t_practical_desc'
+  | 'insight_top_pct'
 
 type Translations = Record<UIKey, Partial<Record<Locale, string>>>
 
@@ -875,6 +883,114 @@ export const UI: Translations = {
     fr: 'Plus précis que 3 visites chez un conseiller d\'orientation. J\'ai particulièrement aimé la section sur le niveau de leadership.',
   },
   testimonial_3_name: { ru: 'Дима, 22 года', en: 'Dima, 22', uk: 'Діма, 22 роки', de: 'Dima, 22', es: 'Dima, 22', tr: 'Dima, 22', fr: 'Dima, 22 ans' },
+
+  // ── Insight screens (shown every 7 questions) ─────────────────────────────
+  insight_btn: {
+    ru: 'Продолжить', en: 'Continue', uk: 'Продовжити',
+    de: 'Weiter', es: 'Continuar', tr: 'Devam', fr: 'Continuer',
+  },
+  insight_subheading: {
+    ru: 'Мы уже видим твой профиль',
+    en: 'We can already see your profile',
+    uk: 'Ми вже бачимо твій профіль',
+    de: 'Wir sehen bereits dein Profil',
+    es: 'Ya podemos ver tu perfil',
+    tr: 'Profilini zaten görebiliyoruz',
+    fr: 'Nous pouvons déjà voir ton profil',
+  },
+  insight_top_pct: {
+    ru: 'Топ', en: 'Top', uk: 'Топ', de: 'Top', es: 'Top', tr: 'İlk', fr: 'Top',
+  },
+  insight_t_analytical_title: {
+    ru: 'Ты мыслишь как учёный',
+    en: 'You think like a scientist',
+    uk: 'Ти мислиш як вчений',
+    de: 'Du denkst wie ein Wissenschaftler',
+    es: 'Piensas como un científico',
+    tr: 'Bir bilim insanı gibi düşünüyorsun',
+    fr: 'Tu penses comme un scientifique',
+  },
+  insight_t_analytical_desc: {
+    ru: 'Твои ответы раскрывают острый аналитический ум. Ты замечаешь закономерности и связи, которые большинство людей упускает.',
+    en: 'Your answers reveal a sharp analytical mind. You notice patterns and connections that most people miss.',
+    uk: 'Твої відповіді розкривають гострий аналітичний розум. Ти помічаєш закономірності та зв\'язки, які більшість людей не бачить.',
+    de: 'Deine Antworten offenbaren einen scharfen analytischen Geist. Du erkennst Muster und Zusammenhänge, die die meisten Menschen übersehen.',
+    es: 'Tus respuestas revelan una mente analítica aguda. Notas patrones y conexiones que la mayoría de las personas pasa por alto.',
+    tr: 'Cevapların keskin bir analitik zihni ortaya koyuyor. Çoğu insanın gözden kaçırdığı kalıpları ve bağlantıları fark ediyorsun.',
+    fr: 'Tes réponses révèlent un esprit analytique acéré. Tu remarques des schémas et connexions que la plupart des gens manquent.',
+  },
+  insight_t_creative_title: {
+    ru: 'У тебя творческое мышление',
+    en: 'You have a creative mind',
+    uk: 'У тебе творче мислення',
+    de: 'Du hast einen kreativen Geist',
+    es: 'Tienes una mente creativa',
+    tr: 'Yaratıcı bir zihne sahipsin',
+    fr: 'Tu as un esprit créatif',
+  },
+  insight_t_creative_desc: {
+    ru: 'Твои ответы показывают яркое творческое мышление и богатое воображение. Ты легко находишь нестандартные решения там, где другие зашли в тупик.',
+    en: 'Your answers show vivid creative thinking and rich imagination. You easily find unconventional solutions where others are stuck.',
+    uk: 'Твої відповіді показують яскраве творче мислення та багату уяву. Ти легко знаходиш нестандартні рішення там, де інші зайшли в глухий кут.',
+    de: 'Deine Antworten zeigen lebhaftes kreatives Denken und reiche Vorstellungskraft. Du findest leicht unkonventionelle Lösungen, wo andere feststecken.',
+    es: 'Tus respuestas muestran un pensamiento creativo vívido y una imaginación rica. Encuentras fácilmente soluciones poco convencionales donde otros se quedan atascados.',
+    tr: 'Cevapların canlı yaratıcı düşünceyi ve zengin hayal gücünü gösteriyor. Başkalarının takıldığı yerde kolayca alışılmadık çözümler buluyorsun.',
+    fr: 'Tes réponses montrent une pensée créative vive et une riche imagination. Tu trouves facilement des solutions non conventionnelles là où les autres sont bloqués.',
+  },
+  insight_t_social_title: {
+    ru: 'Ты глубоко понимаешь людей',
+    en: 'You understand people deeply',
+    uk: 'Ти глибоко розумієш людей',
+    de: 'Du verstehst Menschen tief',
+    es: 'Entiendes a las personas profundamente',
+    tr: 'İnsanları derinden anlıyorsun',
+    fr: 'Tu comprends les gens en profondeur',
+  },
+  insight_t_social_desc: {
+    ru: 'Твои ответы раскрывают исключительную эмпатию и социальный интеллект. Ты чувствуешь эмоции других людей и легко строишь настоящие связи.',
+    en: 'Your answers reveal exceptional empathy and social intelligence. You sense other people\'s emotions and build genuine connections effortlessly.',
+    uk: 'Твої відповіді розкривають виняткову емпатію та соціальний інтелект. Ти відчуваєш емоції інших людей і легко будуєш справжні зв\'язки.',
+    de: 'Deine Antworten offenbaren außergewöhnliche Empathie und soziale Intelligenz. Du spürst die Emotionen anderer Menschen und baust mühelos echte Verbindungen auf.',
+    es: 'Tus respuestas revelan empatía excepcional e inteligencia social. Sientes las emociones de otras personas y construyes conexiones genuinas sin esfuerzo.',
+    tr: 'Cevapların olağanüstü empati ve sosyal zekayı ortaya koyuyor. Diğer insanların duygularını hissediyor ve zahmetsizce gerçek bağlantılar kuruyorsun.',
+    fr: 'Tes réponses révèlent une empathie exceptionnelle et une intelligence sociale. Tu ressens les émotions des autres et construis des liens authentiques sans effort.',
+  },
+  insight_t_strategic_title: {
+    ru: 'Ты мыслишь как лидер',
+    en: 'You think like a leader',
+    uk: 'Ти мислиш як лідер',
+    de: 'Du denkst wie ein Anführer',
+    es: 'Piensas como un líder',
+    tr: 'Bir lider gibi düşünüyorsun',
+    fr: 'Tu penses comme un leader',
+  },
+  insight_t_strategic_desc: {
+    ru: 'Твои ответы раскрывают стратегическое мышление и природные лидерские способности. Ты видишь картину целиком и знаешь как двигаться к цели.',
+    en: 'Your answers reveal strategic thinking and natural leadership abilities. You see the big picture and know how to move toward a goal.',
+    uk: 'Твої відповіді розкривають стратегічне мислення та природні лідерські здібності. Ти бачиш велику картину і знаєш як рухатися до мети.',
+    de: 'Deine Antworten offenbaren strategisches Denken und natürliche Führungsqualitäten. Du siehst das Gesamtbild und weißt, wie du auf ein Ziel zusteuern kannst.',
+    es: 'Tus respuestas revelan pensamiento estratégico y habilidades naturales de liderazgo. Ves el panorama general y sabes cómo avanzar hacia un objetivo.',
+    tr: 'Cevapların stratejik düşünceyi ve doğal liderlik yeteneklerini ortaya koyuyor. Büyük resmi görüyor ve hedefe nasıl ilerleyeceğini biliyorsun.',
+    fr: 'Tes réponses révèlent une pensée stratégique et des capacités naturelles de leadership. Tu vois l\'ensemble et sais comment avancer vers un objectif.',
+  },
+  insight_t_practical_title: {
+    ru: 'Ты прирождённый решатель задач',
+    en: 'You\'re a natural problem-solver',
+    uk: 'Ти природжений вирішувач проблем',
+    de: 'Du bist ein geborener Problemlöser',
+    es: 'Eres un solucionador de problemas nato',
+    tr: 'Doğal bir problem çözücüsün',
+    fr: 'Tu es un résolveur de problèmes né',
+  },
+  insight_t_practical_desc: {
+    ru: 'Твои ответы показывают исключительный практический интеллект. Ты превращаешь идеи в реальные результаты и добиваешься цели там, где другие сдаются.',
+    en: 'Your answers show exceptional practical intelligence. You turn ideas into real results and achieve goals where others give up.',
+    uk: 'Твої відповіді показують виняткові практичний інтелект. Ти перетворюєш ідеї на реальні результати і досягаєш мети там, де інші здаються.',
+    de: 'Deine Antworten zeigen außergewöhnliche praktische Intelligenz. Du verwandelst Ideen in echte Ergebnisse und erreichst Ziele, wo andere aufgeben.',
+    es: 'Tus respuestas muestran una inteligencia práctica excepcional. Conviertes ideas en resultados reales y alcanzas metas donde otros se rinden.',
+    tr: 'Cevapların olağanüstü pratik zekayı gösteriyor. Fikirleri gerçek sonuçlara dönüştürüyor ve başkalarının vazgeçtiği yerde hedeflere ulaşıyorsun.',
+    fr: 'Tes réponses montrent une intelligence pratique exceptionnelle. Tu transformes les idées en résultats concrets et atteins des objectifs là où les autres abandonnent.',
+  },
 }
 
 export function t(key: UIKey, locale: Locale): string {

@@ -71,24 +71,22 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#F4F6FF]">
 
-      {/* ── Social proof top banner ── */}
-      <div className="bg-indigo-600 text-white text-center py-2 px-4 text-sm font-medium">
+      {/* ── Social proof top banner — fixed height to prevent layout jump ── */}
+      <div className="bg-indigo-600 text-white text-center h-10 px-4 text-sm font-medium flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
-          {proofVisible && (
-            <motion.span
-              key={proofIndex}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="flex items-center justify-center gap-2"
-            >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block" />
-              {proof.country} <strong>{proof.name}</strong> just got their career profile · {proof.time}
-              <span className="mx-2 opacity-40">·</span>
-              <span className="opacity-80">{count.toLocaleString()} profiles created</span>
-            </motion.span>
-          )}
+          <motion.div
+            key={proofIndex}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+            className="flex items-center justify-center gap-2 whitespace-nowrap"
+          >
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block flex-shrink-0" />
+            <span>{proof.country} <strong>{proof.name}</strong> just got their career profile · {proof.time}</span>
+            <span className="opacity-40 mx-1">·</span>
+            <span className="opacity-80">{count.toLocaleString()} profiles created</span>
+          </motion.div>
         </AnimatePresence>
       </div>
 
