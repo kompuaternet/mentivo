@@ -26,15 +26,15 @@ const INSIGHT_CONFIG: Record<InsightType, {
   gradient: string
   ring: string
   iconColor: string
+  pulse: string
 }> = {
-  analytical: { titleKey: 'insight_t_analytical_title', descKey: 'insight_t_analytical_desc', icon: Brain, gradient: 'from-indigo-50 to-blue-100', ring: '#C7D2FE', iconColor: 'text-indigo-600' },
-  creative: { titleKey: 'insight_t_creative_title', descKey: 'insight_t_creative_desc', icon: Lightbulb, gradient: 'from-purple-50 to-pink-100', ring: '#DDD6FE', iconColor: 'text-purple-600' },
-  social: { titleKey: 'insight_t_social_title', descKey: 'insight_t_social_desc', icon: Users, gradient: 'from-green-50 to-teal-100', ring: '#A7F3D0', iconColor: 'text-green-600' },
-  strategic: { titleKey: 'insight_t_strategic_title', descKey: 'insight_t_strategic_desc', icon: Target, gradient: 'from-orange-50 to-yellow-100', ring: '#FDE68A', iconColor: 'text-orange-600' },
-  practical: { titleKey: 'insight_t_practical_title', descKey: 'insight_t_practical_desc', icon: Wrench, gradient: 'from-sky-50 to-cyan-100', ring: '#BAE6FD', iconColor: 'text-sky-600' },
+  analytical: { titleKey: 'insight_t_analytical_title', descKey: 'insight_t_analytical_desc', icon: Brain,     gradient: 'from-indigo-50 to-blue-100',   ring: '#C7D2FE', iconColor: 'text-indigo-600',  pulse: 'rgba(99,102,241,0.15)' },
+  creative:   { titleKey: 'insight_t_creative_title',   descKey: 'insight_t_creative_desc',   icon: Lightbulb, gradient: 'from-purple-50 to-pink-100',   ring: '#DDD6FE', iconColor: 'text-purple-600',  pulse: 'rgba(139,92,246,0.15)' },
+  social:     { titleKey: 'insight_t_social_title',     descKey: 'insight_t_social_desc',     icon: Users,     gradient: 'from-green-50 to-teal-100',    ring: '#A7F3D0', iconColor: 'text-green-600',   pulse: 'rgba(16,185,129,0.15)' },
+  strategic:  { titleKey: 'insight_t_strategic_title',  descKey: 'insight_t_strategic_desc',  icon: Target,    gradient: 'from-orange-50 to-yellow-100', ring: '#FDE68A', iconColor: 'text-orange-600',  pulse: 'rgba(245,158,11,0.15)' },
+  practical:  { titleKey: 'insight_t_practical_title',  descKey: 'insight_t_practical_desc',  icon: Wrench,    gradient: 'from-sky-50 to-cyan-100',      ring: '#BAE6FD', iconColor: 'text-sky-600',     pulse: 'rgba(14,165,233,0.15)' },
 }
 
-// Determine insight type from partial answers
 function getInsight(answers: Record<number, string>): InsightData {
   try {
     const profile = calculateProfile(answers)
@@ -57,8 +57,7 @@ function getInsight(answers: Record<number, string>): InsightData {
   }
 }
 
-// Breakpoints: show insight after completing question at these indices (0-based)
-const INSIGHT_AT = [6, 13, 20] // after Q7, Q14, Q21
+const INSIGHT_AT = [6, 13, 20]
 
 // ─── Illustration ─────────────────────────────────────────────────────────────
 
@@ -67,32 +66,29 @@ function InsightIllustration({ type }: { type: InsightType }) {
   const Icon = cfg.icon
   return (
     <div className="relative w-44 h-44 mx-auto mb-8 flex items-center justify-center">
-      {/* Outer decorative ring */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`absolute inset-0 rounded-full bg-gradient-to-br ${cfg.gradient} opacity-60`}
       />
-      {/* Middle ring */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className={`absolute inset-6 rounded-full`}
+        className="absolute inset-6 rounded-full"
         style={{ background: cfg.ring + '80' }}
       />
-      {/* Inner circle with icon */}
+      {/* Pulsing inner circle */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2, type: 'spring', stiffness: 200 }}
-        className={`relative z-10 w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center`}
-        style={{ boxShadow: `0 0 0 4px ${cfg.ring}` }}
+        animate={{ scale: [1, 1.06, 1], opacity: 1 }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+        className="relative z-10 w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center"
+        style={{ boxShadow: `0 0 0 4px ${cfg.ring}, 0 0 24px ${cfg.pulse}` }}
       >
         <Icon className={`w-9 h-9 ${cfg.iconColor}`} />
       </motion.div>
-      {/* Orbiting dot 1 */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
@@ -102,7 +98,6 @@ function InsightIllustration({ type }: { type: InsightType }) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-sm"
           style={{ border: `2px solid ${cfg.ring}` }} />
       </motion.div>
-      {/* Orbiting dot 2 */}
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
@@ -125,6 +120,7 @@ function InsightScreen({ data, locale, onContinue, questionNum }: {
   questionNum: number
 }) {
   const cfg = INSIGHT_CONFIG[data.type]
+  const [resonance, setResonance] = useState<'yes' | 'partly' | null>(null)
 
   return (
     <motion.div
@@ -133,12 +129,11 @@ function InsightScreen({ data, locale, onContinue, questionNum }: {
       exit={{ opacity: 0 }}
       className="min-h-screen flex flex-col items-center justify-center px-6 py-10 bg-[#F4F6FF]"
     >
-      {/* Progress indicator */}
+      {/* Progress */}
       <div className="text-xs text-gray-400 font-semibold mb-8 uppercase tracking-widest">
         {questionNum} / {TOTAL_QUESTIONS}
       </div>
 
-      {/* Illustration */}
       <InsightIllustration type={data.type} />
 
       {/* Subheading */}
@@ -146,22 +141,24 @@ function InsightScreen({ data, locale, onContinue, questionNum }: {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="text-sm text-gray-400 mb-3 font-medium"
+        className="text-sm text-gray-400 mb-3 font-medium text-center"
       >
         {t('insight_subheading', locale)}
       </motion.p>
 
-      {/* Percentile badge */}
+      {/* "Analysis in progress" badge — replaces percentile */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.35, type: 'spring', stiffness: 200 }}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-5"
-        style={{ background: cfg.ring + '60', color: cfg.iconColor.replace('text-', '').replace('-600', '') }}
+        transition={{ delay: 0.35 }}
+        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-5 bg-gray-100 text-gray-500"
       >
-        <span className={cfg.iconColor} style={{ fontSize: '13px' }}>
-          {t('insight_top_pct', locale)} {data.percentile}%
-        </span>
+        <motion.span
+          animate={{ opacity: [1, 0.4, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-1.5 h-1.5 rounded-full bg-indigo-400 inline-block"
+        />
+        {t('insight_analyzing', locale)}
       </motion.div>
 
       {/* Title */}
@@ -175,20 +172,57 @@ function InsightScreen({ data, locale, onContinue, questionNum }: {
       </motion.h2>
 
       {/* Description */}
-      <motion.p
+      <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
-        className="text-gray-500 text-center leading-relaxed max-w-sm mb-10"
+        className="text-gray-500 text-center leading-relaxed max-w-sm mb-3"
       >
-        {t(cfg.descKey, locale)}
+        {t(cfg.descKey, locale).split('\n').map((line, i) => (
+          <p key={i} className={i > 0 ? 'mt-1' : ''}>{line}</p>
+        ))}
+      </motion.div>
+
+      {/* Wow trigger */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.55 }}
+        className="text-xs text-indigo-500 font-medium mb-8"
+      >
+        {t('insight_wow', locale)}
       </motion.p>
+
+      {/* Resonance check */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65 }}
+        className="flex flex-col items-center gap-3 mb-8"
+      >
+        <p className="text-sm text-gray-400">{t('insight_confirm_q', locale)}</p>
+        <div className="flex gap-3">
+          {(['yes', 'partly'] as const).map(val => (
+            <button
+              key={val}
+              onClick={() => setResonance(val)}
+              className={`px-5 py-2 rounded-full text-sm font-medium border transition-all ${
+                resonance === val
+                  ? 'bg-indigo-600 text-white border-indigo-600'
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-indigo-300'
+              }`}
+            >
+              {t(val === 'yes' ? 'insight_confirm_yes' : 'insight_confirm_partly', locale)}
+            </button>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Continue button */}
       <motion.button
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.7 }}
         onClick={onContinue}
         className="btn-primary flex items-center gap-2 px-8 py-4 text-base rounded-xl"
       >
@@ -210,6 +244,7 @@ export default function TestPage() {
   const [direction, setDirection] = useState<'forward' | 'back'>('forward')
   const [saving, setSaving] = useState(false)
   const [insight, setInsight] = useState<InsightData | null>(null)
+  const [microFlash, setMicroFlash] = useState(false)
 
   useEffect(() => {
     const saved = localStorage.getItem('career_locale') as Locale | null
@@ -219,20 +254,26 @@ export default function TestPage() {
   const question = QUESTIONS[current]
   const progress = Math.round(((current) / TOTAL_QUESTIONS) * 100)
   const totalBlocks = Array.from(new Set(QUESTIONS.map(q => q.block))).length
+  const minsLeft = Math.max(1, Math.ceil((TOTAL_QUESTIONS - current) * 8 / TOTAL_QUESTIONS))
 
   const handleSelect = useCallback(async (optionId: string) => {
+    if (selected !== null) return
     setSelected(optionId)
 
     const newAnswers = { ...answers, [question.id]: optionId }
     setAnswers(newAnswers)
 
-    await new Promise(r => setTimeout(r, 300))
+    // Micro-gamification: flash after Q5
+    if (current === 4) {
+      setMicroFlash(true)
+      setTimeout(() => setMicroFlash(false), 1000)
+    }
 
-    // Check if this is an insight breakpoint
+    await new Promise(r => setTimeout(r, 260))
+
     if (INSIGHT_AT.includes(current) && current < TOTAL_QUESTIONS - 1) {
       setSelected(null)
-      const data = getInsight(newAnswers)
-      setInsight(data)
+      setInsight(getInsight(newAnswers))
       return
     }
 
@@ -245,15 +286,8 @@ export default function TestPage() {
       try {
         const profile = calculateProfile(newAnswers)
         const sessionId = uuidv4()
-        const session = {
-          id: sessionId, locale, answers: newAnswers, profile, isPaid: false,
-          createdAt: new Date().toISOString(),
-        }
-        await fetch('/api/session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(session),
-        })
+        const session = { id: sessionId, locale, answers: newAnswers, profile, isPaid: false, createdAt: new Date().toISOString() }
+        await fetch('/api/session', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(session) })
         localStorage.setItem('career_session', JSON.stringify(session))
         router.push(`/career/results/${sessionId}`)
       } catch {
@@ -264,7 +298,7 @@ export default function TestPage() {
         router.push(`/career/results/${sessionId}`)
       }
     }
-  }, [answers, current, locale, question.id, router])
+  }, [answers, current, locale, question.id, router, selected])
 
   const handleContinueInsight = () => {
     setInsight(null)
@@ -332,9 +366,24 @@ export default function TestPage() {
         />
       </div>
 
+      {/* ── Micro-flash toast ── */}
+      <AnimatePresence>
+        {microFlash && (
+          <motion.div
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25 }}
+            className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-medium shadow-lg pointer-events-none"
+          >
+            {t('test_analysis_forming', locale)}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ── Nav ── */}
       <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-100 mt-1">
-        <div className="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
+        <div className="max-w-2xl mx-auto px-5 py-3 flex items-center justify-between">
           <button
             onClick={handleBack}
             className="flex items-center gap-1.5 text-gray-400 hover:text-gray-700 transition-colors text-sm font-medium"
@@ -343,10 +392,13 @@ export default function TestPage() {
             {t('test_back', locale)}
           </button>
 
-          <div className="text-sm text-gray-400">
-            <span className="font-bold text-gray-700">{current + 1}</span>
-            {' '}{t('test_of', locale)}{' '}
-            <span className="font-semibold text-gray-500">{TOTAL_QUESTIONS}</span>
+          <div className="text-center">
+            <div className="text-sm font-bold text-gray-800 leading-none">
+              {current + 1} <span className="font-normal text-gray-400">/ {TOTAL_QUESTIONS}</span>
+            </div>
+            <div className="text-xs text-gray-400 mt-0.5">
+              ~{minsLeft} {t('test_mins_left', locale)}
+            </div>
           </div>
 
           <div className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
@@ -357,7 +409,7 @@ export default function TestPage() {
 
       {/* ── Question ── */}
       <div className="flex-1 flex flex-col items-center justify-center px-5 py-10">
-        <div className="w-full max-w-xl">
+        <div className="w-full max-w-[620px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={question.id}
@@ -376,26 +428,32 @@ export default function TestPage() {
               </div>
 
               {/* Question text */}
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-7 leading-snug">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-snug">
                 {getLT(question.text, locale)}
               </h2>
 
+              {/* Micro-hint */}
+              <p className="text-xs text-gray-400 mb-7 font-medium">
+                {t('test_micro_hint', locale)}
+              </p>
+
               {/* Options */}
-              <div className="grid grid-cols-1 gap-3">
+              <div className="grid grid-cols-1 gap-4">
                 {question.options.map((opt, i) => (
                   <motion.button
                     key={opt.id}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => handleSelect(opt.id)}
                     disabled={selected !== null}
-                    className={`option-card text-left w-full group ${selected === opt.id ? 'selected' : ''}`}
+                    className={`option-card text-left w-full group transition-all ${selected === opt.id ? 'selected' : ''}`}
                   >
                     <div className="flex items-center gap-4">
                       <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                         selected === opt.id
-                          ? 'bg-indigo-600 text-white'
+                          ? 'bg-white/25 text-white'
                           : 'bg-gray-100 text-gray-400 group-hover:bg-indigo-100 group-hover:text-indigo-600'
                       }`}>
                         {selected === opt.id
@@ -404,7 +462,7 @@ export default function TestPage() {
                         }
                       </div>
                       <span className={`text-sm md:text-base leading-relaxed transition-colors ${
-                        selected === opt.id ? 'text-indigo-900 font-medium' : 'text-gray-700'
+                        selected === opt.id ? 'text-white font-medium' : 'text-gray-700'
                       }`}>
                         {getLT(opt.text, locale)}
                       </span>
@@ -421,13 +479,14 @@ export default function TestPage() {
       {/* ── Bottom dots ── */}
       <div className="flex justify-center gap-1.5 pb-8">
         {QUESTIONS.map((q, i) => (
-          <div
+          <motion.div
             key={q.id}
-            className={`rounded-full transition-all duration-200 ${
-              i < current ? 'w-2 h-2 bg-indigo-400'
-              : i === current ? 'w-4 h-2 bg-indigo-600'
-              : 'w-2 h-2 bg-gray-200'
-            }`}
+            animate={{
+              width: i === current ? 16 : 8,
+              backgroundColor: i < current ? '#818CF8' : i === current ? '#6366f1' : '#E5E7EB',
+            }}
+            transition={{ duration: 0.25 }}
+            className="h-2 rounded-full"
           />
         ))}
       </div>
