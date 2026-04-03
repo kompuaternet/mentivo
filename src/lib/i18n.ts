@@ -87,6 +87,19 @@ type UIKey =
   | 'results_locked_subtitle'
   | 'results_unlock_cta'
   | 'results_unlock_price'
+  | 'results_rankings_title'
+  | 'results_only_one_of_7'
+  | 'results_strong_match'
+  | 'results_better_matches'
+  | 'results_full_ready_title'
+  | 'results_full_ready_sub'
+  | 'results_saved_24h'
+  | 'results_no_signup'
+  | 'results_instant_access'
+  | 'results_lifetime_access'
+  | 'results_already_tested'
+  | 'results_helped_thousands'
+  | 'results_profession_open_label'
   | 'results_match'
   | 'results_profession_no'
   | 'results_your_profile'
@@ -118,6 +131,9 @@ type UIKey =
   | 'preview_sub'
   | 'insight_btn'
   | 'insight_subheading'
+  | 'insight_checkpoint_1'
+  | 'insight_checkpoint_2'
+  | 'insight_checkpoint_3'
   | 'insight_analyzing'
   | 'insight_wow'
   | 'insight_confirm_q'
@@ -434,13 +450,13 @@ export const UI: Translations = {
     fr: 'Voici ton résultat 👀',
   },
   results_free_subtitle: {
-    ru: 'Ты видишь только #4 в твоём топе. Хочешь знать что стоит выше?',
-    en: 'You see only #4 in your top. Want to know what ranks higher?',
-    uk: 'Ти бачиш лише #4 у своєму топі. Хочеш знати що вище?',
-    de: 'Du siehst nur #4 in deinem Top. Möchtest du wissen, was höher rangiert?',
-    es: 'Solo ves el #4 en tu lista. ¿Quieres saber qué está más arriba?',
-    tr: 'Listende yalnızca #4\'ü görüyorsun. Üstte neyin olduğunu bilmek ister misin?',
-    fr: 'Tu vois seulement le #4 dans ton top. Tu veux savoir ce qui est plus haut ?',
+    ru: 'Ты видишь только #4 в своём рейтинге',
+    en: 'You\'re seeing only #4 in your ranking',
+    uk: 'Ти бачиш лише #4 у своєму рейтингу',
+    de: 'Du siehst nur #4 in deinem Ranking',
+    es: 'Solo ves el #4 en tu clasificación',
+    tr: 'Sıralamanda yalnızca #4\'ü görüyorsun',
+    fr: 'Tu ne vois que le #4 dans ton classement',
   },
   results_locked_title: {
     ru: 'Твой полный профиль готов',
@@ -461,13 +477,130 @@ export const UI: Translations = {
     fr: 'Débloque: Top-7 carrières · Type de caractère · Style de pensée · Niveau de leadership · Où étudier',
   },
   results_unlock_cta: {
-    ru: '🔓 Открыть полный результат',
-    en: '🔓 Unlock full result',
-    uk: '🔓 Відкрити повний результат',
-    de: '🔓 Vollständiges Ergebnis freischalten',
-    es: '🔓 Desbloquear resultado completo',
-    tr: '🔓 Tam sonucu aç',
-    fr: '🔓 Débloquer le résultat complet',
+    ru: 'Посмотреть весь рейтинг',
+    en: 'See full ranking',
+    uk: 'Переглянути весь рейтинг',
+    de: 'Vollständiges Ranking ansehen',
+    es: 'Ver clasificación completa',
+    tr: 'Tam sıralamayı gör',
+    fr: 'Voir le classement complet',
+  },
+  results_rankings_title: {
+    ru: 'Твой рейтинг профессий',
+    en: 'Your career rankings',
+    uk: 'Твій рейтинг професій',
+    de: 'Deine Berufsrangliste',
+    es: 'Tu clasificación de carreras',
+    tr: 'Kariyer sıralaman',
+    fr: 'Ton classement de carrières',
+  },
+  results_only_one_of_7: {
+    ru: 'Это только 1 из 7 профессий, которые тебе подходят',
+    en: 'This is just 1 of 7 careers that suit you',
+    uk: 'Це лише 1 з 7 професій, які тобі підходять',
+    de: 'Dies ist nur 1 von 7 Berufen, die zu dir passen',
+    es: 'Esta es solo 1 de 7 carreras que te corresponden',
+    tr: 'Bu sana uygun 7 kariyerden sadece 1\'i',
+    fr: 'C\'est juste 1 des 7 carrières qui te correspondent',
+  },
+  results_strong_match: {
+    ru: 'Входит в сильные совпадения',
+    en: 'Among your strong matches',
+    uk: 'Входить у сильні збіги',
+    de: 'Unter deinen starken Übereinstimmungen',
+    es: 'Entre tus fuertes coincidencias',
+    tr: 'Güçlü eşleşmelerin arasında',
+    fr: 'Parmi tes fortes correspondances',
+  },
+  results_better_matches: {
+    ru: 'Есть варианты с ещё более высоким совпадением',
+    en: 'There are careers with an even higher match',
+    uk: 'Є варіанти з ще вищим збігом',
+    de: 'Es gibt Berufe mit noch höherer Übereinstimmung',
+    es: 'Hay carreras con una coincidencia aún mayor',
+    tr: 'Daha yüksek eşleşmeli kariyerler var',
+    fr: 'Il y a des carrières avec une correspondance encore plus élevée',
+  },
+  results_full_ready_title: {
+    ru: 'Твой полный профиль уже готов',
+    en: 'Your full profile is ready',
+    uk: 'Твій повний профіль вже готовий',
+    de: 'Dein vollständiges Profil ist bereit',
+    es: 'Tu perfil completo está listo',
+    tr: 'Tam profilin hazır',
+    fr: 'Ton profil complet est prêt',
+  },
+  results_full_ready_sub: {
+    ru: 'Узнай, какие профессии подходят тебе лучше — и почему',
+    en: 'Find out which careers suit you best — and why',
+    uk: 'Дізнайся, які професії підходять тобі найкраще — і чому',
+    de: 'Finde heraus, welche Berufe am besten zu dir passen — und warum',
+    es: 'Descubre qué carreras te corresponden mejor — y por qué',
+    tr: 'Hangi kariyerlerin sana en uygun olduğunu öğren — ve neden',
+    fr: 'Découvre quelles carrières te correspondent le mieux — et pourquoi',
+  },
+  results_saved_24h: {
+    ru: 'Твой результат сохранён на 24 часа',
+    en: 'Your result is saved for 24 hours',
+    uk: 'Твій результат збережено на 24 години',
+    de: 'Dein Ergebnis ist 24 Stunden lang gespeichert',
+    es: 'Tu resultado está guardado por 24 horas',
+    tr: 'Sonucun 24 saat boyunca kaydedildi',
+    fr: 'Ton résultat est sauvegardé pendant 24 heures',
+  },
+  results_no_signup: {
+    ru: 'Без регистрации',
+    en: 'No sign-up',
+    uk: 'Без реєстрації',
+    de: 'Ohne Registrierung',
+    es: 'Sin registro',
+    tr: 'Kayıt gerektirmez',
+    fr: 'Sans inscription',
+  },
+  results_instant_access: {
+    ru: 'Мгновенный доступ',
+    en: 'Instant access',
+    uk: 'Миттєвий доступ',
+    de: 'Sofortiger Zugang',
+    es: 'Acceso instantáneo',
+    tr: 'Anında erişim',
+    fr: 'Accès instantané',
+  },
+  results_lifetime_access: {
+    ru: 'Пожизненный доступ',
+    en: 'Lifetime access',
+    uk: 'Довічний доступ',
+    de: 'Lebenslanger Zugang',
+    es: 'Acceso de por vida',
+    tr: 'Ömür boyu erişim',
+    fr: 'Accès à vie',
+  },
+  results_already_tested: {
+    ru: 'Ты уже прошёл тест — осталось только открыть результат',
+    en: 'You\'ve already completed the test — just open the result',
+    uk: 'Ти вже пройшов тест — залишилося лише відкрити результат',
+    de: 'Du hast den Test bereits abgeschlossen — öffne einfach das Ergebnis',
+    es: 'Ya completaste el test — solo abre el resultado',
+    tr: 'Testi zaten tamamladın — sadece sonucu aç',
+    fr: 'Tu as déjà terminé le test — il ne reste plus qu\'à ouvrir le résultat',
+  },
+  results_helped_thousands: {
+    ru: 'Уже помогло тысячам людей выбрать направление',
+    en: 'Already helped thousands of people choose their direction',
+    uk: 'Вже допомогло тисячам людей обрати напрям',
+    de: 'Hat bereits Tausenden von Menschen geholfen, ihre Richtung zu wählen',
+    es: 'Ya ayudó a miles de personas a elegir su dirección',
+    tr: 'Zaten binlerce kişinin yönünü seçmesine yardımcı oldu',
+    fr: 'A déjà aidé des milliers de personnes à choisir leur direction',
+  },
+  results_profession_open_label: {
+    ru: 'Открыто',
+    en: 'Open',
+    uk: 'Відкрито',
+    de: 'Geöffnet',
+    es: 'Abierto',
+    tr: 'Açık',
+    fr: 'Ouvert',
   },
   results_unlock_price: {
     ru: 'Всего',
@@ -1075,6 +1208,33 @@ export const UI: Translations = {
     es: 'Tus respuestas ya están formando tu perfil',
     tr: 'Cevapların zaten profilini şekillendiriyor',
     fr: 'Tes réponses façonnent déjà ton profil',
+  },
+  insight_checkpoint_1: {
+    ru: 'Первый паттерн обнаружен',
+    en: 'First pattern detected',
+    uk: 'Перший паттерн виявлено',
+    de: 'Erstes Muster erkannt',
+    es: 'Primer patrón detectado',
+    tr: 'İlk örüntü tespit edildi',
+    fr: 'Premier schéma détecté',
+  },
+  insight_checkpoint_2: {
+    ru: 'Анализ углубляется…',
+    en: 'Analysis deepens…',
+    uk: 'Аналіз поглиблюється…',
+    de: 'Analyse vertieft sich…',
+    es: 'El análisis se profundiza…',
+    tr: 'Analiz derinleşiyor…',
+    fr: 'L\'analyse s\'approfondit…',
+  },
+  insight_checkpoint_3: {
+    ru: 'Профиль почти готов',
+    en: 'Profile almost ready',
+    uk: 'Профіль майже готовий',
+    de: 'Profil fast fertig',
+    es: 'Perfil casi listo',
+    tr: 'Profil neredeyse hazır',
+    fr: 'Profil presque prêt',
   },
   insight_analyzing: {
     ru: 'Анализ продолжается…',

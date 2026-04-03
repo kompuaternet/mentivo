@@ -35,7 +35,7 @@ const INSIGHT_CONFIG: Record<InsightType, {
   practical:  { titleKey: 'insight_t_practical_title',  descKey: 'insight_t_practical_desc',  icon: Wrench,    gradient: 'from-sky-50 to-cyan-100',      ring: '#BAE6FD', iconColor: 'text-sky-600',     pulse: 'rgba(14,165,233,0.15)' },
 }
 
-function getInsight(answers: Record<number, string>): InsightData {
+function getInsight(answers: Record<number, string>, exclude: Set<InsightType>): InsightData | null {
   try {
     const profile = calculateProfile(answers)
     const s = profile.scores
@@ -46,14 +46,18 @@ function getInsight(answers: Record<number, string>): InsightData {
       { type: 'strategic',  score: (s.E ?? 0) + (s.strategic ?? 0) },
       { type: 'practical',  score: (s.R ?? 0) + (s.C ?? 0) },
     ]
+    const sorted = [...dims].sort((a, b) => b.score - a.score)
+    const pick = sorted.find(d => !exclude.has(d.type))
+    if (!pick) return null
     const total = dims.reduce((sum, d) => sum + d.score, 0)
-    const dominant = dims.reduce((max, d) => d.score > max.score ? d : max, dims[0])
     const percentile = total > 0
-      ? Math.min(96, Math.max(72, Math.round((dominant.score / total) * 100 * 2.8 + 62)))
+      ? Math.min(96, Math.max(72, Math.round((pick.score / total) * 100 * 2.8 + 62)))
       : 85
-    return { type: dominant.type, percentile }
+    return { type: pick.type, percentile }
   } catch {
-    return { type: 'analytical', percentile: 85 }
+    const fallbacks: InsightType[] = ['analytical', 'creative', 'social', 'strategic', 'practical']
+    const pick = fallbacks.find(t => !exclude.has(t))
+    return pick ? { type: pick, percentile: 85 } : null
   }
 }
 
@@ -113,14 +117,21 @@ function InsightIllustration({ type }: { type: InsightType }) {
 
 // ─── Insight Screen ───────────────────────────────────────────────────────────
 
-function InsightScreen({ data, locale, onContinue, questionNum }: {
+function InsightScreen({ data, locale, onContinue, questionNum, checkpointNum }: {
   data: InsightData
   locale: Locale
   onContinue: () => void
   questionNum: number
+  checkpointNum: number
 }) {
   const cfg = INSIGHT_CONFIG[data.type]
   const [resonance, setResonance] = useState<'yes' | 'partly' | null>(null)
+
+  const checkpointKey = checkpointNum === 1
+    ? 'insight_checkpoint_1'
+    : checkpointNum === 2
+    ? 'insight_checkpoint_2'
+    : 'insight_checkpoint_3'
 
   return (
     <motion.div
@@ -143,7 +154,7 @@ function InsightScreen({ data, locale, onContinue, questionNum }: {
         transition={{ delay: 0.3 }}
         className="text-sm text-gray-400 mb-3 font-medium text-center"
       >
-        {t('insight_subheading', locale)}
+        {t(checkpointKey, locale)}
       </motion.p>
 
       {/* "Analysis in progress" badge — replaces percentile */}
@@ -244,6 +255,8 @@ export default function TestPage() {
   const [direction, setDirection] = useState<'forward' | 'back'>('forward')
   const [saving, setSaving] = useState(false)
   const [insight, setInsight] = useState<InsightData | null>(null)
+  const [shownInsightTypes, setShownInsightTypes] = useState<Set<InsightType>>(new Set())
+  const [checkpointNum, setCheckpointNum] = useState(0)
   const [microFlash, setMicroFlash] = useState(false)
 
   useEffect(() => {
@@ -272,9 +285,15 @@ export default function TestPage() {
     await new Promise(r => setTimeout(r, 260))
 
     if (INSIGHT_AT.includes(current) && current < TOTAL_QUESTIONS - 1) {
-      setSelected(null)
-      setInsight(getInsight(newAnswers))
-      return
+      const data = getInsight(newAnswers, shownInsightTypes)
+      if (data) {
+        setShownInsightTypes(prev => new Set([...prev, data.type]))
+        setCheckpointNum(INSIGHT_AT.indexOf(current) + 1)
+        setSelected(null)
+        setInsight(data)
+        return
+      }
+      // All types already shown — skip insight screen, advance normally
     }
 
     if (current < TOTAL_QUESTIONS - 1) {
@@ -348,6 +367,7 @@ export default function TestPage() {
           locale={locale}
           onContinue={handleContinueInsight}
           questionNum={current + 1}
+          checkpointNum={checkpointNum}
         />
       </AnimatePresence>
     )
