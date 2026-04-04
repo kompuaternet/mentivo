@@ -216,7 +216,7 @@ function InsightScreen({ data, locale, onContinue, questionNum, checkpointNum }:
           {(['yes', 'partly'] as const).map(val => (
             <button
               key={val}
-              onClick={() => setResonance(val)}
+              onClick={() => { setResonance(val); setTimeout(onContinue, 280) }}
               className={`px-5 py-2 rounded-full text-sm font-medium border transition-all ${
                 resonance === val
                   ? 'bg-indigo-600 text-white border-indigo-600'
@@ -258,10 +258,12 @@ export default function TestPage() {
   const [shownInsightTypes, setShownInsightTypes] = useState<Set<InsightType>>(new Set())
   const [checkpointNum, setCheckpointNum] = useState(0)
   const [microFlash, setMicroFlash] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const saved = localStorage.getItem('career_locale') as Locale | null
     setLocale(saved ?? detectLocale())
+    setMounted(true)
   }, [])
 
   const question = QUESTIONS[current]
@@ -462,7 +464,7 @@ export default function TestPage() {
                 {question.options.map((opt, i) => (
                   <motion.button
                     key={opt.id}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={mounted ? { opacity: 0, y: 12 } : false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     whileTap={{ scale: 0.98 }}
