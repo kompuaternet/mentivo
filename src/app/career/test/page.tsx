@@ -61,7 +61,7 @@ function getInsight(answers: Record<number, string>, exclude: Set<InsightType>):
   }
 }
 
-const INSIGHT_AT = [6, 13, 20]
+const INSIGHT_AT = [10, 21]
 
 // ─── Illustration ─────────────────────────────────────────────────────────────
 

@@ -166,6 +166,7 @@ type UIKey =
   | 'modal_result_ready'
   | 'plan_single_title' | 'plan_single_d1' | 'plan_single_d2' | 'plan_single_cta'
   | 'plan_full_title' | 'plan_full_d1' | 'plan_full_d2' | 'plan_full_d3' | 'plan_full_cta' | 'plan_full_badge'
+  | 'results_riasec_caption'
 
 type Translations = Record<UIKey, Partial<Record<Locale, string>>>
 
@@ -1431,13 +1432,13 @@ export const UI: Translations = {
     fr: 'Tu transformes les idées en résultats concrets.\nTu n\'as pas besoin de conditions parfaites — tu travailles avec ce qui est disponible.',
   },
   results_found_title: {
-    ru: 'Мы нашли 7 профессий, которые тебе подходят',
-    en: 'We found 7 careers that match you',
-    uk: 'Ми знайшли 7 професій, які тобі підходять',
-    de: 'Wir haben 7 Berufe gefunden, die zu dir passen',
-    es: 'Encontramos 7 carreras que te corresponden',
-    tr: 'Sana uygun 7 kariyer bulduk',
-    fr: 'Nous avons trouvé 7 métiers qui te correspondent',
+    ru: 'Мы нашли 7 профессий, которые тебе действительно подходят',
+    en: 'We found 7 careers that truly match you',
+    uk: 'Ми знайшли 7 професій, які тобі справді підходять',
+    de: 'Wir haben 7 Berufe gefunden, die wirklich zu dir passen',
+    es: 'Encontramos 7 carreras que realmente te corresponden',
+    tr: 'Sana gerçekten uygun 7 kariyer bulduk',
+    fr: 'Nous avons trouvé 7 métiers qui te correspondent vraiment',
   },
   results_found_sub: {
     ru: 'Они отсортированы по уровню совпадения',
@@ -1467,13 +1468,13 @@ export const UI: Translations = {
     fr: '→ Découvrir quel métier c\'est',
   },
   results_ranking_note: {
-    ru: 'Разница между первыми позициями может сильно влиять на выбор пути',
-    en: 'The gap between top positions can significantly impact your path choice',
-    uk: 'Різниця між першими позиціями може сильно впливати на вибір шляху',
-    de: 'Der Unterschied zwischen den ersten Positionen kann die Berufswahl stark beeinflussen',
-    es: 'La diferencia entre las primeras posiciones puede influir mucho en la elección del camino',
-    tr: 'İlk sıralar arasındaki fark yol seçiminizi önemli ölçüde etkileyebilir',
-    fr: 'L\'écart entre les premières positions peut fortement influencer le choix de ta voie',
+    ru: 'Большинство людей удивляются своему ТОП-1',
+    en: 'Most people are surprised by their #1 match',
+    uk: 'Більшість людей дивуються своєму ТОП-1',
+    de: 'Die meisten Menschen sind von ihrem #1-Treffer überrascht',
+    es: 'La mayoría de las personas se sorprenden con su coincidencia #1',
+    tr: 'Çoğu insan #1 eşleşmesine şaşırıyor',
+    fr: 'La plupart des gens sont surpris par leur correspondance #1',
   },
   results_profile_ready_title: {
     ru: 'Твой полный профиль уже готов',
@@ -1547,6 +1548,15 @@ export const UI: Translations = {
   plan_full_d3: { ru: 'Рекомендации', en: 'Recommendations', uk: 'Рекомендації', de: 'Empfehlungen', es: 'Recomendaciones', tr: 'Öneriler', fr: 'Recommandations' },
   plan_full_cta: { ru: 'Получить полный разбор', en: 'Get full breakdown', uk: 'Отримати повний розбір', de: 'Vollständige Analyse erhalten', es: 'Obtener análisis completo', tr: 'Tam analiz al', fr: 'Obtenir l\'analyse complète' },
   plan_full_badge: { ru: 'Лучший выбор', en: 'Best value', uk: 'Найкращий вибір', de: 'Bestes Angebot', es: 'Mejor opción', tr: 'En iyi seçim', fr: 'Meilleur choix' },
+  results_riasec_caption: {
+    ru: 'Твой профиль сформирован на основе модели RIASEC',
+    en: 'Your profile is built on the RIASEC model',
+    uk: 'Твій профіль сформований на основі моделі RIASEC',
+    de: 'Dein Profil basiert auf dem RIASEC-Modell',
+    es: 'Tu perfil se basa en el modelo RIASEC',
+    tr: 'Profilin RIASEC modeline dayanmaktadır',
+    fr: 'Ton profil est construit sur le modèle RIASEC',
+  },
 }
 
 export function t(key: UIKey, locale: Locale): string {

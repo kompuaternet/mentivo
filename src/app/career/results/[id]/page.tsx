@@ -58,6 +58,94 @@ function LeadershipBar({ level }: { level: number }) {
   )
 }
 
+// ─── RIASEC Radar Chart ──────────────────────────────────────────────────────
+
+function RiasecRadar({ scores, animate, locale }: {
+  scores: Record<string, number>
+  animate: boolean
+  locale: Locale
+}) {
+  const KEYS = ['R', 'I', 'A', 'S', 'E', 'C'] as const
+  const SIZE = 240
+  const CX = SIZE / 2
+  const CY = SIZE / 2
+  const MAX_R = 90
+  const LEVELS = 4
+
+  const vals = KEYS.map(k => scores[k] ?? 0)
+  const maxVal = Math.max(...vals, 1)
+
+  const angle = (i: number) => (Math.PI * 2 * i) / KEYS.length - Math.PI / 2
+
+  const pt = (i: number, ratio: number) => ({
+    x: CX + Math.cos(angle(i)) * MAX_R * ratio,
+    y: CY + Math.sin(angle(i)) * MAX_R * ratio,
+  })
+
+  const gridPoly = (ratio: number) =>
+    KEYS.map((_, i) => { const p = pt(i, ratio); return `${p.x.toFixed(1)},${p.y.toFixed(1)}` }).join(' ')
+
+  const dataPoly = vals.map((v, i) => {
+    const p = pt(i, v / maxVal)
+    return `${p.x.toFixed(1)},${p.y.toFixed(1)}`
+  }).join(' ')
+
+  const LABEL_R = MAX_R + 18
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: animate ? 1 : 0, scale: animate ? 1 : 0.95 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="flex flex-col items-center"
+    >
+      <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} className="overflow-visible">
+        {/* Grid rings */}
+        {Array.from({ length: LEVELS }, (_, lv) => (
+          <polygon key={lv} points={gridPoly((lv + 1) / LEVELS)} fill="none" stroke="#e5e7eb" strokeWidth="1" />
+        ))}
+        {/* Axis lines */}
+        {KEYS.map((k, i) => {
+          const end = pt(i, 1)
+          return <line key={k} x1={CX} y1={CY} x2={end.x} y2={end.y} stroke="#e5e7eb" strokeWidth="1" />
+        })}
+        {/* Data shape */}
+        <motion.polygon
+          points={dataPoly}
+          fill="rgba(99,102,241,0.2)"
+          stroke="#6366f1"
+          strokeWidth="2"
+          strokeLinejoin="round"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animate ? 1 : 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        />
+        {/* Labels */}
+        {KEYS.map((k, i) => {
+          const a = angle(i)
+          return (
+            <text
+              key={k}
+              x={CX + Math.cos(a) * LABEL_R}
+              y={CY + Math.sin(a) * LABEL_R}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize="11"
+              fontWeight="600"
+              fill="#6b7280"
+            >
+              {k}
+            </text>
+          )
+        })}
+      </svg>
+      <p className="text-xs text-gray-400 mt-2 text-center">
+        {t('results_riasec_caption', locale)}
+      </p>
+    </motion.div>
+  )
+}
+
 // ─── Payment Modal ────────────────────────────────────────────────────────────
 
 function PaymentModal({
@@ -89,11 +177,11 @@ function PaymentModal({
           />
           <motion.div
             key="modal"
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed inset-x-4 bottom-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[480px] bg-white rounded-t-3xl md:rounded-3xl p-6 z-[51] max-h-[92vh] overflow-y-auto"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-32px)] max-w-[480px] bg-white rounded-[20px] p-6 z-[51] max-h-[90vh] overflow-y-auto"
           >
             {/* Close */}
             <button
@@ -377,7 +465,21 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
               </p>
             </motion.div>
 
-            {/* 2. Seven profession cards */}
+            {/* 2. RIASEC Radar */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col items-center"
+            >
+              <RiasecRadar
+                scores={profile.scores as unknown as Record<string, number>}
+                animate={barsVisible}
+                locale={locale}
+              />
+            </motion.div>
+
+            {/* 3. Seven profession cards */}
             <div className="space-y-3">
               {profile.topProfessions.map((pm, i) => (
                 <motion.div
