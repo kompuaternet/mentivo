@@ -9,10 +9,26 @@ export const metadata: Metadata = {
   },
   description: 'Take our free 30-question career aptitude test based on the Holland RIASEC model. Discover your top-7 career matches, thinking style, leadership level, career archetype and personalized education roadmap in just 8–10 minutes.',
   keywords: [
+    // English
     'career aptitude test', 'career test', 'personality test', 'Holland RIASEC',
     'career profile', 'what career suits me', 'career guidance', 'free career test',
     'profession test', 'career counseling', 'career path test', 'vocational test',
+    // Russian
     'тест на профессию', 'профориентация', 'тест на карьеру', 'психологический тест',
+    'какая профессия мне подходит', 'тест профессиональной ориентации',
+    // German
+    'Berufseignungstest', 'Karrieretest', 'Persönlichkeitstest', 'Berufsberatung',
+    'welcher Beruf passt zu mir', 'kostenloser Berufstest',
+    // Spanish
+    'test vocacional', 'test de carrera', 'orientación profesional',
+    'qué carrera elegir', 'test de personalidad', 'test de aptitud profesional',
+    // French
+    'test d\'orientation professionnelle', 'test de carrière', 'quel métier me convient',
+    'test de personnalité gratuit', 'bilan de compétences',
+    // Turkish
+    'kariyer testi', 'meslek testi', 'kişilik testi', 'hangi meslek bana uygun',
+    // Ukrainian
+    'тест на професію', 'профорієнтація', 'який фах мені підходить',
   ],
   authors: [{ name: 'Mentivo', url: 'https://www.mentivo.net' }],
   creator: 'Mentivo',
@@ -44,6 +60,16 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.mentivo.net',
+    languages: {
+      'x-default': 'https://www.mentivo.net',
+      'en':        'https://www.mentivo.net',
+      'ru':        'https://www.mentivo.net',
+      'uk':        'https://www.mentivo.net',
+      'de':        'https://www.mentivo.net',
+      'es':        'https://www.mentivo.net',
+      'tr':        'https://www.mentivo.net',
+      'fr':        'https://www.mentivo.net',
+    },
   },
   robots: {
     index: true,
