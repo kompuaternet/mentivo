@@ -461,7 +461,7 @@ export default function TestPage() {
 
               {/* Options */}
               <div className="grid grid-cols-1 gap-4">
-                {question.options.map((opt) => (
+                {question.options.map((opt, i) => (
                   <motion.button
                     key={opt.id}
                     whileTap={{ scale: 0.98 }}
