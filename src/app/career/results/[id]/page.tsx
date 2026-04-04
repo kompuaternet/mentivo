@@ -181,7 +181,7 @@ function PaymentModal({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-32px)] max-w-[480px] bg-white rounded-[20px] p-6 z-[51] max-h-[90vh] overflow-y-auto"
+            className="fixed inset-0 m-auto w-[calc(100vw-32px)] max-w-[480px] h-fit bg-white rounded-[20px] p-6 z-[51] max-h-[90vh] overflow-y-auto"
           >
             {/* Close */}
             <button
