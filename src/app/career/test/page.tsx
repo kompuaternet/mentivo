@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, CheckCircle2, Loader2, ArrowRight, Brain, Lightbulb, Users, Target, Wrench } from 'lucide-react'
@@ -62,6 +62,13 @@ function getInsight(answers: Record<number, string>, exclude: Set<InsightType>):
 }
 
 const INSIGHT_AT = [10, 21]
+
+// Read locale synchronously — avoids re-render/flicker on mount
+function getInitialLocale(): Locale {
+  if (typeof window === 'undefined') return 'en'
+  const saved = localStorage.getItem('career_locale') as Locale | null
+  return saved ?? detectLocale()
+}
 
 // ─── Illustration ─────────────────────────────────────────────────────────────
 
@@ -248,7 +255,7 @@ function InsightScreen({ data, locale, onContinue, questionNum, checkpointNum }:
 
 export default function TestPage() {
   const router = useRouter()
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale] = useState<Locale>(getInitialLocale)
   const [current, setCurrent] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [selected, setSelected] = useState<string | null>(null)
@@ -258,13 +265,6 @@ export default function TestPage() {
   const [shownInsightTypes, setShownInsightTypes] = useState<Set<InsightType>>(new Set())
   const [checkpointNum, setCheckpointNum] = useState(0)
   const [microFlash, setMicroFlash] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    const saved = localStorage.getItem('career_locale') as Locale | null
-    setLocale(saved ?? detectLocale())
-    setMounted(true)
-  }, [])
 
   const question = QUESTIONS[current]
   const progress = Math.round(((current) / TOTAL_QUESTIONS) * 100)
@@ -461,12 +461,9 @@ export default function TestPage() {
 
               {/* Options */}
               <div className="grid grid-cols-1 gap-4">
-                {question.options.map((opt, i) => (
+                {question.options.map((opt) => (
                   <motion.button
                     key={opt.id}
-                    initial={mounted ? { opacity: 0, y: 12 } : false}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleSelect(opt.id)}
                     disabled={selected !== null}
