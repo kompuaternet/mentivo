@@ -14,7 +14,21 @@ export function detectLocale(): Locale {
   if (typeof navigator === 'undefined') return 'ru'
   const lang = navigator.language.slice(0, 2).toLowerCase()
   const map: Record<string, Locale> = {
+    // Direct matches
     ru: 'ru', en: 'en', uk: 'uk', de: 'de', es: 'es', tr: 'tr', fr: 'fr',
+    // Closest supported language
+    be: 'ru', // Belarusian → Russian
+    pt: 'es', // Portuguese → Spanish
+    nl: 'de', // Dutch → German
+    af: 'de', // Afrikaans → German
+    it: 'fr', // Italian → French
+    ca: 'es', // Catalan → Spanish
+    gl: 'es', // Galician → Spanish
+    lb: 'fr', // Luxembourgish → French
+    az: 'tr', // Azerbaijani → Turkish
+    uz: 'ru', // Uzbek → Russian
+    kk: 'ru', // Kazakh → Russian
+    ky: 'ru', // Kyrgyz → Russian
   }
   return map[lang] ?? 'en'
 }
