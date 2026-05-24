@@ -18,16 +18,10 @@ Upload the contents of this `Website` folder to the GitHub Pages repository that
 
 Keep `CNAME` in the root of the deployed site.
 
-Before production AdMob launch, replace the placeholder publisher id in `app-ads.txt`:
+AdMob publisher declaration:
 
 ```text
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-```
-
-with your real AdMob publisher id, for example:
-
-```text
-google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
+google.com, pub-8843292959471328, DIRECT, f08c47fec0942fa0
 ```
 
 Also make sure `support@mentivo.net` forwards to your real inbox.
