@@ -1,15 +1,33 @@
 {
+  "buildCommand": "node Website/tools/build-site.mjs",
+  "outputDirectory": "Website",
   "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
+  "trailingSlash": true,
+  "redirects": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
+      "source": "/privacy",
+      "destination": "/legal/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/legal/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/delete-data",
+      "destination": "/legal/delete-data/",
+      "permanent": true
+    },
+    {
+      "source": "/refund-policy",
+      "destination": "/refund/",
+      "permanent": true
+    },
+    {
+      "source": "/refunds",
+      "destination": "/refund/",
+      "permanent": true
     }
   ]
 }

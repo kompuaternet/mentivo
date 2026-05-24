@@ -1,6 +1,12 @@
 .DS_Store
-.env
-node_modules/
-dist/
+DerivedData/
 build/
-.vercel/
+*.xcuserstate
+*.xcuserdata/
+*.moved-aside
+*.ipa
+*.dSYM.zip
+*.dSYM
+.env
+OracleBallAI/Backend/.env
+Website/.DS_Store
