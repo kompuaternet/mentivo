@@ -24,4 +24,4 @@ AdMob publisher declaration:
 google.com, pub-8843292959471328, DIRECT, f08c47fec0942fa0
 ```
 
-Also make sure `support@mentivo.net` forwards to your real inbox.
+Also make sure `mentivonet@gmail.com` forwards to your real inbox.
