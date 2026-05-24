@@ -788,10 +788,6 @@ const redirects = [
   ["/delete-data/", "/legal/delete-data/"],
   ["/refund-policy/", "/refund/"],
   ["/refunds/", "/refund/"],
-  ["/support.html", "/support/"],
-  ["/legal/privacy.html", "/legal/privacy/"],
-  ["/legal/terms.html", "/legal/terms/"],
-  ["/legal/delete-data.html", "/legal/delete-data/"],
 ];
 
 function redirectPage(from, to) {

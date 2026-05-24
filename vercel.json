@@ -10,7 +10,17 @@
       "permanent": true
     },
     {
+      "source": "/privacy/",
+      "destination": "/legal/privacy/",
+      "permanent": true
+    },
+    {
       "source": "/terms",
+      "destination": "/legal/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
       "destination": "/legal/terms/",
       "permanent": true
     },
@@ -20,13 +30,48 @@
       "permanent": true
     },
     {
+      "source": "/delete-data/",
+      "destination": "/legal/delete-data/",
+      "permanent": true
+    },
+    {
       "source": "/refund-policy",
+      "destination": "/refund/",
+      "permanent": true
+    },
+    {
+      "source": "/refund-policy/",
       "destination": "/refund/",
       "permanent": true
     },
     {
       "source": "/refunds",
       "destination": "/refund/",
+      "permanent": true
+    },
+    {
+      "source": "/refunds/",
+      "destination": "/refund/",
+      "permanent": true
+    },
+    {
+      "source": "/support.html",
+      "destination": "/support/",
+      "permanent": true
+    },
+    {
+      "source": "/legal/privacy.html",
+      "destination": "/legal/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/legal/terms.html",
+      "destination": "/legal/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/legal/delete-data.html",
+      "destination": "/legal/delete-data/",
       "permanent": true
     }
   ]
