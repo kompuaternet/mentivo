@@ -49,6 +49,7 @@ const nav = [
   ["Pricing", "/pricing/"],
   ["Privacy", "/legal/privacy/"],
   ["Terms", "/legal/terms/"],
+  ["Apple Terms", "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/", ' rel="noopener"'],
 ];
 
 const footerGroups = [
@@ -134,7 +135,7 @@ function header() {
       <span class="sr-only">Open menu</span>
     </button>
     <div class="nav-links" id="site-menu">
-      ${nav.map(([label, href]) => `<a href="${href}">${label}</a>`).join("")}
+      ${nav.map(([label, href, extra = ""]) => `<a href="${href}"${extra}>${label}</a>`).join("")}
       <a class="nav-cta" href="/support/">Get support</a>
     </div>
   </nav>
