@@ -16,3 +16,14 @@ if (menuButton && menu) {
     }
   });
 }
+
+const languageLinks = document.querySelectorAll(".language-switcher a[hreflang]");
+
+languageLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    const locale = link.getAttribute("hreflang");
+    if (locale) {
+      localStorage.setItem("mentivo-locale", locale);
+    }
+  });
+});

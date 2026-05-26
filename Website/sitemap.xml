@@ -1,16 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.mentivo.net/</loc></url>
-  <url><loc>https://www.mentivo.net/apps/</loc></url>
-  <url><loc>https://www.mentivo.net/apps/oracle-ball-ai/</loc></url>
-  <url><loc>https://www.mentivo.net/support/</loc></url>
-  <url><loc>https://www.mentivo.net/contact/</loc></url>
-  <url><loc>https://www.mentivo.net/pricing/</loc></url>
-  <url><loc>https://www.mentivo.net/refund/</loc></url>
-  <url><loc>https://www.mentivo.net/faq/</loc></url>
-  <url><loc>https://www.mentivo.net/status/</loc></url>
-  <url><loc>https://www.mentivo.net/legal/privacy/</loc></url>
-  <url><loc>https://www.mentivo.net/legal/terms/</loc></url>
-  <url><loc>https://www.mentivo.net/legal/delete-data/</loc></url>
-  <url><loc>https://www.mentivo.net/legal/cookies/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.mentivo.net/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/apps/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/apps/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/apps/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/apps/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/apps/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/apps/oracle-ball-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/apps/oracle-ball-ai/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/apps/oracle-ball-ai/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/apps/oracle-ball-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/apps/oracle-ball-ai/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/apps/oracle-ball-ai/widget/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/apps/oracle-ball-ai/widget/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/apps/oracle-ball-ai/widget/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/apps/oracle-ball-ai/widget/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/apps/oracle-ball-ai/widget/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/pricing/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/pricing/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/pricing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/pricing/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/support/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/support/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/support/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/support/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/support/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/faq/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/faq/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/faq/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/status/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/status/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/status/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/status/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/status/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/contact/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/contact/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/legal/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/legal/privacy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/legal/privacy/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/legal/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/legal/privacy/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/legal/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/legal/terms/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/legal/delete-data/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/legal/delete-data/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/legal/delete-data/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/legal/delete-data/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/legal/delete-data/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/refund/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/refund/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/refund/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/refund/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/refund/" />
+  </url>
+  <url>
+    <loc>https://www.mentivo.net/en/legal/cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mentivo.net/en/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.mentivo.net/ru/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.mentivo.net/uk/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mentivo.net/en/legal/cookies/" />
+  </url>
 </urlset>

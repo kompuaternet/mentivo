@@ -1,0 +1,446 @@
+{
+  "locales": { "en": "EN", "ru": "RU", "uk": "UK" },
+  "common": {
+    "mainNav": "Main navigation",
+    "homeAria": "Mentivo home",
+    "openMenu": "Open menu",
+    "languageSwitcher": "Language",
+    "supportCta": "Get support",
+    "safetyLine": "Guidance for reflection, not a substitute for professional advice."
+  },
+  "nav": [
+    { "label": "Apps", "href": "/apps/" },
+    { "label": "Oracle Ball AI", "href": "/apps/oracle-ball-ai/" },
+    { "label": "Pricing", "href": "/pricing/" },
+    { "label": "FAQ", "href": "/faq/" },
+    { "label": "Support", "href": "/support/" },
+    { "label": "Privacy", "href": "/legal/privacy/" }
+  ],
+  "footer": {
+    "positioning": "Mentivo creates premium mobile experiences for reflection, daily focus, privacy, and calmer everyday decisions.",
+    "rights": "All rights reserved.",
+    "groups": [
+      { "title": "Mentivo", "links": [
+        { "label": "Apps", "href": "/apps/" },
+        { "label": "Oracle Ball AI", "href": "/apps/oracle-ball-ai/" },
+        { "label": "Daily Oracle Widgets", "href": "/apps/oracle-ball-ai/widget/" },
+        { "label": "Support", "href": "/support/" },
+        { "label": "Contact", "href": "/contact/" }
+      ] },
+      { "title": "Legal", "links": [
+        { "label": "Privacy Policy", "href": "/legal/privacy/" },
+        { "label": "Terms of Use", "href": "/legal/terms/" },
+        { "label": "Delete Data", "href": "/legal/delete-data/" },
+        { "label": "Refund Policy", "href": "/refund/" },
+        { "label": "Cookie Policy", "href": "/legal/cookies/" }
+      ] },
+      { "title": "App", "links": [
+        { "label": "Pricing", "href": "/pricing/" },
+        { "label": "FAQ", "href": "/faq/" },
+        { "label": "Status", "href": "/status/" },
+        { "label": "App ads", "href": "/app-ads.txt" },
+        { "label": "Apple Terms", "href": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" }
+      ] }
+    ]
+  },
+  "seo": {
+    "home": { "title": "Mentivo — Premium AI apps for reflection and daily clarity", "description": "Mentivo creates premium mobile apps for reflection, daily focus, AI oracle guidance, privacy, and everyday decision clarity." },
+    "apps": { "title": "Mentivo Apps — Oracle Ball AI and premium mobile experiences", "description": "Explore Mentivo apps for reflection, daily focus, AI oracle guidance, privacy, and calm everyday decisions." },
+    "oracle": { "title": "Oracle Ball AI — AI Oracle, Daily Horoscope and Home Screen Widgets", "description": "Ask by voice or text, receive AI oracle guidance, read your daily horoscope, and use helpful Daily Oracle widgets with Premium and Lite modes." },
+    "widget": { "title": "Daily Oracle Widgets — Oracle Ball AI", "description": "Learn how Oracle Ball AI Home Screen widgets show daily horoscope, energy, focus, advice, Lite mode, Premium mode, and a 3-day full widget preview." },
+    "pricing": { "title": "Pricing — Oracle Ball AI Premium, Lite and Credits", "description": "Start free, use Daily Oracle Lite, unlock Premium widgets and deeper readings, or use one-time Deep Answer credits where supported." },
+    "support": { "title": "Support — Mentivo and Oracle Ball AI", "description": "Get help with Oracle Ball AI, Daily Oracle, widgets, Premium, purchases, credits, voice input, privacy, and data deletion." },
+    "faq": { "title": "FAQ — Oracle Ball AI, Daily Oracle, Widgets, Premium and Privacy", "description": "Answers about Oracle Ball AI features, daily horoscope, widgets, Premium, credits, AI processing, privacy, and safety boundaries." },
+    "status": { "title": "Status — Mentivo", "description": "Service status for the Mentivo website, support email, Oracle Ball AI backend, AI answers, Daily Oracle, widgets, purchases, ads, and voice input." },
+    "contact": { "title": "Contact Mentivo — App support, privacy and legal requests", "description": "Contact Mentivo for Oracle Ball AI app support, purchase issues, privacy requests, AI safety reports, business, legal, and bug reports." }
+  },
+  "home": {
+    "hero": {
+      "badge": "Mentivo studio",
+      "title": "Calm AI apps for reflection, daily focus, and better questions.",
+      "subtitle": "Mentivo creates premium mobile experiences that help people pause, ask better questions, and make calmer everyday decisions.",
+      "primary": "Explore Oracle Ball AI",
+      "secondary": "Get support"
+    },
+    "product": {
+      "title": "Oracle Ball AI is a personal AI oracle with astrological context for questions, daily horoscope, self-reflection and decision clarity.",
+      "text": "Ask by voice or text, read a Daily Oracle, keep useful guidance on your Home Screen, and choose Premium when you want deeper readings.",
+      "cta": "View Oracle Ball AI",
+      "bullets": ["AI oracle answers", "Daily horoscope and guidance", "Useful Home Screen widgets", "Voice or text questions", "Premium themes and deeper readings"]
+    },
+    "trust": {
+      "title": "Personal guidance, clear limits, and transparent privacy.",
+      "cards": [
+        { "title": "Clear privacy", "text": "Question text, optional profile details, purchases, ads, analytics, and deletion are explained plainly." },
+        { "title": "Transparent purchases", "text": "Subscriptions and credits are managed through Apple purchase screens and app restore flows." },
+        { "title": "Responsible AI boundaries", "text": "Oracle guidance is for reflection and does not replace professional advice." }
+      ]
+    },
+    "built": {
+      "badge": "Built for trust",
+      "title": "A product landing page, support center, and legal hub in one stable site.",
+      "cards": [
+        { "title": "Data deletion support", "text": "Users can delete local history and request backend/account deletion when applicable." },
+        { "title": "Global languages", "text": "Website copy, SEO, legal pages, FAQ, and schema are localized for supported languages." },
+        { "title": "App Store-safe messaging", "text": "No guaranteed predictions, no professional advice claims, and no purchase flow inside widgets." }
+      ]
+    }
+  },
+  "apps": {
+    "hero": { "eyebrow": "Apps", "title": "Mentivo Apps", "subtitle": "Premium mobile experiences for reflection, daily clarity, and better questions." },
+    "title": "Mentivo Apps",
+    "items": [
+      { "name": "Oracle Ball AI", "href": "/apps/oracle-ball-ai/", "title": "A personal AI oracle for daily clarity.", "text": "Oracle Ball AI combines AI oracle answers, daily horoscope-inspired guidance, lunar context, Home Screen widgets, voice input, Premium themes, and clear safety limits.", "cta": "View app", "bullets": ["AI oracle answers", "Daily Oracle and horoscope", "Small, medium, and large widgets", "Lite and Premium modes", "One-time Deep Answer credits where supported"] },
+      { "name": "Coming soon", "href": "/apps/", "title": "More calm mobile experiences are in development.", "text": "Mentivo is built to support future apps with shared support, privacy, legal, pricing, and data deletion pages.", "cta": "Coming soon", "bullets": ["Privacy-first", "Global-ready", "Premium mobile design"] }
+    ]
+  },
+  "oracle": {
+    "hero": {
+      "title": "Oracle Ball AI — a personal AI oracle for daily clarity.",
+      "subtitle": "Ask by voice or text, receive a calm answer, read your daily horoscope, and keep your Daily Oracle widget on the Home Screen.",
+      "primary": "View features",
+      "secondary": "App Store link coming soon"
+    },
+    "what": {
+      "badge": "What it does",
+      "title": "What Oracle Ball AI helps with",
+      "cards": [
+        { "title": "Questions and decisions", "text": "Ask about a situation, choice, mood, relationship, work, money, or personal direction." },
+        { "title": "Daily horoscope", "text": "Read a calm daily horoscope with energy, focus, advice, and one small action." },
+        { "title": "Useful widgets", "text": "Keep the Daily Oracle on your Home Screen and read useful guidance without opening the app." },
+        { "title": "Reflection, not pressure", "text": "Answers are designed to help you pause, reflect, and choose a calmer next step." }
+      ]
+    },
+    "how": {
+      "badge": "How it works",
+      "title": "How Oracle creates guidance",
+      "steps": [
+        { "title": "Ask", "text": "Type your question or use voice input. Voice is turned into text before the answer is generated." },
+        { "title": "Personal context", "text": "Oracle can use your optional astro profile, zodiac sign, selected answer style, and daily lunar context." },
+        { "title": "Receive", "text": "Get a structured answer with a short verdict, reflection, advice, and one small next step." },
+        { "title": "Reflect", "text": "Use the answer as a personal orientation, not as a guaranteed prediction." }
+      ]
+    },
+    "daily": {
+      "badge": "Daily Oracle",
+      "title": "Daily Oracle and horoscope",
+      "text": "Start the day with a personalized daily reading: horoscope, mood, energy, focus, advice, small action, and question of the day.",
+      "labels": ["Today's horoscope", "Daily sign", "Mood of the day", "Energy", "Focus", "Advice", "Small action", "Question of the day", "Lunar context", "Same content in app and widget"],
+      "mock": { "kicker": "Daily Oracle", "title": "Today asks for a calmer pace.", "text": "Choose one clear priority and let the rest become lighter." }
+    },
+    "widget": {
+      "badge": "Widgets",
+      "title": "Read your Daily Oracle without opening the app",
+      "text": "Oracle Ball AI widgets are designed to show useful daily guidance directly on your Home Screen: a short horoscope, energy, focus, advice, and a link to the full reading.",
+      "cta": "Explore widgets",
+      "preview": ["New users get 3 days of the full widget experience.", "After that, free users keep a useful Lite widget.", "Premium keeps the full Daily Oracle widget every day.", "Premium is managed inside the app, not inside the widget."],
+      "sizes": {
+        "small": { "title": "Small", "text": "A quick daily sign and energy of the day." },
+        "medium": { "title": "Medium", "text": "A readable mini horoscope with energy and details link." },
+        "large": { "title": "Large", "text": "A fuller daily reading with horoscope, lunar context, advice, focus, and small action." }
+      }
+    },
+    "astro": {
+      "badge": "Astro context",
+      "title": "Astro profile and lunar context",
+      "text": "Oracle can use your optional birth date to determine your zodiac sign and basic astrological profile. Daily guidance can also include the moon phase and lunar context of the day.",
+      "note": "Astro context is used as a reflection layer, not as a guaranteed prediction."
+    },
+    "ask": {
+      "badge": "Voice or text",
+      "title": "Ask by voice or text",
+      "text": "Type a question or speak it out loud. Voice input turns speech into text before Oracle generates the answer.",
+      "examples": ["What should I understand today?", "How should I handle this situation?", "What should I focus on tomorrow?", "What is the calm next step?"],
+      "mockAnswer": "Pause before deciding. The practical next step is smaller than the whole problem."
+    },
+    "responseFormat": {
+      "badge": "Answer format",
+      "title": "Structured answers for calmer decisions",
+      "text": "Oracle answers are organized so you can scan the result, reflect, and act without pressure.",
+      "parts": ["Short answer", "Why this", "Guidance", "Small step", "Important note when needed"],
+      "note": "Some answer modes may also include Heart says, Mind says, and an Orb verdict to separate emotional and practical perspectives."
+    },
+    "styles": {
+      "badge": "Styles and topics",
+      "title": "Tone and context stay separate",
+      "text": "Choose a style for the tone, and a topic for the context.",
+      "stylesTitle": "Answer styles",
+      "topicsTitle": "Question topics",
+      "styles": ["Wise", "Concise", "Gentle", "Classic", "Humorous"],
+      "topics": ["Love", "Money", "Career", "Decision", "Mood", "Horoscope", "Other"],
+      "moneySafety": "Money questions receive reflection and risk-awareness prompts, not financial advice."
+    },
+    "premium": {
+      "badge": "Premium",
+      "title": "Go deeper with Premium",
+      "text": "Premium unlocks deeper readings, richer Daily Oracle features, Premium themes, full history, and the full widget experience every day.",
+      "cta": "View pricing",
+      "note": "Premium does not promise unlimited usage or guaranteed predictions.",
+      "features": ["Up to 100 AI answers per day, subject to fair use and backend limits", "No ads where applicable", "Premium answer styles and themes", "Full answer history", "Daily Oracle Plus", "Full Daily Oracle widget", "Lunar context", "Advice, small action, and question of the day", "Premium visual themes", "Deeper readings"]
+    },
+    "trust": {
+      "title": "Designed for reflection, not guaranteed prediction",
+      "text": "Oracle Ball AI provides personal guidance for reflection and self-analysis. It does not replace medical, legal, financial, psychological, emergency, or other professional advice.",
+      "bullets": ["No guaranteed prediction claims", "No medical, legal, financial, mental health, or emergency advice", "Gentle warnings for high-stakes topics", "Purchases are handled by Apple", "Widgets do not contain purchase buttons"]
+    },
+    "faqTitle": "Oracle Ball AI questions",
+    "faq": [
+      { "q": "What is Oracle Ball AI?", "a": "Oracle Ball AI is a personal AI oracle for questions, daily horoscope-inspired guidance, self-reflection, and decision clarity." },
+      { "q": "Does Oracle Ball AI predict the future?", "a": "No. It offers guidance for reflection and personal orientation, not guaranteed predictions." },
+      { "q": "Can I ask by voice?", "a": "Yes. Voice input turns speech into text before the answer is generated." },
+      { "q": "What is Daily Oracle?", "a": "Daily Oracle is a once-per-day reading with horoscope, mood, energy, focus, advice, small action, question of the day, and lunar context where available." },
+      { "q": "Is the widget useful without Premium?", "a": "Yes. Free Lite keeps useful daily guidance. Premium keeps the richer full widget every day." },
+      { "q": "Can I buy Premium from the widget?", "a": "No. Purchases happen only inside the app through Apple purchase flows." }
+    ]
+  },
+  "widgetPage": {
+    "hero": { "eyebrow": "Daily Oracle Widgets", "title": "Your daily horoscope, directly on the Home Screen.", "subtitle": "Small, medium, and large widgets show useful daily guidance without opening the app." },
+    "intro": {
+      "title": "Daily Oracle Widgets",
+      "text": "The widget shows the same Daily Oracle content as the app: horoscope, energy, focus, advice, small action, lunar context, and a link to the full reading when available.",
+      "bullets": ["Small, medium, and large widget sizes", "3-day full widget preview for new users", "Lite widget after preview", "Premium full widget every day", "No purchase inside the widget"]
+    },
+    "sizes": { "badge": "Widget sizes", "title": "Choose the amount of daily guidance you want to see." },
+    "compare": { "badge": "Lite vs Premium", "title": "The widget is useful even in Free Lite.", "note": "Premium keeps the richer daily reading visible every day." },
+    "table": {
+      "headers": ["Feature", "Free Lite", "3-Day Full Preview", "Premium"],
+      "rows": [
+        ["Short daily horoscope", "Included", "Included", "Included"],
+        ["Energy/focus", "Included", "Included", "Included"],
+        ["Medium widget reading", "Lite", "Full", "Full"],
+        ["Large widget full reading", "Limited", "Included", "Included"],
+        ["Lunar context", "Limited", "Included", "Included"],
+        ["Advice", "Lite", "Included", "Included"],
+        ["Small action", "Lite", "Included", "Included"],
+        ["Question of the day", "Limited", "Included", "Included"],
+        ["Premium themes", "No", "Preview where available", "Included"],
+        ["App ads removed where applicable", "No", "No automatic purchase", "Included"],
+        ["Full history", "Limited", "Limited", "Included"]
+      ]
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "hero": { "eyebrow": "Pricing", "title": "Pricing", "subtitle": "Start free, read your Daily Oracle, and upgrade when you want deeper answers, richer widgets, and Premium themes." },
+    "plans": [
+      { "label": "Free Lite", "title": "Start free", "text": "A useful free experience for daily guidance and basic questions.", "features": ["Basic AI answers", "Limited AI usage", "Daily Oracle Lite", "Useful Lite widget", "Ads may be shown", "Limited history", "3-day full widget preview for new users"] },
+      { "label": "Premium", "title": "Go deeper", "text": "For richer answers, full widgets, visual themes, and deeper daily readings.", "featured": true, "features": ["Up to 100 AI answers per day", "No ads where applicable", "Premium answer styles", "Full history", "Daily Oracle Plus", "Full Daily Oracle widget every day", "Lunar context", "Advice, small action, question of the day", "Premium themes"] },
+      { "label": "One-time credits", "title": "Deep Answers", "text": "Credits are for one-time deep answers where supported by the app.", "features": ["10 Deep Answers — $0.99", "50 Deep Answers — $2.99", "100 Deep Answers — $4.99", "Credits do not expire where supported by the app", "Premium users may not spend credits for features included in Premium"] }
+    ],
+    "subscriptionTitle": "Subscriptions",
+    "subscriptions": [
+      { "label": "Weekly", "price": "$4.99/week" },
+      { "label": "Monthly", "price": "$9.99/month" },
+      { "label": "Yearly", "price": "$39.99/year" }
+    ],
+    "priceNote": "Prices may vary by country, currency, taxes, promotions, App Store region, and Apple rules. The final price is shown in the App Store purchase screen before confirmation.",
+    "previewNote": "The 3-day full widget preview is a product preview unless the App Store purchase screen explicitly shows a subscription trial."
+  },
+  "faq": {
+    "title": "FAQ",
+    "hero": { "eyebrow": "FAQ", "title": "FAQ", "subtitle": "Answers about Oracle Ball AI features, daily horoscope, widgets, Premium, privacy, AI processing, and safety." },
+    "items": [
+      { "q": "What is Oracle Ball AI?", "a": "Oracle Ball AI is a personal AI oracle with astrological context for questions, daily horoscope, self-reflection, and decision clarity." },
+      { "q": "Does Oracle Ball AI predict the future?", "a": "No. It is not a guaranteed prediction tool and does not decide your fate." },
+      { "q": "Can I buy Premium from the widget?", "a": "No. Purchases happen only inside the app." }
+    ],
+    "groups": [
+      { "title": "General", "items": [
+        { "q": "What is Oracle Ball AI?", "a": "Oracle Ball AI is a personal AI oracle with astrological context for questions, daily horoscope, self-reflection, and decision clarity." },
+        { "q": "Is Oracle Ball AI a fortune-telling app?", "a": "It uses oracle-style and horoscope-inspired language, but it is designed for reflection and self-analysis rather than guaranteed fortune telling." },
+        { "q": "Does Oracle Ball AI predict the future?", "a": "No. It offers personal orientation and calmer next steps, not exact future prediction." },
+        { "q": "Who is Oracle Ball AI for?", "a": "It is for people who want a calm daily prompt, a reflective answer, or a different angle on everyday questions." }
+      ] },
+      { "title": "Asking questions", "items": [
+        { "q": "Can I ask by voice?", "a": "Yes. Voice input turns speech into text before Oracle generates the answer." },
+        { "q": "Can I ask by text?", "a": "Yes. You can type a question directly." },
+        { "q": "What answer styles are available?", "a": "Styles may include Wise, Concise, Gentle, Classic, and Humorous." },
+        { "q": "What question topics can I choose?", "a": "Topics may include Love, Money, Career, Decision, Mood, Horoscope, and Other." },
+        { "q": "What is Heart says / Mind says?", "a": "It separates emotional and practical perspectives when that response format is available." },
+        { "q": "What is the Orb verdict?", "a": "It is a short oracle-style summary that frames the answer as a reflection prompt." }
+      ] },
+      { "title": "Daily Oracle and horoscope", "items": [
+        { "q": "What is Daily Oracle?", "a": "Daily Oracle is a once-per-day reading with horoscope, mood, energy, focus, advice, small action, question of the day, and lunar context where available." },
+        { "q": "What is the daily horoscope?", "a": "It is horoscope-inspired guidance for the day, written for reflection and daily focus." },
+        { "q": "What is lunar context?", "a": "Lunar context may include the moon phase and a short reflection layer connected to the day." },
+        { "q": "What is astro profile?", "a": "It is optional basic astrological context such as zodiac sign and related derived context." },
+        { "q": "Do I need to enter my birth date?", "a": "No. Birth date is optional and the app can work without it." },
+        { "q": "Is this a natal chart?", "a": "No. We do not describe it as a natal chart unless birth time and birth place are collected." },
+        { "q": "Why does the daily advice change once per day?", "a": "Daily Oracle is designed as a stable daily reading so the app and widget can show the same guidance for the day." }
+      ] },
+      { "title": "Widgets", "items": [
+        { "q": "What does the Home Screen widget show?", "a": "It can show a short horoscope, energy, focus, advice, lunar context, and a link to the full reading depending on widget size and access level." },
+        { "q": "Is the widget useful without Premium?", "a": "Yes. Free Lite keeps useful daily guidance after the preview." },
+        { "q": "What is the 3-day full widget preview?", "a": "New users get 3 days of the full widget experience without an automatic purchase." },
+        { "q": "What happens after 3 days?", "a": "Free users keep a useful Lite widget, while Premium keeps the full Daily Oracle widget every day." },
+        { "q": "What does Premium unlock in the widget?", "a": "Premium keeps the full daily horoscope, lunar context, advice, small action, question of the day, and richer large widget visible every day." },
+        { "q": "Can I buy Premium from the widget?", "a": "No. Purchases happen only inside the app." }
+      ] },
+      { "title": "Premium and pricing", "items": [
+        { "q": "What is included in Premium?", "a": "Premium includes deeper readings, up to 100 AI answers per day, no ads where applicable, Premium styles, full history, Daily Oracle Plus, full widget, lunar context, and Premium themes." },
+        { "q": "How many AI answers do Premium users get?", "a": "Premium currently supports up to 100 AI answers per day, subject to fair use, safety, service availability, and backend limits." },
+        { "q": "Does Premium remove ads?", "a": "Premium removes ads where applicable." },
+        { "q": "What are Deep Answer credits?", "a": "Credits are one-time packs for deep answers where supported by the app." },
+        { "q": "Do credits expire?", "a": "Credits do not expire where supported by the app, subject to app functionality and service availability." },
+        { "q": "How do I cancel Premium?", "a": "Cancel through iPhone Settings, Apple ID, Subscriptions." },
+        { "q": "How do I restore purchases?", "a": "Open the app and use Restore Purchases in Settings or Premium." }
+      ] },
+      { "title": "Privacy and AI", "items": [
+        { "q": "What data is collected?", "a": "Depending on features used, the app may process question text, optional birth date, derived zodiac context, selected tone, topic, Daily Oracle content, widget payload, purchase status, usage data, diagnostics, ads data where permitted, and support messages." },
+        { "q": "Is my question sent to AI providers?", "a": "For AI answers, question text may be sent through Mentivo backend to an AI provider to generate the requested response." },
+        { "q": "Is my birth date sent to AI?", "a": "The app should avoid sending exact birth date when not necessary and may use derived context such as zodiac sign, element, and selected tone." },
+        { "q": "Are questions used in analytics?", "a": "Full question text should not be used in analytics. Analytics may use aggregate feature events such as mode, language, answer type, and usage counts." },
+        { "q": "Can I delete my data?", "a": "Yes. You can delete local history and request backend/account deletion where applicable." }
+      ] },
+      { "title": "Safety boundaries", "items": [
+        { "q": "Can I use this for medical advice?", "a": "No. It is not a substitute for medical care." },
+        { "q": "Can I use this for legal advice?", "a": "No. It is not legal advice." },
+        { "q": "Can I use this for financial advice?", "a": "No. Money answers are reflection and risk-awareness prompts, not financial advice." },
+        { "q": "What should I do in an emergency?", "a": "Contact local emergency services or a qualified professional immediately." }
+      ] }
+    ]
+  },
+  "support": {
+    "hero": { "eyebrow": "Support Center", "title": "Support Center", "subtitle": "Get help with Oracle Ball AI, Daily Oracle, widgets, Premium, purchases, credits, privacy, and data requests." },
+    "cards": [
+      { "title": "Daily Oracle", "text": "Help with horoscope, daily sign, mood, energy, focus, advice, lunar context, and once-per-day readings." },
+      { "title": "Home Screen widgets", "text": "Help with small, medium, large widgets, Lite mode, 3-day full widget preview, and widget data sync." },
+      { "title": "Premium not active", "text": "Restore purchases, check Apple ID, and contact support if Premium or credits do not appear." },
+      { "title": "Voice input", "text": "Help with speech recognition, permissions, language settings, and text conversion." },
+      { "title": "Birth date / astro profile", "text": "Questions about optional birth date, zodiac sign, form of address, and basic astro personalization." },
+      { "title": "AI answer not generating", "text": "Support for backend availability, network issues, app language, safety boundaries, and retry steps." }
+    ],
+    "contact": {
+      "badge": "Contact",
+      "title": "Still need help?",
+      "text": "Email {email}.",
+      "include": ["App name", "Device model", "iOS version", "App version", "Language", "Screenshot if helpful", "Whether the issue is app or widget", "Purchase status if relevant, but never full card or payment details"]
+    },
+    "links": [
+      { "label": "Privacy Policy", "href": "/legal/privacy/" },
+      { "label": "Terms of Use", "href": "/legal/terms/" },
+      { "label": "Delete Data", "href": "/legal/delete-data/" },
+      { "label": "Refund Policy", "href": "/refund/" },
+      { "label": "Apple billing support", "href": "https://support.apple.com/billing" }
+    ]
+  },
+  "contact": {
+    "hero": { "eyebrow": "Contact", "title": "Contact Mentivo", "subtitle": "For app support, purchase issues, privacy requests, AI safety reports, business, legal, or bugs, contact us by email." },
+    "emailLabel": "Email",
+    "text": "Use the subject template for Oracle Ball AI support and include only information needed to investigate the issue.",
+    "categories": [
+      { "title": "App support", "text": "Daily Oracle, widgets, voice input, language settings, history, ads, Premium, and credits." },
+      { "title": "Purchase/subscription issue", "text": "Restore purchases, Premium not active, credits, cancellation, and Apple refund direction." },
+      { "title": "Privacy/data deletion", "text": "Delete local history, request backend/account deletion, or ask how AI processing works." },
+      { "title": "AI safety/report", "text": "Report a concerning answer or a high-stakes topic that needs review." },
+      { "title": "Business/legal", "text": "Business questions, legal notices, or policy requests." },
+      { "title": "Bug report", "text": "Include device, iOS version, app version, language, screenshot, and steps to reproduce." }
+    ]
+  },
+  "status": {
+    "hero": { "eyebrow": "Status", "title": "Status", "subtitle": "Current status for Mentivo website, support, and Oracle Ball AI infrastructure." },
+    "rows": [
+      { "name": "Website", "value": "Operational" },
+      { "name": "Support email", "value": "Operational" },
+      { "name": "Oracle Ball AI backend", "value": "Monitored through app infrastructure" },
+      { "name": "AI answer generation", "value": "Monitored through app infrastructure" },
+      { "name": "Daily Oracle generation", "value": "Monitored through app infrastructure" },
+      { "name": "Widget data sync", "value": "Monitored through app infrastructure" },
+      { "name": "Apple purchases / StoreKit", "value": "Apple managed" },
+      { "name": "Ads", "value": "Partner managed" },
+      { "name": "Voice input / speech recognition", "value": "Apple and device managed" }
+    ],
+    "note": "This page is manually maintained unless a live monitoring integration is added."
+  },
+  "legal": {
+    "eyebrow": "Legal",
+    "updated": "Last updated",
+    "privacy": {
+      "route": "/legal/privacy/",
+      "seoTitle": "Privacy Policy — Mentivo",
+      "description": "Learn how Mentivo handles question text, optional birth date, Daily Oracle, widgets, AI processing, analytics, ads, purchases, and deletion requests.",
+      "title": "Privacy Policy",
+      "updated": "May 26, 2026",
+      "sections": [
+        { "title": "Overview", "text": "This Privacy Policy explains how Mentivo collects, uses, and protects information when you use our websites, mobile applications, AI features, Daily Oracle, widgets, analytics, ads, purchases, and support services." },
+        { "title": "Data we collect", "text": "Depending on the app and features you use, we may process app usage data, purchase or subscription status, premium entitlement status, device language, app settings, crash diagnostics, advertising identifiers where permitted, support messages, AI question text, selected Oracle style, selected question topic, saved answers/history, optional birth date, optional form of address or tone, zodiac sign, derived astro profile, Daily Oracle content, widget payload, and 3-day widget preview dates." },
+        { "title": "AI processing", "text": "For AI-powered features, question text may be sent from the app to our backend and then to an AI provider to generate an answer. When possible, we avoid sending unnecessary personal data to AI providers. For astrology-related personalization, the app may derive context such as zodiac sign, element, or selected tone before generating a response." },
+        { "title": "Home Screen Widgets", "text": "Widget content may be stored locally or in shared app storage so the widget can display Daily Oracle content outside the app. The widget does not process purchases and does not call AI providers directly." },
+        { "title": "Daily Oracle and astro context", "text": "Daily Oracle may use derived context such as zodiac sign, selected style, language, moon phase, lunar context, and optional profile settings. Exact birth date should be avoided in AI requests when derived context is enough." },
+        { "title": "Analytics", "text": "Analytics events may include mode, language, question length, user type, answer type, app opens, purchases, ads, feature usage, and widget usage. Full question text should not be sent in analytics events." },
+        { "title": "Advertising", "text": "Free users may see ads from advertising partners such as Google AdMob. Advertising partners may process device and ad interaction data according to their own policies and user consent settings." },
+        { "title": "Purchases", "text": "In-app purchases and subscriptions are processed by Apple. We may receive transaction status and product identifiers needed to unlock Premium, credits, widget access, or restore purchases." },
+        { "title": "Data deletion", "text": "You can delete local history in the app and request backend/account deletion. See <a href=\"/legal/delete-data/\">Delete Data</a> for instructions." },
+        { "title": "Contact", "text": "For privacy questions or requests, contact {email}." }
+      ]
+    },
+    "terms": {
+      "route": "/legal/terms/",
+      "seoTitle": "Terms of Use — Mentivo",
+      "description": "Terms for Mentivo websites and Oracle Ball AI, including AI limitations, Daily Oracle, widgets, Premium, Lite, credits, safety boundaries, and Apple purchases.",
+      "title": "Terms of Use",
+      "updated": "May 26, 2026",
+      "sections": [
+        { "title": "Acceptance", "text": "By using Mentivo apps or websites, you agree to these Terms of Use and our Privacy Policy. If you do not agree, do not use the services." },
+        { "title": "Daily Oracle and astro features", "text": "Daily Oracle, horoscope, astro profile, and lunar context features are intended for reflection and self-analysis. They do not guarantee future events." },
+        { "title": "AI limitations", "text": "AI answers may be incomplete, inaccurate, symbolic, or unsuitable for serious decisions. Oracle Ball AI does not promise guaranteed predictions." },
+        { "title": "No professional advice", "text": "Our apps do not provide medical, legal, financial, psychological, emergency, or other professional advice. For important matters, contact a qualified professional or emergency service." },
+        { "title": "Widgets", "text": "Widgets display Daily Oracle content and links to the app. Widgets do not include purchase buttons, advertising, or in-app purchase flows." },
+        { "title": "3-day full widget preview", "text": "The 3-day full widget preview is a product preview unless explicitly shown as an App Store subscription trial in the purchase screen. It does not create a paid subscription by itself." },
+        { "title": "Premium and Lite", "text": "Free Lite includes limited AI usage, Daily Oracle Lite, useful Lite widgets, ads where applicable, limited history, and a 3-day full widget preview for new users. Premium unlocks deeper readings, full history, Daily Oracle Plus, full Daily Oracle widgets, Premium styles, Premium themes, and up to 100 AI answers per day subject to fair use and backend limits." },
+        { "title": "Credits", "text": "Purchased answer credits may be used for one-time Deep Answers where supported by the app. Premium users may not spend credits for features included in Premium." },
+        { "title": "Apple purchases and refunds", "text": "Subscriptions, in-app purchases, cancellation, renewal, restore, and refunds are governed by Apple App Store rules and the purchase screen shown before confirmation." },
+        { "title": "Contact", "text": "For questions about these terms, contact {email}." }
+      ]
+    },
+    "deleteData": {
+      "route": "/legal/delete-data/",
+      "seoTitle": "Delete Data — Mentivo",
+      "description": "Learn how to delete Oracle Ball AI local question history, saved answers, Daily Oracle data, widget payload, birth date, astro profile, settings, and backend/account data.",
+      "title": "Delete Data",
+      "updated": "May 26, 2026",
+      "sections": [
+        { "title": "Data you can delete", "text": "Depending on the feature, deletable data may include local question history, saved answers, Daily Oracle local data, widget payload, birth date, astro profile, form of address, app settings, backend/account data where applicable, and support messages." },
+        { "title": "Delete local history", "text": "Open the app, go to Settings, choose delete history or related data controls, and confirm deletion." },
+        { "title": "Delete backend/account data", "text": "If backend/account data exists for your app version, use the in-app deletion flow or email {email} with the app name, request type, and user identifier shown in app settings if available." },
+        { "title": "Important limits", "text": "Deleting local history may not automatically delete data already processed by third-party AI providers or support email systems. Contact support for backend/account deletion requests." },
+        { "title": "What we may keep", "text": "Some records may be retained for legal, tax, purchase verification, fraud prevention, security, or dispute resolution where permitted by law." }
+      ]
+    },
+    "refund": {
+      "route": "/refund/",
+      "seoTitle": "Refund Policy — Mentivo",
+      "description": "Refund and restore information for Oracle Ball AI subscriptions, Premium, credits, and the local 3-day full widget preview.",
+      "title": "Refund Policy",
+      "updated": "May 26, 2026",
+      "sections": [
+        { "title": "Apple handles payments", "text": "Mentivo does not directly process App Store payments and cannot directly issue App Store refunds. Purchases and subscriptions are handled by Apple." },
+        { "title": "How to request a refund", "text": "Use Apple Report a Problem or Apple billing support. Apple decides refund eligibility under Apple rules." },
+        { "title": "Subscriptions", "text": "You can cancel subscriptions in iPhone Settings, Apple ID, Subscriptions." },
+        { "title": "3-day full widget preview", "text": "The local 3-day full widget preview is not a subscription trial unless the App Store purchase screen explicitly says a subscription trial is being started." },
+        { "title": "Restore Premium and credits", "text": "Open the app and tap Restore Purchases in Settings or Premium. Credits can be restored where supported by Apple purchase records and app functionality." },
+        { "title": "Need help?", "text": "Email {email} with the app name, issue description, purchase date if available, and a screenshot if helpful." }
+      ]
+    },
+    "cookies": {
+      "route": "/legal/cookies/",
+      "seoTitle": "Cookie Policy — Mentivo",
+      "description": "Cookie and local storage information for Mentivo websites and related app support pages.",
+      "title": "Cookie Policy",
+      "updated": "May 26, 2026",
+      "sections": [
+        { "title": "Overview", "text": "Mentivo websites may use essential technologies for site operation and may use analytics or advertising technologies if enabled." },
+        { "title": "Essential cookies / local storage", "text": "Essential technologies may support navigation, security, preferences, selected language, and basic site operation." },
+        { "title": "Analytics", "text": "If analytics are enabled, they help us understand aggregate website usage and improve content. We aim to avoid collecting unnecessary personal data." },
+        { "title": "Advertising", "text": "This website currently uses minimal technologies. Mentivo apps may use analytics and ads as described in the Privacy Policy." },
+        { "title": "Managing choices", "text": "You can manage cookies and local storage in your browser settings. App-level tracking choices are managed in iOS settings where applicable." },
+        { "title": "Contact", "text": "For cookie questions, contact {email}." }
+      ]
+    }
+  },
+  "alt": {
+    "daily": "Daily Oracle screen mockup",
+    "ask": "Oracle Ball AI ask screen mockup",
+    "widgets": "Small, medium, and large Daily Oracle widget mockups"
+  }
+}
